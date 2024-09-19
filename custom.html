@@ -12,6 +12,8 @@
         <h1 class="text-2xl font-bold mb-4">Subnetting Creation Exercise</h1>
         <h2 class="text-xl font-semibold mb-2">Problem</h2>
         <div class="problem-info mb-6">
+            <p>Number of needed subnets: <span id="neededSubnets" class="font-semibold"></span></p>
+            <p>Number of needed usable hosts: <span id="neededHosts" class="font-semibold"></span></p>
             <p>Network Address: <span id="networkAddress" class="font-semibold"></span></p>
             <div id="answersList" class="mt-4">
                 <h3 class="text-lg font-semibold">Your Answers:</h3>
@@ -95,9 +97,16 @@
         }
 
         function generateProblem() {
-            const networkAddress = generateRandomIP();
+            const neededSubnets = Math.floor(Math.random() * 30) + 2; // Random subnets
+            const neededHosts = Math.floor(Math.random() * 254) + 2;  // Random hosts (max 254)
+            const networkAddress = generateRandomIP();                // Random IP
+
+            // Display problem details
+            document.getElementById('neededSubnets').textContent = neededSubnets;
+            document.getElementById('neededHosts').textContent = neededHosts;
             document.getElementById('networkAddress').textContent = networkAddress;
-            return { networkAddress };
+
+            return { neededSubnets, neededHosts, networkAddress };
         }
 
         // Helper function to generate dynamic options (one correct, two incorrect)
