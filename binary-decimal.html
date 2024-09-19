@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binary to Decimal Conversion Exercise</title>
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrollbars */
+            height: 100%; /* Ensure full height usage */
+        }
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
+            max-width: 100%; /* Ensure content doesn't exceed iframe's width */
             margin: 0 auto;
             padding: 20px;
+            box-sizing: border-box; /* Include padding in width calculation */
         }
         table {
             border-collapse: collapse;
