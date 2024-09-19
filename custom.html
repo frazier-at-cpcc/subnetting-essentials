@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Subnet Masks Exercise</title>
+    <title>Subnetting Quiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-white p-6 font-sans">
 
     <div class="max-w-xl mx-auto bg-white p-8 shadow-lg rounded-lg">
-        <h1 class="text-2xl font-bold mb-4">Custom Subnet Masks Exercise</h1>
+        <h1 class="text-2xl font-bold mb-4">Subnetting Creation Exercise</h1>
         <h2 class="text-xl font-semibold mb-2">Problem</h2>
         <div class="problem-info mb-6">
-            <p>Number of needed subnets: <span id="neededSubnets" class="font-semibold"></span></p>
-            <p>Number of needed usable hosts: <span id="neededHosts" class="font-semibold"></span></p>
             <p>Network Address: <span id="networkAddress" class="font-semibold"></span></p>
         </div>
         <div id="questionContainer" class="mb-6">
@@ -31,20 +29,39 @@
         const questions = [
             {
                 id: 'addressClass',
-                label: 'What is the address class?',
+                label: 'What is the address class of the network address?',
                 type: 'button',
                 options: ['A', 'B', 'C', 'D']
             },
             {
                 id: 'defaultSubnetMask',
-                label: 'What is the default subnet mask?',
+                label: 'What is the default subnet mask for that address class?',
                 type: 'button',
                 options: ['255.0.0.0', '255.255.0.0', '255.255.255.0']
             },
             {
-                id: 'customSubnetMask',
-                label: 'What is the custom subnet mask?',
-                type: 'text'
+                id: 'neededHosts',
+                label: 'How many host addresses do you need for this network?',
+                type: 'dynamic', // Dynamically generate options
+                correctAnswer: 254 // Example correct answer (would be calculated dynamically)
+            },
+            {
+                id: 'neededSubnets',
+                label: 'How many subnets will you create?',
+                type: 'dynamic', // Dynamically generate options
+                correctAnswer: 8 // Example correct answer (would be calculated dynamically)
+            },
+            {
+                id: 'usableHosts',
+                label: 'How many usable hosts will each subnet have?',
+                type: 'dynamic', // Dynamically generate options
+                correctAnswer: 30 // Example correct answer (would be calculated dynamically)
+            },
+            {
+                id: 'borrowedBits',
+                label: 'How many bits are you borrowing to make this subnet?',
+                type: 'dynamic', // Dynamically generate options
+                correctAnswer: 3 // Example correct answer (would be calculated dynamically)
             }
         ];
 
@@ -74,21 +91,36 @@
         }
 
         function generateProblem() {
-            const neededSubnets = Math.floor(Math.random() * 30) + 2;
-            const neededHosts = Math.floor(Math.random() * 30) + 2;
             const networkAddress = generateRandomIP();
-
-            document.getElementById('neededSubnets').textContent = neededSubnets;
-            document.getElementById('neededHosts').textContent = neededHosts;
             document.getElementById('networkAddress').textContent = networkAddress;
+            return { networkAddress };
+        }
 
-            return { neededSubnets, neededHosts, networkAddress };
+        // Helper function to generate dynamic options (one correct, two incorrect)
+        function generateOptions(correctAnswer) {
+            let incorrect1 = correctAnswer + Math.floor(Math.random() * 5) + 1; // Randomize a bit
+            let incorrect2 = correctAnswer - Math.floor(Math.random() * 5) - 1;
+            
+            if (incorrect1 === correctAnswer) incorrect1 += 1;
+            if (incorrect2 === correctAnswer) incorrect2 -= 1;
+
+            let options = [correctAnswer, incorrect1, incorrect2];
+            return shuffleArray(options); // Shuffle options
+        }
+
+        // Helper function to shuffle array (so correct answer isn't always first)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
         }
 
         function calculateCorrectAnswers(problem) {
-            const { neededSubnets, neededHosts, networkAddress } = problem;
+            const { networkAddress } = problem;
             const firstOctet = parseInt(networkAddress.split('.')[0]);
-            let addressClass, defaultSubnetMask, customSubnetMask;
+            let addressClass, defaultSubnetMask;
 
             // Determine address class based on first octet of network address
             if (firstOctet < 128) {
@@ -102,30 +134,9 @@
                 defaultSubnetMask = '255.255.255.0';
             }
 
-            // Determine the correct subnet mask based on the needed subnets and hosts
-            let selectedSubnetMask = null;
-
-            // Loop through the subnet mask table to find a suitable mask
-            for (let i = 0; i < subnetMaskTable.length; i++) {
-                const subnet = subnetMaskTable[i];
-
-                // Find the first subnet that satisfies both the required subnets and hosts
-                const subnetsRequired = Math.pow(2, 32 - subnet.cidr); // Number of subnets
-                if (neededHosts <= subnet.usable && subnetsRequired >= neededSubnets) {
-                    selectedSubnetMask = subnet.mask;
-                    break;
-                }
-            }
-
-            // If a suitable mask is not found, default to the last (largest) mask
-            if (!selectedSubnetMask) {
-                selectedSubnetMask = subnetMaskTable[subnetMaskTable.length - 1].mask;
-            }
-
             return {
                 addressClass,
-                defaultSubnetMask,
-                customSubnetMask: selectedSubnetMask
+                defaultSubnetMask
             };
         }
 
@@ -141,10 +152,17 @@
 
             questionArea.appendChild(label);
 
-            if (currentQuestion.type === 'button') {
+            if (currentQuestion.type === 'button' || currentQuestion.type === 'dynamic') {
                 const buttonGroup = document.createElement('div');
                 buttonGroup.classList.add('flex', 'gap-4');
-                currentQuestion.options.forEach(option => {
+
+                // Generate dynamic options if needed
+                let options = currentQuestion.options;
+                if (currentQuestion.type === 'dynamic') {
+                    options = generateOptions(currentQuestion.correctAnswer);
+                }
+
+                options.forEach(option => {
                     const button = document.createElement('button');
                     button.classList.add('bg-gray-300', 'px-4', 'py-2', 'rounded', 'hover:bg-gray-400');
                     button.textContent = option;
@@ -177,8 +195,8 @@
         function checkAnswer() {
             const currentQuestion = questions[currentQuestionIndex];
             const userAnswer = document.getElementById('answerInput').value;
-            const correctAnswer = correctAnswers[currentQuestion.id];
-            const isCorrect = userAnswer.toString().toLowerCase() === correctAnswer.toString().toLowerCase();
+            const correctAnswer = currentQuestion.correctAnswer || correctAnswers[currentQuestion.id];
+            const isCorrect = userAnswer.toString() === correctAnswer.toString();
 
             const feedback = document.getElementById('feedback');
             if (isCorrect) {
