@@ -18,10 +18,8 @@
         </div>
         <div id="questionContainer" class="mb-6">
             <div class="form-field mb-4">
-                <label id="questionLabel" class="block font-medium mb-2"></label>
-                <div id="questionInput" class="mb-2"></div>
-                <!-- Hidden input to store selected button answers -->
-                <input type="hidden" id="answerInput">
+                <label id="questionLabel" class="block font-medium mb-2">What is the custom subnet mask?</label>
+                <input type="text" id="answerInput" class="border w-full px-4 py-2 rounded">
             </div>
             <button id="checkAnswer" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Check Answer</button>
         </div>
@@ -30,28 +28,26 @@
     </div>
 
     <script>
-        const questions = [
-            {
-                id: 'addressClass',
-                label: 'What is the address class?',
-                type: 'button',
-                options: ['A', 'B', 'C', 'D']
-            },
-            {
-                id: 'defaultSubnetMask',
-                label: 'What is the default subnet mask?',
-                type: 'button',
-                options: ['255.0.0.0', '255.255.0.0', '255.255.255.0']
-            },
-            {
-                id: 'customSubnetMask',
-                label: 'What is the custom subnet mask?',
-                type: 'text'
-            }
+        const subnetMaskTable = [
+            { cidr: 30, total: 4, usable: 2, mask: '255.255.255.252' },
+            { cidr: 29, total: 8, usable: 6, mask: '255.255.255.248' },
+            { cidr: 28, total: 16, usable: 14, mask: '255.255.255.240' },
+            { cidr: 27, total: 32, usable: 30, mask: '255.255.255.224' },
+            { cidr: 26, total: 64, usable: 62, mask: '255.255.255.192' },
+            { cidr: 25, total: 128, usable: 126, mask: '255.255.255.128' },
+            { cidr: 24, total: 256, usable: 254, mask: '255.255.255.0' },
+            { cidr: 23, total: 512, usable: 510, mask: '255.255.254.0' },
+            { cidr: 22, total: 1024, usable: 1022, mask: '255.255.252.0' },
+            { cidr: 21, total: 2048, usable: 2046, mask: '255.255.248.0' },
+            { cidr: 20, total: 4096, usable: 4094, mask: '255.255.240.0' },
+            { cidr: 19, total: 8192, usable: 8190, mask: '255.255.224.0' },
+            { cidr: 18, total: 16384, usable: 16382, mask: '255.255.192.0' },
+            { cidr: 17, total: 32768, usable: 32766, mask: '255.255.128.0' },
+            { cidr: 16, total: 65536, usable: 65534, mask: '255.255.0.0' },
         ];
 
         let currentQuestionIndex = 0;
-        let problem, correctAnswers, currentClass, selectedButton = null;
+        let problem, correctAnswers;
 
         function generateRandomIP() {
             return `${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.0`;
@@ -72,8 +68,9 @@
         function calculateCorrectAnswers(problem) {
             const { neededSubnets, neededHosts, networkAddress } = problem;
             const firstOctet = parseInt(networkAddress.split('.')[0]);
-            let addressClass, defaultSubnetMask, borrowedBits, customSubnetMask;
+            let addressClass, defaultSubnetMask, customSubnetMask;
 
+            // Determine address class based on first octet of network address
             if (firstOctet < 128) {
                 addressClass = 'A';
                 defaultSubnetMask = '255.0.0.0';
@@ -85,83 +82,42 @@
                 defaultSubnetMask = '255.255.255.0';
             }
 
-            borrowedBits = Math.ceil(Math.log2(Math.max(neededSubnets, neededHosts + 2)));
-            const subnetMaskValue = 256 - Math.pow(2, 8 - borrowedBits);
-            customSubnetMask = `${defaultSubnetMask.slice(0, -1)}${subnetMaskValue}`;
+            // Determine the correct subnet mask based on the needed subnets and hosts
+            let selectedSubnetMask = null;
 
-            const totalSubnets = Math.pow(2, borrowedBits);
-            const totalHostAddresses = Math.pow(2, 8 - borrowedBits);
-            const usableAddresses = totalHostAddresses - 2;
+            // Loop through the subnet mask table to find a suitable mask
+            for (let i = 0; i < subnetMaskTable.length; i++) {
+                const subnet = subnetMaskTable[i];
 
-            currentClass = addressClass;
+                // Find the first subnet that satisfies both the required subnets and hosts
+                const subnetsRequired = Math.pow(2, 32 - subnet.cidr); // Number of subnets
+                if (neededHosts <= subnet.usable && subnetsRequired >= neededSubnets) {
+                    selectedSubnetMask = subnet.mask;
+                    break;
+                }
+            }
+
+            // If a suitable mask is not found, default to the last (largest) mask
+            if (!selectedSubnetMask) {
+                selectedSubnetMask = subnetMaskTable[subnetMaskTable.length - 1].mask;
+            }
 
             return {
                 addressClass,
                 defaultSubnetMask,
-                customSubnetMask,
-                totalSubnets,
-                totalHostAddresses,
-                usableAddresses,
-                borrowedBits
+                customSubnetMask: selectedSubnetMask
             };
         }
 
-        function displayCurrentQuestion() {
-            const currentQuestion = questions[currentQuestionIndex];
-            const questionLabel = document.getElementById('questionLabel');
-            const questionInput = document.getElementById('questionInput');
-            questionLabel.textContent = currentQuestion.label;
-            questionInput.innerHTML = '';
-
-            if (currentQuestion.type === 'button') {
-                const buttonGroup = document.createElement('div');
-                buttonGroup.classList.add('flex', 'gap-4');
-                currentQuestion.options.forEach(option => {
-                    const button = document.createElement('button');
-                    button.classList.add('bg-gray-300', 'px-4', 'py-2', 'rounded', 'hover:bg-gray-400');
-                    button.textContent = option;
-                    button.addEventListener('click', () => {
-                        document.getElementById('answerInput').value = option;
-                        
-                        // Highlight selected button and remove highlight from others
-                        if (selectedButton) {
-                            selectedButton.classList.remove('bg-blue-500', 'text-white');
-                            selectedButton.classList.add('bg-gray-300');
-                        }
-                        button.classList.add('bg-blue-500', 'text-white');
-                        button.classList.remove('bg-gray-300');
-                        selectedButton = button;
-                    });
-                    buttonGroup.appendChild(button);
-                });
-                questionInput.appendChild(buttonGroup);
-            } else if (currentQuestion.type === 'text') {
-                const inputField = document.createElement('input');
-                inputField.type = 'text';
-                inputField.id = 'answerInput';
-                inputField.classList.add('border', 'w-full', 'px-4', 'py-2', 'rounded');
-                questionInput.appendChild(inputField);
-            }
-        }
-
         function checkAnswer() {
-            const currentQuestion = questions[currentQuestionIndex];
             const userAnswer = document.getElementById('answerInput').value;
-            const correctAnswer = correctAnswers[currentQuestion.id];
-            const isCorrect = userAnswer.toString().toLowerCase() === correctAnswer.toString().toLowerCase();
-
+            const correctAnswer = correctAnswers.customSubnetMask;
             const feedback = document.getElementById('feedback');
-            if (isCorrect) {
-                feedback.textContent = `Correct! The ${currentQuestion.id} is ${correctAnswer}.`;
+            
+            if (userAnswer === correctAnswer) {
+                feedback.textContent = `Correct! The custom subnet mask is ${correctAnswer}.`;
                 feedback.classList.add('text-green-500');
-                currentQuestionIndex++;
-                if (currentQuestionIndex < questions.length) {
-                    displayCurrentQuestion();
-                } else {
-                    document.getElementById('questionContainer').classList.add('hidden');
-                    document.getElementById('newProblem').classList.remove('hidden');
-                    feedback.textContent = 'Congratulations! You have completed the exercise.';
-                }
+                document.getElementById('newProblem').classList.remove('hidden');
             } else {
                 feedback.textContent = `Incorrect. Please try again.`;
                 feedback.classList.add('text-red-500');
@@ -169,14 +125,11 @@
         }
 
         function startNewProblem() {
-            currentQuestionIndex = 0;
-            selectedButton = null;
             problem = generateProblem();
             correctAnswers = calculateCorrectAnswers(problem);
-            document.getElementById('questionContainer').classList.remove('hidden');
-            document.getElementById('newProblem').classList.add('hidden');
             document.getElementById('feedback').textContent = '';
-            displayCurrentQuestion();
+            document.getElementById('answerInput').value = '';
+            document.getElementById('newProblem').classList.add('hidden');
         }
 
         document.getElementById('checkAnswer').addEventListener('click', checkAnswer);
