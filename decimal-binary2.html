@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decimal to Binary Conversion Exercise (Single Input)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .decimal-number {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .input-area {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            font-size: 1.2em;
+            padding: 5px;
+            width: 120px;
+            text-align: center;
+        }
+        button {
+            font-size: 1em;
+            padding: 5px 10px;
+            margin-right: 10px;
+        }
+        #feedback {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .hint {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Decimal to Binary Conversion Exercise</h1>
+    <div class="decimal-number">Decimal number: <span id="decimalNumber"></span></div>
+    <div class="input-area">
+        <label for="binaryInput">Enter 8-bit binary number: </label>
+        <input type="text" id="binaryInput" maxlength="8" placeholder="00000000">
+    </div>
+    <button onclick="checkAnswer()">Check Answer</button>
+    <button onclick="newExercise()">New Exercise</button>
+    <div id="feedback"></div>
+    <div class="hint">Hint: Remember to use leading zeros if necessary to make it 8 bits.</div>
+
+    <script>
+        let currentDecimal;
+
+        function generateDecimal() {
+            return Math.floor(Math.random() * 256);
+        }
+
+        function createExercise() {
+            currentDecimal = generateDecimal();
+            document.getElementById('decimalNumber').textContent = currentDecimal;
+            document.getElementById('binaryInput').value = '';
+            document.getElementById('feedback').textContent = '';
+        }
+
+        function checkAnswer() {
+            const userBinary = document.getElementById('binaryInput').value;
+            const correctBinary = currentDecimal.toString(2).padStart(8, '0');
+            const feedback = document.getElementById('feedback');
+
+            if (userBinary.length !== 8 || !/^[01]+$/.test(userBinary)) {
+                feedback.textContent = 'Please enter exactly 8 binary digits (0s and 1s).';
+                feedback.style.color = 'orange';
+                return;
+            }
+
+            if (userBinary === correctBinary) {
+                feedback.textContent = 'Correct! Well done!';
+                feedback.style.color = 'green';
+            } else {
+                feedback.textContent = `Incorrect. The correct binary representation is ${correctBinary}.`;
+                feedback.style.color = 'red';
+            }
+        }
+
+        function newExercise() {
+            createExercise();
+        }
+
+        // Initialize the exercise when the page loads
+        window.onload = createExercise;
+    </script>
+</body>
+</html>

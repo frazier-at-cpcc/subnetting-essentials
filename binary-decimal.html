@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary to Decimal Conversion Exercise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+            table-layout: fixed;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            width: 40px; /* Fixed width for binary digits */
+            height: 40px; /* Fixed height for consistency */
+            vertical-align: middle;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        td:last-child {
+            width: 80px; /* Wider column for answer input */
+        }
+        input[type="text"] {
+            width: 60px;
+            text-align: center;
+        }
+        button {
+            margin: 10px 0;
+            padding: 5px 10px;
+        }
+        #feedback {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Binary to Decimal Conversion Exercise</h1>
+    <table id="conversionTable">
+        <tr>
+            <th>128</th>
+            <th>64</th>
+            <th>32</th>
+            <th>16</th>
+            <th>8</th>
+            <th>4</th>
+            <th>2</th>
+            <th>1</th>
+            <th>Answer</th>
+        </tr>
+    </table>
+    <button onclick="checkAnswers()">Check Answers</button>
+    <button onclick="newExercise()">New Exercise</button>
+    <div id="feedback"></div>
+
+    <script>
+        const numQuestions = 5;
+        let correctAnswers = [];
+
+        function generateBinary() {
+            return Math.floor(Math.random() * 256).toString(2).padStart(8, '0');
+        }
+
+        function createExercise() {
+            const table = document.getElementById('conversionTable');
+            table.innerHTML = table.rows[0].outerHTML;
+            correctAnswers = [];
+
+            for (let i = 0; i < numQuestions; i++) {
+                const binary = generateBinary();
+                const decimal = parseInt(binary, 2);
+                correctAnswers.push(decimal);
+
+                const row = table.insertRow(-1);
+                for (let j = 0; j < 8; j++) {
+                    const cell = row.insertCell(j);
+                    cell.textContent = binary[j];
+                }
+                const answerCell = row.insertCell(8);
+                answerCell.innerHTML = '<input type="text" />';
+            }
+        }
+
+        function checkAnswers() {
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let correct = 0;
+            
+            inputs.forEach((input, index) => {
+                if (parseInt(input.value) === correctAnswers[index]) {
+                    correct++;
+                    input.style.backgroundColor = '#aaffaa';
+                } else {
+                    input.style.backgroundColor = '#ffaaaa';
+                }
+            });
+
+            const feedback = document.getElementById('feedback');
+            feedback.textContent = `You got ${correct} out of ${numQuestions} correct!`;
+        }
+
+        function newExercise() {
+            createExercise();
+            document.getElementById('feedback').textContent = '';
+        }
+
+        // Initialize the exercise when the page loads
+        window.onload = createExercise;
+    </script>
+</body>
+</html>

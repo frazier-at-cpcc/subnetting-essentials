@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decimal to Binary Conversion Exercise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+            table-layout: fixed;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        input[type="checkbox"] {
+            transform: scale(1.5);
+        }
+        button {
+            margin: 10px 0;
+            padding: 5px 10px;
+        }
+        #feedback {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .decimal-number, .binary-number {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Decimal to Binary Conversion Exercise</h1>
+    <div class="decimal-number">Decimal number: <span id="decimalNumber"></span></div>
+    <div class="binary-number">Binary number: <span id="binaryNumber">00000000</span></div>
+    <table id="conversionTable">
+        <tr>
+            <th>128</th>
+            <th>64</th>
+            <th>32</th>
+            <th>16</th>
+            <th>8</th>
+            <th>4</th>
+            <th>2</th>
+            <th>1</th>
+        </tr>
+        <tr id="checkboxRow"></tr>
+    </table>
+    <button onclick="checkAnswer()">Check Answer</button>
+    <button onclick="newExercise()">New Exercise</button>
+    <div id="feedback"></div>
+
+    <script>
+        let currentDecimal;
+
+        function generateDecimal() {
+            return Math.floor(Math.random() * 256);
+        }
+
+        function createExercise() {
+            currentDecimal = generateDecimal();
+            document.getElementById('decimalNumber').textContent = currentDecimal;
+            document.getElementById('binaryNumber').textContent = '00000000';
+
+            const checkboxRow = document.getElementById('checkboxRow');
+            checkboxRow.innerHTML = '';
+            for (let i = 0; i < 8; i++) {
+                const cell = checkboxRow.insertCell(i);
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.addEventListener('change', updateBinaryDisplay);
+                cell.appendChild(checkbox);
+            }
+
+            document.getElementById('feedback').textContent = '';
+        }
+
+        function updateBinaryDisplay() {
+            const checkboxes = document.querySelectorAll('#checkboxRow input[type="checkbox"]');
+            let binaryString = '';
+            checkboxes.forEach(checkbox => {
+                binaryString += checkbox.checked ? '1' : '0';
+            });
+            document.getElementById('binaryNumber').textContent = binaryString;
+        }
+
+        function checkAnswer() {
+            const userBinary = document.getElementById('binaryNumber').textContent;
+            const correctBinary = currentDecimal.toString(2).padStart(8, '0');
+            const isCorrect = userBinary === correctBinary;
+
+            const feedback = document.getElementById('feedback');
+            if (isCorrect) {
+                feedback.textContent = 'Correct! Well done!';
+                feedback.style.color = 'green';
+            } else {
+                feedback.textContent = `Incorrect. The correct binary representation is ${correctBinary}.`;
+                feedback.style.color = 'red';
+            }
+
+            const checkboxes = document.querySelectorAll('#checkboxRow input[type="checkbox"]');
+            checkboxes.forEach((checkbox, index) => {
+                checkbox.parentElement.style.backgroundColor = 
+                    checkbox.checked === (correctBinary[index] === '1') ? '#aaffaa' : '#ffaaaa';
+            });
+        }
+
+        function newExercise() {
+            createExercise();
+        }
+
+        // Initialize the exercise when the page loads
+        window.onload = createExercise;
+    </script>
+</body>
+</html>

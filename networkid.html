@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Portion Identification Exercise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .ip-part {
+            cursor: pointer;
+            padding: 2px;
+        }
+        .selected {
+            background-color: #90EE90;
+            font-weight: bold;
+        }
+        button {
+            margin: 10px 0;
+            padding: 5px 10px;
+        }
+        #feedback, #hintBox {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #hintBox {
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Network Portion Identification Exercise</h1>
+    <p>Select the octets that form the network portion of each IP address.</p>
+    <div id="exercise-container"></div>
+    <button onclick="checkAnswers()">Check Answers</button>
+    <button onclick="newExercise()">New Exercise</button>
+    <div id="feedback"></div>
+    <div id="hintBox">
+        <h3>IP Address Class Reminders:</h3>
+        <p><strong>Class A:</strong> Network . Host . Host . Host (First octet: 1-127)</p>
+        <p><strong>Class B:</strong> Network . Network . Host . Host (First octet: 128-191)</p>
+        <p><strong>Class C:</strong> Network . Network . Network . Host (First octet: 192-223)</p>
+    </div>
+
+    <script>
+        const NUM_QUESTIONS = 5;
+        let correctAnswers = [];
+
+        function generateIPAddress() {
+            const firstOctet = Math.floor(Math.random() * 223) + 1;
+            const restOctets = Array(3).fill().map(() => Math.floor(Math.random() * 256));
+            return [firstOctet, ...restOctets].join('.');
+        }
+
+        function getIPClass(ip) {
+            const firstOctet = parseInt(ip.split('.')[0]);
+            if (firstOctet >= 1 && firstOctet <= 127) return 'A';
+            if (firstOctet >= 128 && firstOctet <= 191) return 'B';
+            if (firstOctet >= 192 && firstOctet <= 223) return 'C';
+            return 'Unknown';
+        }
+
+        function createExercise() {
+            const container = document.getElementById('exercise-container');
+            container.innerHTML = `
+                <table id="ipTable">
+                    <tr>
+                        <th>IP Address</th>
+                    </tr>
+                </table>
+            `;
+            const table = document.getElementById('ipTable');
+            correctAnswers = [];
+
+            for (let i = 0; i < NUM_QUESTIONS; i++) {
+                const ip = generateIPAddress();
+                const ipClass = getIPClass(ip);
+                correctAnswers.push(ipClass);
+
+                const row = table.insertRow(-1);
+                const cell = row.insertCell(0);
+                cell.innerHTML = ip.split('.').map(part => 
+                    `<span class="ip-part" onclick="toggleSelection(this)">${part}</span>`
+                ).join('.');
+            }
+
+            document.getElementById('feedback').textContent = '';
+            document.getElementById('hintBox').style.display = 'none';
+        }
+
+        function toggleSelection(element) {
+            element.classList.toggle('selected');
+        }
+
+        function checkAnswers() {
+            const rows = document.getElementById('ipTable').rows;
+            let correct = 0;
+            let anyIncorrect = false;
+
+            for (let i = 1; i < rows.length; i++) {
+                const parts = rows[i].cells[0].getElementsByClassName('ip-part');
+                const ipClass = correctAnswers[i-1];
+                const expectedSelected = ipClass === 'A' ? 1 : ipClass === 'B' ? 2 : 3;
+
+                let isCorrect = true;
+                for (let j = 0; j < parts.length; j++) {
+                    const isSelected = parts[j].classList.contains('selected');
+                    if ((j < expectedSelected && !isSelected) || (j >= expectedSelected && isSelected)) {
+                        isCorrect = false;
+                        parts[j].style.backgroundColor = '#ffaaaa';
+                    } else {
+                        parts[j].style.backgroundColor = '#aaffaa';
+                    }
+                }
+
+                if (isCorrect) {
+                    correct++;
+                } else {
+                    anyIncorrect = true;
+                }
+            }
+
+            const feedback = document.getElementById('feedback');
+            feedback.textContent = `You got ${correct} out of ${NUM_QUESTIONS} correct!`;
+            if (correct === NUM_QUESTIONS) {
+                feedback.textContent += " Great job!";
+                document.getElementById('hintBox').style.display = 'none';
+            } else {
+                document.getElementById('hintBox').style.display = 'block';
+            }
+        }
+
+        function newExercise() {
+            createExercise();
+        }
+
+        // Initialize the exercise when the page loads
+        window.onload = createExercise;
+    </script>
+</body>
+</html>
