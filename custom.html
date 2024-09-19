@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subnetting Exercise</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold mb-4">Custom Subnet Masks Exercise</h1>
+        <div id="problem" class="mb-6">
+            <h2 class="text-xl font-semibold mb-2">Problem</h2>
+            <p>Number of needed subnets: <span id="neededSubnets" class="font-bold"></span></p>
+            <p>Number of needed usable hosts: <span id="neededHosts" class="font-bold"></span></p>
+            <p>Network Address: <span id="networkAddress" class="font-bold"></span></p>
+        </div>
+        <form id="subnettingForm" class="space-y-4">
+            <div>
+                <label for="addressClass" class="block mb-1">Address class:</label>
+                <input type="text" id="addressClass" class="w-full px-3 py-2 border rounded" required>
+            </div>
+            <div>
+                <label for="defaultSubnetMask" class="block mb-1">Default subnet mask:</label>
+                <input type="text" id="defaultSubnetMask" class="w-full px-3 py-2 border rounded" required>
+            </div>
+            <div>
+                <label for="customSubnetMask" class="block mb-1">Custom subnet mask:</label>
+                <input type="text" id="customSubnetMask" class="w-full px-3 py-2 border rounded" required>
+            </div>
+            <div>
+                <label for="totalSubnets" class="block mb-1">Total number of subnets:</label>
+                <input type="number" id="totalSubnets" class="w-full px-3 py-2 border rounded" required>
+            </div>
+            <div>
+                <label for="totalHostAddresses" class="block mb-1">Total number of host addresses:</label>
+                <input type="number" id="totalHostAddresses" class="w-full px-3 py-2 border rounded" required>
+            </div>
+            <div>
+                <label for="usableAddresses" class="block mb-1">Number of usable addresses:</label>
+                <input type="number" id="usableAddresses" class="w-full px-3 py-2 border rounded" required>
+            </div>
+            <div>
+                <label for="borrowedBits" class="block mb-1">Number of bits borrowed:</label>
+                <input type="number" id="borrowedBits" class="w-full px-3 py-2 border rounded" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                Check Answers
+            </button>
+        </form>
+        <div id="result" class="mt-4 p-4 rounded hidden"></div>
+    </div>
+
+    <script>
+        function generateRandomIP() {
+            return `${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.0`;
+        }
+
+        function generateProblem() {
+            const neededSubnets = Math.floor(Math.random() * 30) + 2;
+            const neededHosts = Math.floor(Math.random() * 30) + 2;
+            const networkAddress = generateRandomIP();
+
+            document.getElementById('neededSubnets').textContent = neededSubnets;
+            document.getElementById('neededHosts').textContent = neededHosts;
+            document.getElementById('networkAddress').textContent = networkAddress;
+
+            return { neededSubnets, neededHosts, networkAddress };
+        }
+
+        function calculateCorrectAnswers(problem) {
+            const { neededSubnets, neededHosts, networkAddress } = problem;
+            const firstOctet = parseInt(networkAddress.split('.')[0]);
+            let addressClass, defaultSubnetMask, borrowedBits, customSubnetMask;
+
+            if (firstOctet < 128) {
+                addressClass = 'A';
+                defaultSubnetMask = '255.0.0.0';
+            } else if (firstOctet < 192) {
+                addressClass = 'B';
+                defaultSubnetMask = '255.255.0.0';
+            } else {
+                addressClass = 'C';
+                defaultSubnetMask = '255.255.255.0';
+            }
+
+            borrowedBits = Math.ceil(Math.log2(Math.max(neededSubnets, neededHosts + 2)));
+            const subnetMaskValue = 256 - Math.pow(2, 8 - borrowedBits);
+            customSubnetMask = `${defaultSubnetMask.slice(0, -1)}${subnetMaskValue}`;
+
+            const totalSubnets = Math.pow(2, borrowedBits);
+            const totalHostAddresses = Math.pow(2, 8 - borrowedBits);
+            const usableAddresses = totalHostAddresses - 2;
+
+            return {
+                addressClass,
+                defaultSubnetMask,
+                customSubnetMask,
+                totalSubnets,
+                totalHostAddresses,
+                usableAddresses,
+                borrowedBits
+            };
+        }
+
+        const problem = generateProblem();
+        const correctAnswers = calculateCorrectAnswers(problem);
+
+        document.getElementById('subnettingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const result = document.getElementById('result');
+            result.classList.remove('hidden');
+
+            const userAnswers = {
+                addressClass: document.getElementById('addressClass').value.toUpperCase(),
+                defaultSubnetMask: document.getElementById('defaultSubnetMask').value,
+                customSubnetMask: document.getElementById('customSubnetMask').value,
+                totalSubnets: parseInt(document.getElementById('totalSubnets').value),
+                totalHostAddresses: parseInt(document.getElementById('totalHostAddresses').value),
+                usableAddresses: parseInt(document.getElementById('usableAddresses').value),
+                borrowedBits: parseInt(document.getElementById('borrowedBits').value)
+            };
+
+            let allCorrect = true;
+            let feedback = '';
+
+            for (const [key, value] of Object.entries(userAnswers)) {
+                if (value !== correctAnswers[key]) {
+                    allCorrect = false;
+                    feedback += `<p class="text-red-500">Incorrect ${key}. The correct answer is ${correctAnswers[key]}.</p>`;
+                } else {
+                    feedback += `<p class="text-green-500">Correct ${key}!</p>`;
+                }
+            }
+
+            if (allCorrect) {
+                result.innerHTML = '<p class="text-green-500 font-bold">All answers are correct! Great job!</p>';
+            } else {
+                result.innerHTML = `<p class="font-bold mb-2">Some answers are incorrect. Here's the feedback:</p>${feedback}`;
+            }
+        });
+    </script>
+</body>
+</html>
