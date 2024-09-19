@@ -20,6 +20,8 @@
             <div class="form-field mb-4">
                 <label id="questionLabel" class="block font-medium mb-2"></label>
                 <div id="questionInput" class="mb-2"></div>
+                <!-- Hidden input to store selected button answers -->
+                <input type="hidden" id="answerInput">
             </div>
             <button id="checkAnswer" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Check Answer</button>
         </div>
@@ -119,6 +121,7 @@
                     button.classList.add('bg-gray-300', 'px-4', 'py-2', 'rounded', 'hover:bg-gray-400');
                     button.textContent = option;
                     button.addEventListener('click', () => {
+                        // Store the selected option in the hidden input field
                         document.getElementById('answerInput').value = option;
                     });
                     buttonGroup.appendChild(button);
