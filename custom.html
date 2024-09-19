@@ -9,8 +9,8 @@
         h1, h2 { margin-bottom: 10px; }
         .problem-info { margin-bottom: 20px; }
         .form-field { margin-bottom: 10px; }
-        label { display: inline-block; width: 200px; }
-        input[type="text"], input[type="number"] { width: 200px; }
+        label { display: block; margin-bottom: 5px; }
+        input[type="text"], input[type="number"] { width: 100%; padding: 5px; }
         #feedback { margin-top: 10px; font-weight: bold; }
         #newProblem { display: none; margin-top: 10px; }
     </style>
@@ -25,32 +25,8 @@
     </div>
     <div id="questionContainer">
         <div class="form-field">
-            <label for="addressClass">Address class:</label>
-            <input type="text" id="addressClass">
-        </div>
-        <div class="form-field">
-            <label for="defaultSubnetMask">Default subnet mask:</label>
-            <input type="text" id="defaultSubnetMask">
-        </div>
-        <div class="form-field">
-            <label for="customSubnetMask">Custom subnet mask:</label>
-            <input type="text" id="customSubnetMask">
-        </div>
-        <div class="form-field">
-            <label for="totalSubnets">Total number of subnets:</label>
-            <input type="number" id="totalSubnets">
-        </div>
-        <div class="form-field">
-            <label for="totalHostAddresses">Total number of host addresses:</label>
-            <input type="number" id="totalHostAddresses">
-        </div>
-        <div class="form-field">
-            <label for="usableAddresses">Number of usable addresses:</label>
-            <input type="number" id="usableAddresses">
-        </div>
-        <div class="form-field">
-            <label for="borrowedBits">Number of bits borrowed:</label>
-            <input type="number" id="borrowedBits">
+            <label id="questionLabel"></label>
+            <input type="text" id="answerInput">
         </div>
         <button id="checkAnswer">Check Answer</button>
     </div>
@@ -59,13 +35,13 @@
 
     <script>
         const questions = [
-            { id: 'addressClass', label: 'Address class' },
-            { id: 'defaultSubnetMask', label: 'Default subnet mask' },
-            { id: 'customSubnetMask', label: 'Custom subnet mask' },
-            { id: 'totalSubnets', label: 'Total number of subnets' },
-            { id: 'totalHostAddresses', label: 'Total number of host addresses' },
-            { id: 'usableAddresses', label: 'Number of usable addresses' },
-            { id: 'borrowedBits', label: 'Number of bits borrowed' }
+            { id: 'addressClass', label: 'What is the address class?' },
+            { id: 'defaultSubnetMask', label: 'What is the default subnet mask?' },
+            { id: 'customSubnetMask', label: 'What is the custom subnet mask?' },
+            { id: 'totalSubnets', label: 'What is the total number of subnets?' },
+            { id: 'totalHostAddresses', label: 'What is the total number of host addresses?' },
+            { id: 'usableAddresses', label: 'What is the number of usable addresses?' },
+            { id: 'borrowedBits', label: 'How many bits were borrowed?' }
         ];
 
         let currentQuestionIndex = 0;
@@ -122,26 +98,33 @@
             };
         }
 
+        function displayCurrentQuestion() {
+            const currentQuestion = questions[currentQuestionIndex];
+            document.getElementById('questionLabel').textContent = currentQuestion.label;
+            document.getElementById('answerInput').value = '';
+            document.getElementById('answerInput').focus();
+        }
+
         function checkAnswer() {
             const currentQuestion = questions[currentQuestionIndex];
-            const userAnswer = document.getElementById(currentQuestion.id).value;
+            const userAnswer = document.getElementById('answerInput').value;
             const correctAnswer = correctAnswers[currentQuestion.id];
             const isCorrect = userAnswer.toString().toLowerCase() === correctAnswer.toString().toLowerCase();
 
             const feedback = document.getElementById('feedback');
             if (isCorrect) {
-                feedback.textContent = `Correct! "${currentQuestion.label}" is ${correctAnswer}.`;
+                feedback.textContent = `Correct! The ${currentQuestion.id} is ${correctAnswer}.`;
                 feedback.style.color = 'green';
                 currentQuestionIndex++;
                 if (currentQuestionIndex < questions.length) {
-                    document.getElementById(questions[currentQuestionIndex].id).focus();
+                    displayCurrentQuestion();
                 } else {
-                    document.getElementById('checkAnswer').style.display = 'none';
+                    document.getElementById('questionContainer').style.display = 'none';
                     document.getElementById('newProblem').style.display = 'block';
                     feedback.textContent = 'Congratulations! You have completed the exercise.';
                 }
             } else {
-                feedback.textContent = `Incorrect. Please try again for "${currentQuestion.label}".`;
+                feedback.textContent = `Incorrect. Please try again.`;
                 feedback.style.color = 'red';
             }
         }
@@ -150,11 +133,10 @@
             currentQuestionIndex = 0;
             problem = generateProblem();
             correctAnswers = calculateCorrectAnswers(problem);
-            questions.forEach(q => document.getElementById(q.id).value = '');
-            document.getElementById('checkAnswer').style.display = 'block';
+            document.getElementById('questionContainer').style.display = 'block';
             document.getElementById('newProblem').style.display = 'none';
             document.getElementById('feedback').textContent = '';
-            document.getElementById(questions[0].id).focus();
+            displayCurrentQuestion();
         }
 
         document.getElementById('checkAnswer').addEventListener('click', checkAnswer);
