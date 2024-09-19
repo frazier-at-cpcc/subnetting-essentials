@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subnetting Exercise</title>
+    <title>Subnetting Exercise - Step by Step</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
 </head>
 <body class="bg-gray-100 p-8">
@@ -15,43 +15,33 @@
             <p>Number of needed usable hosts: <span id="neededHosts" class="font-bold"></span></p>
             <p>Network Address: <span id="networkAddress" class="font-bold"></span></p>
         </div>
-        <form id="subnettingForm" class="space-y-4">
-            <div>
-                <label for="addressClass" class="block mb-1">Address class:</label>
-                <input type="text" id="addressClass" class="w-full px-3 py-2 border rounded" required>
-            </div>
-            <div>
-                <label for="defaultSubnetMask" class="block mb-1">Default subnet mask:</label>
-                <input type="text" id="defaultSubnetMask" class="w-full px-3 py-2 border rounded" required>
-            </div>
-            <div>
-                <label for="customSubnetMask" class="block mb-1">Custom subnet mask:</label>
-                <input type="text" id="customSubnetMask" class="w-full px-3 py-2 border rounded" required>
-            </div>
-            <div>
-                <label for="totalSubnets" class="block mb-1">Total number of subnets:</label>
-                <input type="number" id="totalSubnets" class="w-full px-3 py-2 border rounded" required>
-            </div>
-            <div>
-                <label for="totalHostAddresses" class="block mb-1">Total number of host addresses:</label>
-                <input type="number" id="totalHostAddresses" class="w-full px-3 py-2 border rounded" required>
-            </div>
-            <div>
-                <label for="usableAddresses" class="block mb-1">Number of usable addresses:</label>
-                <input type="number" id="usableAddresses" class="w-full px-3 py-2 border rounded" required>
-            </div>
-            <div>
-                <label for="borrowedBits" class="block mb-1">Number of bits borrowed:</label>
-                <input type="number" id="borrowedBits" class="w-full px-3 py-2 border rounded" required>
-            </div>
-            <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
-                Check Answers
+        <div id="questionContainer" class="mb-6">
+            <h3 id="questionText" class="text-lg font-semibold mb-2"></h3>
+            <input type="text" id="answerInput" class="w-full px-3 py-2 border rounded mb-2">
+            <button id="submitAnswer" class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                Submit Answer
             </button>
-        </form>
-        <div id="result" class="mt-4 p-4 rounded hidden"></div>
+        </div>
+        <div id="feedback" class="mt-4 p-4 rounded hidden"></div>
+        <button id="newProblem" class="w-full bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 mt-4 hidden">
+            Generate New Problem
+        </button>
     </div>
 
     <script>
+        const questions = [
+            { id: 'addressClass', text: 'What is the address class?', validate: (answer, correct) => answer.toUpperCase() === correct },
+            { id: 'defaultSubnetMask', text: 'What is the default subnet mask?', validate: (answer, correct) => answer === correct },
+            { id: 'customSubnetMask', text: 'What is the custom subnet mask?', validate: (answer, correct) => answer === correct },
+            { id: 'totalSubnets', text: 'What is the total number of subnets?', validate: (answer, correct) => parseInt(answer) === correct },
+            { id: 'totalHostAddresses', text: 'What is the total number of host addresses?', validate: (answer, correct) => parseInt(answer) === correct },
+            { id: 'usableAddresses', text: 'What is the number of usable addresses?', validate: (answer, correct) => parseInt(answer) === correct },
+            { id: 'borrowedBits', text: 'How many bits were borrowed?', validate: (answer, correct) => parseInt(answer) === correct }
+        ];
+
+        let currentQuestionIndex = 0;
+        let problem, correctAnswers;
+
         function generateRandomIP() {
             return `${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.0`;
         }
@@ -103,42 +93,56 @@
             };
         }
 
-        const problem = generateProblem();
-        const correctAnswers = calculateCorrectAnswers(problem);
+        function displayQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById('questionText').textContent = question.text;
+            document.getElementById('answerInput').value = '';
+            document.getElementById('feedback').classList.add('hidden');
+        }
 
-        document.getElementById('subnettingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const result = document.getElementById('result');
-            result.classList.remove('hidden');
+        function checkAnswer() {
+            const question = questions[currentQuestionIndex];
+            const userAnswer = document.getElementById('answerInput').value;
+            const correctAnswer = correctAnswers[question.id];
+            const isCorrect = question.validate(userAnswer, correctAnswer);
 
-            const userAnswers = {
-                addressClass: document.getElementById('addressClass').value.toUpperCase(),
-                defaultSubnetMask: document.getElementById('defaultSubnetMask').value,
-                customSubnetMask: document.getElementById('customSubnetMask').value,
-                totalSubnets: parseInt(document.getElementById('totalSubnets').value),
-                totalHostAddresses: parseInt(document.getElementById('totalHostAddresses').value),
-                usableAddresses: parseInt(document.getElementById('usableAddresses').value),
-                borrowedBits: parseInt(document.getElementById('borrowedBits').value)
-            };
+            const feedback = document.getElementById('feedback');
+            feedback.classList.remove('hidden');
 
-            let allCorrect = true;
-            let feedback = '';
+            if (isCorrect) {
+                feedback.textContent = 'Correct! Moving to the next question.';
+                feedback.classList.remove('bg-red-100', 'text-red-700');
+                feedback.classList.add('bg-green-100', 'text-green-700');
+                currentQuestionIndex++;
 
-            for (const [key, value] of Object.entries(userAnswers)) {
-                if (value !== correctAnswers[key]) {
-                    allCorrect = false;
-                    feedback += `<p class="text-red-500">Incorrect ${key}. The correct answer is ${correctAnswers[key]}.</p>`;
+                if (currentQuestionIndex < questions.length) {
+                    setTimeout(displayQuestion, 1500);
                 } else {
-                    feedback += `<p class="text-green-500">Correct ${key}!</p>`;
+                    document.getElementById('questionContainer').classList.add('hidden');
+                    feedback.textContent = 'Congratulations! You have completed the exercise.';
+                    document.getElementById('newProblem').classList.remove('hidden');
                 }
-            }
-
-            if (allCorrect) {
-                result.innerHTML = '<p class="text-green-500 font-bold">All answers are correct! Great job!</p>';
             } else {
-                result.innerHTML = `<p class="font-bold mb-2">Some answers are incorrect. Here's the feedback:</p>${feedback}`;
+                feedback.textContent = `Incorrect. Please try again.`;
+                feedback.classList.remove('bg-green-100', 'text-green-700');
+                feedback.classList.add('bg-red-100', 'text-red-700');
             }
-        });
+        }
+
+        function startNewProblem() {
+            currentQuestionIndex = 0;
+            problem = generateProblem();
+            correctAnswers = calculateCorrectAnswers(problem);
+            document.getElementById('questionContainer').classList.remove('hidden');
+            document.getElementById('newProblem').classList.add('hidden');
+            displayQuestion();
+        }
+
+        document.getElementById('submitAnswer').addEventListener('click', checkAnswer);
+        document.getElementById('newProblem').addEventListener('click', startNewProblem);
+
+        // Start the first problem
+        startNewProblem();
     </script>
 </body>
 </html>
