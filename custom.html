@@ -17,9 +17,8 @@
             <p>Network Address: <span id="networkAddress" class="font-semibold"></span></p>
         </div>
         <div id="questionContainer" class="mb-6">
-            <div class="form-field mb-4">
-                <label id="questionLabel" class="block font-medium mb-2">What is the custom subnet mask?</label>
-                <input type="text" id="answerInput" class="border w-full px-4 py-2 rounded">
+            <div id="questionArea" class="form-field mb-4">
+                <!-- Questions will be dynamically added here -->
             </div>
             <button id="checkAnswer" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Check Answer</button>
         </div>
@@ -28,6 +27,26 @@
     </div>
 
     <script>
+        const questions = [
+            {
+                id: 'addressClass',
+                label: 'What is the address class?',
+                type: 'button',
+                options: ['A', 'B', 'C', 'D']
+            },
+            {
+                id: 'defaultSubnetMask',
+                label: 'What is the default subnet mask?',
+                type: 'button',
+                options: ['255.0.0.0', '255.255.0.0', '255.255.255.0']
+            },
+            {
+                id: 'customSubnetMask',
+                label: 'What is the custom subnet mask?',
+                type: 'text'
+            }
+        ];
+
         const subnetMaskTable = [
             { cidr: 30, total: 4, usable: 2, mask: '255.255.255.252' },
             { cidr: 29, total: 8, usable: 6, mask: '255.255.255.248' },
@@ -47,7 +66,7 @@
         ];
 
         let currentQuestionIndex = 0;
-        let problem, correctAnswers;
+        let problem, correctAnswers, selectedButton = null;
 
         function generateRandomIP() {
             return `${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.0`;
@@ -109,15 +128,69 @@
             };
         }
 
+        function displayCurrentQuestion() {
+            const questionArea = document.getElementById('questionArea');
+            questionArea.innerHTML = ''; // Clear previous content
+            selectedButton = null; // Reset selected button
+
+            const currentQuestion = questions[currentQuestionIndex];
+            const label = document.createElement('label');
+            label.textContent = currentQuestion.label;
+            label.classList.add('block', 'font-medium', 'mb-2');
+
+            questionArea.appendChild(label);
+
+            if (currentQuestion.type === 'button') {
+                const buttonGroup = document.createElement('div');
+                buttonGroup.classList.add('flex', 'gap-4');
+                currentQuestion.options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.classList.add('bg-gray-300', 'px-4', 'py-2', 'rounded', 'hover:bg-gray-400');
+                    button.textContent = option;
+                    button.addEventListener('click', () => {
+                        document.getElementById('answerInput').value = option;
+                        
+                        // Highlight selected button and remove highlight from others
+                        if (selectedButton) {
+                            selectedButton.classList.remove('bg-blue-500', 'text-white');
+                            selectedButton.classList.add('bg-gray-300');
+                        }
+                        button.classList.add('bg-blue-500', 'text-white');
+                        button.classList.remove('bg-gray-300');
+                        selectedButton = button;
+                    });
+                    buttonGroup.appendChild(button);
+                });
+                questionArea.appendChild(buttonGroup);
+            } else if (currentQuestion.type === 'text') {
+                const inputField = document.createElement('input');
+                inputField.type = 'text';
+                inputField.id = 'answerInput';
+                inputField.classList.add('border', 'w-full', 'px-4', 'py-2', 'rounded');
+                questionArea.appendChild(inputField);
+            }
+
+            document.getElementById('answerInput').value = '';
+        }
+
         function checkAnswer() {
+            const currentQuestion = questions[currentQuestionIndex];
             const userAnswer = document.getElementById('answerInput').value;
-            const correctAnswer = correctAnswers.customSubnetMask;
+            const correctAnswer = correctAnswers[currentQuestion.id];
+            const isCorrect = userAnswer.toString().toLowerCase() === correctAnswer.toString().toLowerCase();
+
             const feedback = document.getElementById('feedback');
-            
-            if (userAnswer === correctAnswer) {
-                feedback.textContent = `Correct! The custom subnet mask is ${correctAnswer}.`;
+            if (isCorrect) {
+                feedback.textContent = `Correct! The ${currentQuestion.id} is ${correctAnswer}.`;
                 feedback.classList.add('text-green-500');
-                document.getElementById('newProblem').classList.remove('hidden');
+                currentQuestionIndex++;
+                if (currentQuestionIndex < questions.length) {
+                    displayCurrentQuestion();
+                } else {
+                    document.getElementById('questionContainer').classList.add('hidden');
+                    document.getElementById('newProblem').classList.remove('hidden');
+                    feedback.textContent = 'Congratulations! You have completed the exercise.';
+                }
             } else {
                 feedback.textContent = `Incorrect. Please try again.`;
                 feedback.classList.add('text-red-500');
@@ -125,11 +198,13 @@
         }
 
         function startNewProblem() {
+            currentQuestionIndex = 0;
             problem = generateProblem();
             correctAnswers = calculateCorrectAnswers(problem);
-            document.getElementById('feedback').textContent = '';
-            document.getElementById('answerInput').value = '';
+            document.getElementById('questionContainer').classList.remove('hidden');
             document.getElementById('newProblem').classList.add('hidden');
+            document.getElementById('feedback').textContent = '';
+            displayCurrentQuestion();
         }
 
         document.getElementById('checkAnswer').addEventListener('click', checkAnswer);
