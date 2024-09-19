@@ -49,25 +49,25 @@
                 id: 'neededHosts',
                 label: 'How many host addresses do you need for this network?',
                 type: 'dynamic',
-                correctAnswer: 161 // 159 usable hosts, 2 for network/broadcast addresses
+                correctAnswer: null // To be generated dynamically
             },
             {
                 id: 'neededSubnets',
                 label: 'How many subnets will you create?',
-                type: 'dynamic', 
-                correctAnswer: 4 // Correct answer is 4 subnets based on needed subnets
+                type: 'dynamic',
+                correctAnswer: null // To be generated dynamically
             },
             {
                 id: 'usableHosts',
                 label: 'How many usable hosts will each subnet have?',
                 type: 'dynamic',
-                correctAnswer: 159 // Correct answer based on usable hosts
+                correctAnswer: null // To be generated dynamically
             },
             {
                 id: 'borrowedBits',
                 label: 'How many bits are you borrowing to make this subnet?',
                 type: 'dynamic',
-                correctAnswer: 2 // This would be calculated based on needed subnets and hosts
+                correctAnswer: null // To be generated dynamically
             }
         ];
 
@@ -79,10 +79,35 @@
             return `${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.0`;
         }
 
-        // Generates a new subnetting problem
+        // Helper function to calculate valid host addresses
+        function calculateHostAddresses(neededUsableHosts) {
+            let h = Math.ceil(Math.log2(neededUsableHosts + 2)); // Adding 2 for network and broadcast
+            return Math.pow(2, h); // Total addresses, including network and broadcast
+        }
+
+        // Helper function to generate dynamic options
+        function generateOptions(correctAnswer) {
+            let incorrect1 = correctAnswer + Math.floor(Math.random() * 5) + 1;
+            let incorrect2 = correctAnswer - Math.floor(Math.random() * 5) - 1;
+            if (incorrect1 === correctAnswer) incorrect1 += 1;
+            if (incorrect2 === correctAnswer) incorrect2 -= 1;
+            let options = [correctAnswer, incorrect1, incorrect2];
+            return shuffleArray(options);
+        }
+
+        // Shuffles the array so that the correct answer isn't always first
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Generates a new problem based on random subnets, hosts, and network address
         function generateProblem() {
-            const neededSubnets = Math.floor(Math.random() * 4) + 2;  // Random subnets, minimum 2
-            const neededHosts = Math.floor(Math.random() * 254) + 100; // Random hosts, between 100 and 254
+            const neededSubnets = Math.floor(Math.random() * 5) + 2;  // Random subnets (min 2, max 6)
+            const neededHosts = Math.floor(Math.random() * 500) + 50; // Random hosts (between 50 and 550)
             const networkAddress = generateRandomIP();                 // Random IP address
 
             // Display the seed data
@@ -90,26 +115,17 @@
             document.getElementById('neededHosts').textContent = neededHosts;
             document.getElementById('networkAddress').textContent = networkAddress;
 
+            // Dynamically calculate the correct host addresses and subnets
+            const totalHostAddresses = calculateHostAddresses(neededHosts);
+            const totalSubnets = Math.pow(2, Math.ceil(Math.log2(neededSubnets)));
+
+            // Update correct answers dynamically
+            questions[2].correctAnswer = totalHostAddresses; // Correct answer for needed host addresses
+            questions[3].correctAnswer = totalSubnets;       // Correct answer for needed subnets
+            questions[4].correctAnswer = neededHosts;        // Usable hosts in each subnet
+            questions[5].correctAnswer = Math.ceil(Math.log2(totalSubnets)); // Bits borrowed for subnets
+
             return { neededSubnets, neededHosts, networkAddress };
-        }
-
-        // Helper function to generate answer options (one correct, two incorrect)
-        function generateOptions(correctAnswer) {
-            let incorrect1 = correctAnswer + Math.floor(Math.random() * 5) + 1; 
-            let incorrect2 = correctAnswer - Math.floor(Math.random() * 5) - 1;
-            if (incorrect1 === correctAnswer) incorrect1 += 1;
-            if (incorrect2 === correctAnswer) incorrect2 -= 1;
-            let options = [correctAnswer, incorrect1, incorrect2];
-            return shuffleArray(options); // Shuffle the options
-        }
-
-        // Shuffles an array so that the correct answer isn't always first
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
         }
 
         // Determines the correct answers based on the problem
@@ -139,7 +155,7 @@
         // Displays the current question and options
         function displayCurrentQuestion() {
             const questionArea = document.getElementById('questionArea');
-            questionArea.innerHTML = ''; // Clear previous question
+            questionArea.innerHTML = ''; // Clear previous content
             selectedButton = null;       // Reset selected button
 
             const currentQuestion = questions[currentQuestionIndex];
@@ -153,21 +169,20 @@
             if (currentQuestion.type === 'button' || currentQuestion.type === 'dynamic') {
                 const buttonGroup = document.createElement('div');
                 buttonGroup.classList.add('flex', 'gap-4');
-                
+
                 // Generate dynamic options if needed
                 let options = currentQuestion.options;
                 if (currentQuestion.type === 'dynamic') {
                     options = generateOptions(currentQuestion.correctAnswer);
                 }
 
-                // Create a button for each option
                 options.forEach(option => {
                     const button = document.createElement('button');
                     button.classList.add('bg-gray-300', 'px-4', 'py-2', 'rounded', 'hover:bg-gray-400');
                     button.textContent = option;
                     button.addEventListener('click', () => {
                         document.getElementById('answerInput').value = option;
-                        
+
                         // Highlight selected button and reset others
                         if (selectedButton) {
                             selectedButton.classList.remove('bg-blue-500', 'text-white');
@@ -203,7 +218,7 @@
         function checkAnswer() {
             const currentQuestion = questions[currentQuestionIndex];
             const userAnswer = document.getElementById('answerInput').value;
-            const correctAnswer = currentQuestion.correctAnswer || correctAnswers[currentQuestion.id];
+            const correctAnswer = currentQuestion.correctAnswer;
             const isCorrect = userAnswer.toString() === correctAnswer.toString();
 
             const feedback = document.getElementById('feedback');
