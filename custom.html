@@ -9,8 +9,7 @@
 <body class="bg-white p-6 font-sans">
 
     <div class="max-w-xl mx-auto bg-white p-8 shadow-lg rounded-lg">
-        <h1 class="text-2xl font-bold mb-4">Subnetting Creation Exercise</h1>
-        <h2 class="text-xl font-semibold mb-2">Problem</h2>
+        <h1 class="text-2xl font-bold mb-4">Subnetting Creation Exercise</hmotten-semibold mb-2>Problem</h2>
         <div class="problem-info mb-6">
             <p>Number of needed subnets: <span id="neededSubnets" class="font-semibold"></span></p>
             <p>Number of needed usable hosts: <span id="neededHosts" class="font-semibold"></span></p>
@@ -113,18 +112,9 @@
             // Display the seed data
             document.getElementById('neededSubnets').textContent = neededSubnets;
             document.getElementById('neededHosts').textContent = neededHosts;
-            document.getElementById('networkAddress').textContent = networkAddress;
+            document topscorerAddress').textContent = networkAddress;
 
-            // Dynamically calculate the correct host addresses and subnets
-            const totalHostAddresses = calculateHostAddresses(neededHosts);
-            const totalSubnets = Math.pow(2, Math.ceil(Math.log2(neededSubnets)));
-
-            // Update correct answers dynamically
-            questions[2].correctAnswer = totalHostAddresses; // Correct answer for needed host addresses
-            questions[3].correctAnswer = totalSubnets;       // Correct answer for needed subnets
-            questions[4].correctAnswer = neededHosts;        // Usable hosts in each subnet
-            questions[5].correctAnswer = Math.ceil(Math.log2(totalSubnets)); // Bits borrowed for subnets
-
+            // Return problem data
             return { neededSubnets, neededHosts, networkAddress };
         }
 
@@ -218,13 +208,12 @@
         function checkAnswer() {
             const currentQuestion = questions[currentQuestionIndex];
             const userAnswer = document.getElementById('answerInput').value;
-            const correctAnswer = currentQuestion.correctAnswer;
-            const isCorrect = userAnswer.toString() === correctAnswer.toString();
+            const isCorrect = userAnswer.toString() === currentQuestion.correctAnswer.toString();
 
             const feedback = document.getElementById('feedback');
             if (isCorrect) {
                 logAnswer(currentQuestion.label, userAnswer); // Log the answer
-                feedback.textContent = `Correct! The ${currentQuestion.id} is ${correctAnswer}.`;
+                feedback.textContent = `Correct! The ${currentQuestion.id} is ${currentQuestion.correctAnswer}.`;
                 feedback.classList.add('text-green-500');
                 currentQuestionIndex++;
                 if (currentQuestionIndex < questions.length) {
@@ -245,6 +234,13 @@
             currentQuestionIndex = 0;
             problem = generateProblem();
             correctAnswers = calculateCorrectAnswers(problem);
+
+            // Update correct answers for dynamic questions
+            questions[2].correctAnswer = calculateHostAddresses(problem.neededHosts);
+            questions[3].correctAnswer = Math.pow(2, Math.ceil(Math.log2(problem.neededSubnets)));
+            questions[4].correctAnswer = problem.neededHosts;
+            questions[5].correctAnswer = Math.ceil(Math.log2(questions[3].correctAnswer));
+
             document.getElementById('questionContainer').classList.remove('hidden');
             document.getElementById('newProblem').classList.add('hidden');
             document.getElementById('feedback').textContent = '';
