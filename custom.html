@@ -6,7 +6,7 @@
     <title>Custom Subnet Masks Exercise</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 p-6 font-sans">
+<body class="bg-white p-6 font-sans">
 
     <div class="max-w-xl mx-auto bg-white p-8 shadow-lg rounded-lg">
         <h1 class="text-2xl font-bold mb-4">Custom Subnet Masks Exercise</h1>
@@ -51,7 +51,7 @@
         ];
 
         let currentQuestionIndex = 0;
-        let problem, correctAnswers, currentClass;
+        let problem, correctAnswers, currentClass, selectedButton = null;
 
         function generateRandomIP() {
             return `${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.0`;
@@ -121,8 +121,16 @@
                     button.classList.add('bg-gray-300', 'px-4', 'py-2', 'rounded', 'hover:bg-gray-400');
                     button.textContent = option;
                     button.addEventListener('click', () => {
-                        // Store the selected option in the hidden input field
                         document.getElementById('answerInput').value = option;
+                        
+                        // Highlight selected button and remove highlight from others
+                        if (selectedButton) {
+                            selectedButton.classList.remove('bg-blue-500', 'text-white');
+                            selectedButton.classList.add('bg-gray-300');
+                        }
+                        button.classList.add('bg-blue-500', 'text-white');
+                        button.classList.remove('bg-gray-300');
+                        selectedButton = button;
                     });
                     buttonGroup.appendChild(button);
                 });
@@ -162,6 +170,7 @@
 
         function startNewProblem() {
             currentQuestionIndex = 0;
+            selectedButton = null;
             problem = generateProblem();
             correctAnswers = calculateCorrectAnswers(problem);
             document.getElementById('questionContainer').classList.remove('hidden');
