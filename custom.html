@@ -3,40 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subnetting Exercise - Step by Step</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <title>Custom Subnet Masks Exercise</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        h1, h2 { margin-bottom: 10px; }
+        .problem-info { margin-bottom: 20px; }
+        .form-field { margin-bottom: 10px; }
+        label { display: inline-block; width: 200px; }
+        input[type="text"], input[type="number"] { width: 200px; }
+        #feedback { margin-top: 10px; font-weight: bold; }
+        #newProblem { display: none; margin-top: 10px; }
+    </style>
 </head>
-<body class="bg-gray-100 p-8">
-    <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
-        <h1 class="text-2xl font-bold mb-4">Custom Subnet Masks Exercise</h1>
-        <div id="problem" class="mb-6">
-            <h2 class="text-xl font-semibold mb-2">Problem</h2>
-            <p>Number of needed subnets: <span id="neededSubnets" class="font-bold"></span></p>
-            <p>Number of needed usable hosts: <span id="neededHosts" class="font-bold"></span></p>
-            <p>Network Address: <span id="networkAddress" class="font-bold"></span></p>
-        </div>
-        <div id="questionContainer" class="mb-6">
-            <h3 id="questionText" class="text-lg font-semibold mb-2"></h3>
-            <input type="text" id="answerInput" class="w-full px-3 py-2 border rounded mb-2">
-            <button id="submitAnswer" class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
-                Submit Answer
-            </button>
-        </div>
-        <div id="feedback" class="mt-4 p-4 rounded hidden"></div>
-        <button id="newProblem" class="w-full bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 mt-4 hidden">
-            Generate New Problem
-        </button>
+<body>
+    <h1>Custom Subnet Masks Exercise</h1>
+    <h2>Problem</h2>
+    <div class="problem-info">
+        <p>Number of needed subnets: <span id="neededSubnets"></span></p>
+        <p>Number of needed usable hosts: <span id="neededHosts"></span></p>
+        <p>Network Address: <span id="networkAddress"></span></p>
     </div>
+    <div id="questionContainer">
+        <div class="form-field">
+            <label for="addressClass">Address class:</label>
+            <input type="text" id="addressClass">
+        </div>
+        <div class="form-field">
+            <label for="defaultSubnetMask">Default subnet mask:</label>
+            <input type="text" id="defaultSubnetMask">
+        </div>
+        <div class="form-field">
+            <label for="customSubnetMask">Custom subnet mask:</label>
+            <input type="text" id="customSubnetMask">
+        </div>
+        <div class="form-field">
+            <label for="totalSubnets">Total number of subnets:</label>
+            <input type="number" id="totalSubnets">
+        </div>
+        <div class="form-field">
+            <label for="totalHostAddresses">Total number of host addresses:</label>
+            <input type="number" id="totalHostAddresses">
+        </div>
+        <div class="form-field">
+            <label for="usableAddresses">Number of usable addresses:</label>
+            <input type="number" id="usableAddresses">
+        </div>
+        <div class="form-field">
+            <label for="borrowedBits">Number of bits borrowed:</label>
+            <input type="number" id="borrowedBits">
+        </div>
+        <button id="checkAnswer">Check Answer</button>
+    </div>
+    <div id="feedback"></div>
+    <button id="newProblem">Generate New Problem</button>
 
     <script>
         const questions = [
-            { id: 'addressClass', text: 'What is the address class?', validate: (answer, correct) => answer.toUpperCase() === correct },
-            { id: 'defaultSubnetMask', text: 'What is the default subnet mask?', validate: (answer, correct) => answer === correct },
-            { id: 'customSubnetMask', text: 'What is the custom subnet mask?', validate: (answer, correct) => answer === correct },
-            { id: 'totalSubnets', text: 'What is the total number of subnets?', validate: (answer, correct) => parseInt(answer) === correct },
-            { id: 'totalHostAddresses', text: 'What is the total number of host addresses?', validate: (answer, correct) => parseInt(answer) === correct },
-            { id: 'usableAddresses', text: 'What is the number of usable addresses?', validate: (answer, correct) => parseInt(answer) === correct },
-            { id: 'borrowedBits', text: 'How many bits were borrowed?', validate: (answer, correct) => parseInt(answer) === correct }
+            { id: 'addressClass', label: 'Address class' },
+            { id: 'defaultSubnetMask', label: 'Default subnet mask' },
+            { id: 'customSubnetMask', label: 'Custom subnet mask' },
+            { id: 'totalSubnets', label: 'Total number of subnets' },
+            { id: 'totalHostAddresses', label: 'Total number of host addresses' },
+            { id: 'usableAddresses', label: 'Number of usable addresses' },
+            { id: 'borrowedBits', label: 'Number of bits borrowed' }
         ];
 
         let currentQuestionIndex = 0;
@@ -93,39 +122,27 @@
             };
         }
 
-        function displayQuestion() {
-            const question = questions[currentQuestionIndex];
-            document.getElementById('questionText').textContent = question.text;
-            document.getElementById('answerInput').value = '';
-            document.getElementById('feedback').classList.add('hidden');
-        }
-
         function checkAnswer() {
-            const question = questions[currentQuestionIndex];
-            const userAnswer = document.getElementById('answerInput').value;
-            const correctAnswer = correctAnswers[question.id];
-            const isCorrect = question.validate(userAnswer, correctAnswer);
+            const currentQuestion = questions[currentQuestionIndex];
+            const userAnswer = document.getElementById(currentQuestion.id).value;
+            const correctAnswer = correctAnswers[currentQuestion.id];
+            const isCorrect = userAnswer.toString().toLowerCase() === correctAnswer.toString().toLowerCase();
 
             const feedback = document.getElementById('feedback');
-            feedback.classList.remove('hidden');
-
             if (isCorrect) {
-                feedback.textContent = 'Correct! Moving to the next question.';
-                feedback.classList.remove('bg-red-100', 'text-red-700');
-                feedback.classList.add('bg-green-100', 'text-green-700');
+                feedback.textContent = `Correct! "${currentQuestion.label}" is ${correctAnswer}.`;
+                feedback.style.color = 'green';
                 currentQuestionIndex++;
-
                 if (currentQuestionIndex < questions.length) {
-                    setTimeout(displayQuestion, 1500);
+                    document.getElementById(questions[currentQuestionIndex].id).focus();
                 } else {
-                    document.getElementById('questionContainer').classList.add('hidden');
+                    document.getElementById('checkAnswer').style.display = 'none';
+                    document.getElementById('newProblem').style.display = 'block';
                     feedback.textContent = 'Congratulations! You have completed the exercise.';
-                    document.getElementById('newProblem').classList.remove('hidden');
                 }
             } else {
-                feedback.textContent = `Incorrect. Please try again.`;
-                feedback.classList.remove('bg-green-100', 'text-green-700');
-                feedback.classList.add('bg-red-100', 'text-red-700');
+                feedback.textContent = `Incorrect. Please try again for "${currentQuestion.label}".`;
+                feedback.style.color = 'red';
             }
         }
 
@@ -133,12 +150,14 @@
             currentQuestionIndex = 0;
             problem = generateProblem();
             correctAnswers = calculateCorrectAnswers(problem);
-            document.getElementById('questionContainer').classList.remove('hidden');
-            document.getElementById('newProblem').classList.add('hidden');
-            displayQuestion();
+            questions.forEach(q => document.getElementById(q.id).value = '');
+            document.getElementById('checkAnswer').style.display = 'block';
+            document.getElementById('newProblem').style.display = 'none';
+            document.getElementById('feedback').textContent = '';
+            document.getElementById(questions[0].id).focus();
         }
 
-        document.getElementById('submitAnswer').addEventListener('click', checkAnswer);
+        document.getElementById('checkAnswer').addEventListener('click', checkAnswer);
         document.getElementById('newProblem').addEventListener('click', startNewProblem);
 
         // Start the first problem
