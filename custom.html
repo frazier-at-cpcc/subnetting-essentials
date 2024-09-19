@@ -13,6 +13,10 @@
         <h2 class="text-xl font-semibold mb-2">Problem</h2>
         <div class="problem-info mb-6">
             <p>Network Address: <span id="networkAddress" class="font-semibold"></span></p>
+            <div id="answersList" class="mt-4">
+                <h3 class="text-lg font-semibold">Your Answers:</h3>
+                <ul id="answersLog" class="list-disc ml-5"></ul>
+            </div>
         </div>
         <div id="questionContainer" class="mb-6">
             <div id="questionArea" class="form-field mb-4">
@@ -192,6 +196,13 @@
             document.getElementById('answerInput').value = '';
         }
 
+        function logAnswer(questionLabel, answer) {
+            const answersLog = document.getElementById('answersLog');
+            const answerItem = document.createElement('li');
+            answerItem.textContent = `${questionLabel}: ${answer}`;
+            answersLog.appendChild(answerItem);
+        }
+
         function checkAnswer() {
             const currentQuestion = questions[currentQuestionIndex];
             const userAnswer = document.getElementById('answerInput').value;
@@ -200,6 +211,7 @@
 
             const feedback = document.getElementById('feedback');
             if (isCorrect) {
+                logAnswer(currentQuestion.label, userAnswer); // Log the answer
                 feedback.textContent = `Correct! The ${currentQuestion.id} is ${correctAnswer}.`;
                 feedback.classList.add('text-green-500');
                 currentQuestionIndex++;
@@ -223,6 +235,7 @@
             document.getElementById('questionContainer').classList.remove('hidden');
             document.getElementById('newProblem').classList.add('hidden');
             document.getElementById('feedback').textContent = '';
+            document.getElementById('answersLog').innerHTML = ''; // Clear the answers log
             displayCurrentQuestion();
         }
 
