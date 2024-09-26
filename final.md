@@ -373,6 +373,7 @@ Question 5: What class does the IP address `172.16.0.5` belong to?
 
 Congratulations on completing this quiz! Continue practicing and solidifying your understanding of IP address classes.
 *****************************************************************************************************************************************************************
+
 ## Binary and Decimal Conversions
 In networking, understanding how to convert between binary and decimal numbers is essential, as IP addresses and subnet masks are represented in both formats. This module will guide you through the process of converting decimal numbers to binary and vice versa, which is crucial for IP address manipulation, subnetting, and network calculations.
 
