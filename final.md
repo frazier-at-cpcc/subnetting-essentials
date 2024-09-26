@@ -175,19 +175,19 @@ Private address spaces are used to:
   - Are globally unique and routable on the public internet.
   - Assigned by an internet service provider (ISP) or a regional internet registry (RIR).
 
-**Example Scenarios**
----------------------
-1. **Corporate Network:**
-   A large enterprise uses the `10.0.0.0/8` private range for its internal departments, with each department allocated a different subnet (e.g., 10.1.0.0/16 for HR, 10.2.0.0/16 for IT).
-
-2. **Home Network:**
-   A home network uses the `192.168.0.0/24` range to assign private addresses to devices such as computers, smartphones, and smart home devices.
-
-Private IP addresses are essential for managing internal communication in networks and reducing the demand for public IP addresses. These addresses are widely used in corporate networks, homes, and small businesses, providing flexibility and security by keeping internal traffic within the local network.
-
----
-
-Next, we will explore **Special Address Ranges** that are reserved for specific purposes in networking.
+>**Example Scenarios**
+>---------------------
+>1. **Corporate Network:**
+>   A large enterprise uses the `10.0.0.0/8` private range for its internal departments, with each department allocated a different subnet (e.g., 10.1.0.0/16 for HR, 10.2.0.0/16 for IT).
+>
+>2. **Home Network:**
+>    A home network uses the `192.168.0.0/24` range to assign private addresses to devices such as computers, smartphones, and smart home devices.
+> 
+> Private IP addresses are essential for managing internal communication in networks and reducing the demand for public IP addresses. These addresses are widely used in corporate networks, homes, and small businesses, providing flexibility and security by keeping internal traffic within the local network.
+>
+> ---
+> 
+> Next, we will explore **Special Address Ranges** that are reserved for specific purposes in networking.
 
 ### Special Address Ranges
 
@@ -280,16 +280,16 @@ Subnet masks can also be expressed using **CIDR (Classless Inter-Domain Routing)
   - Class B: `/16` (255.255.0.0)
   - Class C: `/24` (255.255.255.0)
 
-**Example: Using Subnet Masks in Practice**
-
-Suppose you have an IP address `192.168.1.10` with a default Class C subnet mask of `255.255.255.0`. To determine which part of the address represents the network and which part represents the host:
-
-- **Network Portion:** The first three octets (`192.168.1`) represent the network.
-- **Host Portion:** The last octet (`.10`) represents the host.
-
-Thus, the network address for `192.168.1.10` would be `192.168.1.0`, and the broadcast address would be `192.168.1.255`.
-
-Default subnet masks play a crucial role in determining the size and structure of networks. Understanding how subnet masks divide IP addresses into network and host portions helps in the design and implementation of efficient and scalable networks.
+> **Example: Using Subnet Masks in Practice**
+>
+>Suppose you have an IP address `192.168.1.10` with a default Class C subnet mask of `255.255.255.0`. To determine which part of the address represents the network and which part represents the host:
+> 
+> - **Network Portion:** The first three octets (`192.168.1`) represent the network.
+> - **Host Portion:** The last octet (`.10`) represents the host.
+> 
+> Thus, the network address for `192.168.1.10` would be `192.168.1.0`, and the broadcast address would be `192.168.1.255`.
+> 
+> Default subnet masks play a crucial role in determining the size and structure of networks. Understanding how subnet masks divide IP addresses into network and host portions helps in the design and implementation of efficient and scalable networks.
 
 ---
 
@@ -408,38 +408,37 @@ To convert a binary number to its decimal equivalent, you can follow these steps
 
 4. **Add the results**: Sum the values from each octet to get the final decimal number for each.
 
-**Example: Converting Binary to Decimal**
-
-Let’s convert the binary IP address `11000000.10101000.00000001.00000001` to decimal.
-
-1. **Binary IP Address**: `11000000.10101000.00000001.00000001`
-   
-2. **Break it down into octets**:
-   - First octet: `11000000`
-   - Second octet: `10101000`
-   - Third octet: `00000001`
-   - Fourth octet: `00000001`
-
-3. **Convert each octet from binary to decimal**:
-
-   - **First octet**: `11000000`
-     - (1 × 2^7) + (1 × 2^6) + (0 × 2^5) + (0 × 2^4) + (0 × 2^3) + (0 × 2^2) + (0 × 2^1) + (0 × 2^0)
-     - = 128 + 64 = **192**
-
-   - **Second octet**: `10101000`
-     - (1 × 2^7) + (0 × 2^6) + (1 × 2^5) + (0 × 2^4) + (1 × 2^3) + (0 × 2^2) + (0 × 2^1) + (0 × 2^0)
-     - = 128 + 32 + 8 = **168**
-
-   - **Third octet**: `00000001`
-     - (0 × 2^7) + (0 × 2^6) + (0 × 2^5) + (0 × 2^4) + (0 × 2^3) + (0 × 2^2) + (0 × 2^1) + (1 × 2^0)
-     - = 1
-
-   - **Fourth octet**: `00000001`
-     - (0 × 2^7) + (0 × 2^6) + (0 × 2^5) + (0 × 2^4) + (0 × 2^3) + (0 × 2^2) + (0 × 2^1) + (1 × 2^0)
-     - = 1
-
-4. **Final Decimal Address**: Combine the decimal values from each octet:
-   - `192.168.1.1`
+> **Example: Converting Binary to Decimal**
+> Let’s convert the binary IP address `11000000.10101000.00000001.00000001` to decimal.
+> 
+>1. **Binary IP Address**: `11000000.10101000.00000001.00000001`
+>   
+>2. **Break it down into octets**:
+>   - First octet: `11000000`
+>   - Second octet: `10101000`
+>   - Third octet: `00000001`
+>   - Fourth octet: `00000001`
+>
+>3. **Convert each octet from binary to decimal**:
+>
+>   - **First octet**: `11000000`
+>     - (1 × 2^7) + (1 × 2^6) + (0 × 2^5) + (0 × 2^4) + (0 × 2^3) + (0 × 2^2) + (0 × 2^1) + (0 × 2^0)
+>     - = 128 + 64 = **192**
+>
+>   - **Second octet**: `10101000`
+>     - (1 × 2^7) + (0 × 2^6) + (1 × 2^5) + (0 × 2^4) + (1 × 2^3) + (0 × 2^2) + (0 × 2^1) + (0 × 2^0)
+>     - = 128 + 32 + 8 = **168**
+>
+>   - **Third octet**: `00000001`
+>     - (0 × 2^7) + (0 × 2^6) + (0 × 2^5) + (0 × 2^4) + (0 × 2^3) + (0 × 2^2) + (0 × 2^1) + (1 × 2^0)
+>     - = 1
+>
+>   - **Fourth octet**: `00000001`
+>     - (0 × 2^7) + (0 × 2^6) + (0 × 2^5) + (0 × 2^4) + (0 × 2^3) + (0 × 2^2) + (0 × 2^1) + (1 × 2^0)
+>     - = 1
+>
+> 4. **Final Decimal Address**: Combine the decimal values from each octet:
+>    - `192.168.1.1`
 
 **Practice Problem**
 
@@ -771,41 +770,41 @@ To perform subnetting calculations, follow these steps:
 4. **Identify the Network and Broadcast Addresses**:
    - The network address is the first address in each subnet, and the broadcast address is the last. The range between these addresses represents usable host addresses.
 
-**Example: Subnetting a Class C Network**
-
-Let’s take the network `192.168.10.0/24` and subnet it into 4 subnets.
-
-1. **Determine the Subnet Mask**:
-   - To create 4 subnets, we need to borrow 2 bits from the host portion (because \( 2^2 = 4 \)).
-   - The default Class C subnet mask is `255.255.255.0` (`/24`). Borrowing 2 bits gives us a new subnet mask of `255.255.255.192` (`/26`).
-
-2. **Calculate the Number of Hosts per Subnet**:
-   - With 6 bits remaining for hosts (8 bits in the original Class C - 2 bits borrowed for subnetting), we can calculate the number of hosts per subnet:
-     \[
-     2^6 - 2 = 62 \text{ hosts per subnet}
-     \]
-
-3. **Identify the Network and Broadcast Addresses**:
-
-   - **Subnet 1**:  
-     - Network Address: `192.168.10.0`
-     - Broadcast Address: `192.168.10.63`
-     - Usable IP Range: `192.168.10.1` – `192.168.10.62`
-     
-   - **Subnet 2**:  
-     - Network Address: `192.168.10.64`
-     - Broadcast Address: `192.168.10.127`
-     - Usable IP Range: `192.168.10.65` – `192.168.10.126`
-     
-   - **Subnet 3**:  
-     - Network Address: `192.168.10.128`
-     - Broadcast Address: `192.168.10.191`
-     - Usable IP Range: `192.168.10.129` – `192.168.10.190`
-     
-   - **Subnet 4**:  
-     - Network Address: `192.168.10.192`
-     - Broadcast Address: `192.168.10.255`
-     - Usable IP Range: `192.168.10.193` – `192.168.10.254`
+> **Example: Subnetting a Class C Network**
+> 
+> Let’s take the network `192.168.10.0/24` and subnet it into 4 subnets.
+> 
+> 1. **Determine the Subnet Mask**:
+>    - To create 4 subnets, we need to borrow 2 bits from the host portion (because \( 2^2 = 4 \)).
+>    - The default Class C subnet mask is `255.255.255.0` (`/24`). Borrowing 2 bits gives us a new subnet mask of `255.255.255.192` (`/26`).
+> 
+> 2. **Calculate the Number of Hosts per Subnet**:
+>    - With 6 bits remaining for hosts (8 bits in the original Class C - 2 bits borrowed for subnetting), we can calculate the number of hosts per subnet:
+>     \[
+>     2^6 - 2 = 62 \text{ hosts per subnet}
+>     \]
+> 
+> 3. **Identify the Network and Broadcast Addresses**:
+> 
+>    - **Subnet 1**:  
+>      - Network Address: `192.168.10.0`
+>      - Broadcast Address: `192.168.10.63`
+>      - Usable IP Range: `192.168.10.1` – `192.168.10.62`
+>      
+>    - **Subnet 2**:  
+>      - Network Address: `192.168.10.64`
+>      - Broadcast Address: `192.168.10.127`
+>      - Usable IP Range: `192.168.10.65` – `192.168.10.126`
+>      
+>    - **Subnet 3**:  
+>      - Network Address: `192.168.10.128`
+>      - Broadcast Address: `192.168.10.191`
+>      - Usable IP Range: `192.168.10.129` – `192.168.10.190`
+>      
+>    - **Subnet 4**:  
+>      - Network Address: `192.168.10.192`
+>      - Broadcast Address: `192.168.10.255`
+>      - Usable IP Range: `192.168.10.193` – `192.168.10.254`
 
 **Practice Problem**
 
@@ -869,30 +868,30 @@ Custom subnet masks allow you to create subnetworks with specific numbers of hos
      \]
      where \( h \) is the remaining number of host bits.
 
-**Example: Creating a Custom Subnet Mask**
-
-Let’s say you have the network `192.168.1.0/24` and you need to create 8 subnets. Here’s how you can calculate the custom subnet mask:
-
-1. **Determine the Number of Bits to Borrow**:
-   - You need at least 8 subnets. To calculate the number of bits required, use the formula:
-     \[
-     2^n \geq 8 \quad \text{so} \quad n = 3
-     \]
-     - Borrow 3 bits from the host portion.
-
-2. **Calculate the New Subnet Mask**:
-   - The default subnet mask for a Class C network is `255.255.255.0` (`/24`).
-   - Adding 3 borrowed bits changes the subnet mask to `255.255.255.224` (`/27`).
-
-3. **Verify the Number of Hosts per Subnet**:
-   - With 5 remaining host bits (`32 total bits - 27 network bits = 5 host bits`):
-     \[
-     2^5 - 2 = 30 \text{ hosts per subnet}
-     \]
-   - This gives you 30 usable hosts per subnet.
-
-**Example Result**:
-You’ve created 8 subnets, each with a subnet mask of `255.255.255.224` and 30 usable hosts.
+> **Example: Creating a Custom Subnet Mask**
+> 
+> Let’s say you have the network `192.168.1.0/24` and you need to create 8 subnets. Here’s how you can calculate the custom subnet mask:
+> 
+> 1. **Determine the Number of Bits to Borrow**:
+>    - You need at least 8 subnets. To calculate the number of bits required, use the formula:
+>      \[
+>      2^n \geq 8 \quad \text{so} \quad n = 3
+>      \]
+>      - Borrow 3 bits from the host portion.
+> 
+> 2. **Calculate the New Subnet Mask**:
+>    - The default subnet mask for a Class C network is `255.255.255.0` (`/24`).
+>    - Adding 3 borrowed bits changes the subnet mask to `255.255.255.224` (`/27`).
+> 
+> 3. **Verify the Number of Hosts per Subnet**:
+>    - With 5 remaining host bits (`32 total bits - 27 network bits = 5 host bits`):
+>      \[
+>      2^5 - 2 = 30 \text{ hosts per subnet}
+>      \]
+>    - This gives you 30 usable hosts per subnet.
+> 
+> **Example Result**:
+> You’ve created 8 subnets, each with a subnet mask of `255.255.255.224` and 30 usable hosts.
 
 > **Practice Problem**
 > 
@@ -909,15 +908,6 @@ You’ve created 8 subnets, each with a subnet mask of `255.255.255.224` and 30 
 > 3. **Verify the Number of Hosts per Subnet**:
 >    - With 20 remaining host bits (`32 total bits - 12 network bits = 20 host bits`):
 >      2^{20} - 2 = 1,048,574 hosts per subnet
-
-**Why Calculate Custom Subnet Masks?**
-
-Custom subnet masks provide flexibility in network design:
-- **Efficient Use of IP Space**: By tailoring the subnet mask to the specific number of subnets and hosts needed, you avoid wasting IP addresses.
-- **Network Segmentation**: Custom subnetting allows for better traffic isolation and security by separating different departments or services.
-- **Scalability**: Custom subnet masks can accommodate network growth without the need to redesign the entire addressing scheme.
-
-
 
 Calculating custom subnet masks allows you to optimize network performance and scalability while effectively managing IP address space. This essential skill is key to designing networks that meet the unique needs of any organization.
 
