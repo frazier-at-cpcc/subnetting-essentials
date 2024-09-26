@@ -527,31 +527,31 @@ When we AND an IP address with a subnet mask, we compare each bit in the IP addr
 
 3. **Result**: The result of the AND operation gives you the network portion of the IP address.
 
-**Example: ANDing with a Default Subnet Mask**
-
-Let’s say you have the following IP address and a default Class C subnet mask:
-
-- **IP Address**: `192.168.1.10`
-- **Default Subnet Mask**: `255.255.255.0`
-
-1. **Convert to Binary**:
-
-   - **IP Address**: `192.168.1.10`
-     - `11000000.10101000.00000001.00001010`
-
-   - **Subnet Mask**: `255.255.255.0`
-     - `11111111.11111111.11111111.00000000`
-
-2. **AND the IP Address and Subnet Mask**:
-
-   - IP: `11000000.10101000.00000001.00001010`
-   - Mask: `11111111.11111111.11111111.00000000`
-   - Result: `11000000.10101000.00000001.00000000`
-
-3. **Convert the Result to Decimal**:
-   - **Network Address**: `192.168.1.0`
-
-This shows that the network portion of the IP address `192.168.1.10` is `192.168.1.0`.
+> **Example: ANDing with a Default Subnet Mask**
+> 
+> Let’s say you have the following IP address and a default Class C subnet mask:
+> 
+> - **IP Address**: `192.168.1.10`
+> - **Default Subnet Mask**: `255.255.255.0`
+> 
+> 1. **Convert to Binary**:
+> 
+>    - **IP Address**: `192.168.1.10`
+>      - `11000000.10101000.00000001.00001010`
+> 
+>    - **Subnet Mask**: `255.255.255.0`
+>      - `11111111.11111111.11111111.00000000`
+> 
+> 2. **AND the IP Address and Subnet Mask**:
+> 
+>    - IP: `11000000.10101000.00000001.00001010`
+>    - Mask: `11111111.11111111.11111111.00000000`
+>    - Result: `11000000.10101000.00000001.00000000`
+> 
+> 3. **Convert the Result to Decimal**:
+>    - **Network Address**: `192.168.1.0`
+> 
+> This shows that the network portion of the IP address `192.168.1.10` is `192.168.1.0`.
 
 **Practice Problem**
 
@@ -560,36 +560,26 @@ Try ANDing the following IP address with the default Class B subnet mask:
 - **IP Address**: `172.16.45.78`
 - **Subnet Mask**: `255.255.0.0`
 
-What is the network address?
+**Your Turn**: What is the network address?
 
       [[172.16.0.0]]
 ***********************************************************************
-**Solution to Practice Problem**
-
-1. **Convert to Binary**:
-   - **IP Address**: `172.16.45.78`
-     - `10101100.00010000.00101101.01001110`
-   - **Subnet Mask**: `255.255.0.0`
-     - `11111111.11111111.00000000.00000000`
-
-2. **AND the IP Address and Subnet Mask**:
-   - IP: `10101100.00010000.00101101.01001110`
-   - Mask: `11111111.11111111.00000000.00000000`
-   - Result: `10101100.00010000.00000000.00000000`
-
-3. **Convert the Result to Decimal**:
-   - **Network Address**: `172.16.0.0`
+> **Solution to Practice Problem**
+> 
+> 1. **Convert to Binary**:
+>   - **IP Address**: `172.16.45.78`
+>     - `10101100.00010000.00101101.01001110`
+>   - **Subnet Mask**: `255.255.0.0`
+>     - `11111111.11111111.00000000.00000000`
+> 
+> 2. **AND the IP Address and Subnet Mask**:
+>   - IP: `10101100.00010000.00101101.01001110`
+>   - Mask: `11111111.11111111.00000000.00000000`
+>   - Result: `10101100.00010000.00000000.00000000`
+>
+> 3. **Convert the Result to Decimal**:
+>   - **Network Address**: `172.16.0.0`
 ***********************************************************************
-
-
-**Why ANDing with Subnet Masks is Important**
-
-ANDing is crucial because it allows you to:
-- Identify the network portion of an IP address.
-- Ensure proper routing by determining whether an IP belongs to the same network or a different one.
-- Simplify the process of subnetting by clearly defining network boundaries.
-
-**Conclusion**
 
 Understanding ANDing with default subnet masks is fundamental for working with IP networks. It helps network administrators quickly determine the network segment an IP address belongs to, making tasks like subnetting, routing, and IP planning easier.
 
