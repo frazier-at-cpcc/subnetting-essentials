@@ -563,7 +563,6 @@ Try ANDing the following IP address with the default Class B subnet mask:
 What is the network address?
 
       [[172.16.0.0]]
-
 ***********************************************************************
 **Solution to Practice Problem**
 
