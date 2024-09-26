@@ -445,22 +445,19 @@ Let’s convert the binary IP address `11000000.10101000.00000001.00000001` to d
 Let'ss try converting the following binary IP address to decimal:
 - **Binary IP Address**: `11000000.10101000.00000010.00000011`
 
-- What is the decimal equivalent?
+What is the decimal equivalent?
 
-```ascii
-[Binary to Decimal Converter]
-Please enter the decimal equivalent for the binary IP address above:
-```
-
-**Solution to Practice Problem**
-
-- First octet: `11000000` = **192**
-- Second octet: `10101000` = **168**
-- Third octet: `00000010` = **2**
-- Fourth octet: `00000011` = **3**
-
-- **Final Decimal IP Address**: `192.168.2.3`
-
+      [[192.168.2.3]]
+**************************************************************************************************
+> **Solution to Practice Problem**
+> 
+> - First octet: `11000000` = **192**
+> - Second octet: `10101000` = **168**
+> - Third octet: `00000010` = **2**
+> - Fourth octet: `00000011` = **3**
+> 
+> - **Final Decimal IP Address**: `192.168.2.3`
+***************************************************************************************************
 
 
 Binary to decimal conversion is crucial for interpreting IP addresses and understanding how devices communicate over a network. This skill will help you perform essential tasks such as subnetting and network design.
@@ -532,46 +529,41 @@ Let’s convert the decimal IP address `192.168.1.1` to binary.
 Let’s try converting the following decimal IP address to binary:
 - **Decimal IP Address**: `10.0.15.255`
 
-- What is the binary equivalent?
+What is the binary equivalent?
 
-```ascii
-[Decimal to Binary Converter]
-Please enter the binary equivalent for the decimal IP address above:
-```
-
-**Solution to Practice Problem**
-
-- **First octet**: `10`
-  - 10 ÷ 2 = 5, remainder = 0
-  - 5 ÷ 2 = 2, remainder = 1
-  - 2 ÷ 2 = 1, remainder = 0
-  - 1 ÷ 2 = 0, remainder = 1
-  - **Binary for 10** = `00001010`
-
-- **Second octet**: `0`
-  - **Binary for 0** = `00000000`
-
-- **Third octet**: `15`
-  - 15 ÷ 2 = 7, remainder = 1
-  - 7 ÷ 2 = 3, remainder = 1
-  - 3 ÷ 2 = 1, remainder = 1
-  - 1 ÷ 2 = 0, remainder = 1
-  - **Binary for 15** = `00001111`
-
-- **Fourth octet**: `255`
-  - 255 ÷ 2 = 127, remainder = 1
-  - 127 ÷ 2 = 63, remainder = 1
-  - 63 ÷ 2 = 31, remainder = 1
-  - 31 ÷ 2 = 15, remainder = 1
-  - 15 ÷ 2 = 7, remainder = 1
-  - 7 ÷ 2 = 3, remainder = 1
-  - 3 ÷ 2 = 1, remainder = 1
-  - 1 ÷ 2 = 0, remainder = 1
-  - **Binary for 255** = `11111111`
-
-- **Final Binary IP Address**: `00001010.00000000.00001111.11111111`
-
-
+      [[00001010.00000000.00001111.11111111]]
+******************************************************************************************************************
+> **Solution to Practice Problem**
+> 
+> - **First octet**: `10`
+>   - 10 ÷ 2 = 5, remainder = 0
+>   - 5 ÷ 2 = 2, remainder = 1
+>   - 2 ÷ 2 = 1, remainder = 0
+>   - 1 ÷ 2 = 0, remainder = 1
+>   - **Binary for 10** = `00001010`
+> 
+> - **Second octet**: `0`
+>   - **Binary for 0** = `00000000`
+> 
+> - **Third octet**: `15`
+>   - 15 ÷ 2 = 7, remainder = 1
+>   - 7 ÷ 2 = 3, remainder = 1
+>   - 3 ÷ 2 = 1, remainder = 1
+>   - 1 ÷ 2 = 0, remainder = 1
+>   - **Binary for 15** = `00001111`
+> 
+> - **Fourth octet**: `255`
+>   - 255 ÷ 2 = 127, remainder = 1
+>   - 127 ÷ 2 = 63, remainder = 1
+>   - 63 ÷ 2 = 31, remainder = 1
+>   - 31 ÷ 2 = 15, remainder = 1
+>   - 15 ÷ 2 = 7, remainder = 1
+>   - 7 ÷ 2 = 3, remainder = 1
+>   - 3 ÷ 2 = 1, remainder = 1
+>   - 1 ÷ 2 = 0, remainder = 1
+>   - **Binary for 255** = `11111111`
+> 
+> - **Final Binary IP Address**: `00001010.00000000.00001111.11111111`
 
 Converting decimal to binary is an essential skill when working with IP addresses in networking. Understanding how to perform this conversion allows you to manipulate and analyze IP addresses for tasks like subnetting and IP planning.
 
@@ -899,33 +891,21 @@ Let’s say you have the network `192.168.1.0/24` and you need to create 8 subne
 **Example Result**:
 You’ve created 8 subnets, each with a subnet mask of `255.255.255.224` and 30 usable hosts.
 
-**Practice Problem**
-
-You are given the network `10.0.0.0/8` and need to create 16 subnets. What is the custom subnet mask, and how many hosts can each subnet support?
-
-```ascii
-[Subnet Mask Calculator]
-Please enter the custom subnet mask and the number of hosts per subnet for the IP address range:
-```
-
-**Solution to Practice Problem**
-
-1. **Determine the Number of Bits to Borrow**:
-   - You need at least 16 subnets. Using the formula:
-     \[
-     2^n \geq 16 \quad \text{so} \quad n = 4
-     \]
-     - Borrow 4 bits from the host portion.
-
-2. **Calculate the New Subnet Mask**:
-   - The default subnet mask for a Class A network is `255.0.0.0` (`/8`).
-   - Adding 4 borrowed bits changes the subnet mask to `255.240.0.0` (`/12`).
-
-3. **Verify the Number of Hosts per Subnet**:
-   - With 20 remaining host bits (`32 total bits - 12 network bits = 20 host bits`):
-     \[
-     2^{20} - 2 = 1,048,574 \text{ hosts per subnet}
-     \]
+> **Practice Problem**
+> 
+> You are given the network `10.0.0.0/8` and need to create 16 subnets. What is the custom subnet mask, and how many hosts can each subnet support?
+> 
+> 1. **Determine the Number of Bits to Borrow**:
+>    - You need at least 16 subnets. 
+>     - Borrow 4 bits from the host portion.
+> 
+> 2. **Calculate the New Subnet Mask**:
+>    - The default subnet mask for a Class A network is `255.0.0.0` (`/8`).
+>    - Adding 4 borrowed bits changes the subnet mask to `255.240.0.0` (`/12`).
+> 
+> 3. **Verify the Number of Hosts per Subnet**:
+>    - With 20 remaining host bits (`32 total bits - 12 network bits = 20 host bits`):
+>      2^{20} - 2 = 1,048,574 hosts per subnet
 
 **Why Calculate Custom Subnet Masks?**
 
@@ -993,41 +973,29 @@ Suppose you are working with the network `192.168.10.0/24` and need to create su
 
 After allocating the subnets, the remaining address space (`192.168.10.208` to `192.168.10.255`) can be reserved for future growth or additional subnets.
 
-**Practice Problem**
-
-You are given the network `10.0.0.0/16` and need to create subnets for the following:
-- Subnet 1: 500 hosts
-- Subnet 2: 200 hosts
-- Subnet 3: 50 hosts
-
-How would you allocate the subnets using VLSM?
-
-```ascii
-[VLSM Calculator]
-Please enter your subnet allocation plan with the subnet mask and IP range for each subnet:
-```
-
-**Solution to Practice Problem**
-
-1. **Subnet 1 (500 hosts)**:
-   - Use a `/23` subnet mask (`255.255.254.0`), which provides 510 usable IP addresses.
-   - **Subnet Range**: `10.0.0.0` to `10.0.1.255`
-
-2. **Subnet 2 (200 hosts)**:
-   - Use a `/24` subnet mask (`255.255.255.0`), which provides 254 usable IP addresses.
-   - **Subnet Range**: `10.0.2.0` to `10.0.2.255`
-
-3. **Subnet 3 (50 hosts)**:
-   - Use a `/26` subnet mask (`255.255.255.192`), which provides 62 usable IP addresses.
-   - **Subnet Range**: `10.0.3.0` to `10.0.3.63`
-
-**Advantages of VLSM**
-
-- **IP Address Conservation**: VLSM prevents the waste of IP addresses by allowing you to allocate precisely the number of addresses needed for each subnet.
-- **Flexible Network Design**: By assigning different subnet sizes, you can better manage diverse requirements across departments or services.
-- **Improved Routing**: VLSM can reduce the number of routing entries by grouping subnets efficiently, making the network easier to manage.
-
-
+> **Practice Problem**
+> 
+> You are given the network `10.0.0.0/16` and need to create subnets for the following:
+> - Subnet 1: 500 hosts
+> - Subnet 2: 200 hosts
+> - Subnet 3: 50 hosts
+> 
+> How would you allocate the subnets using VLSM?
+> 
+> 
+> **Solution to Practice Problem**
+> 
+> 1. **Subnet 1 (500 hosts)**:
+>    - Use a `/23` subnet mask (`255.255.254.0`), which provides 510 usable IP addresses.
+>    - **Subnet Range**: `10.0.0.0` to `10.0.1.255`
+> 
+> 2. **Subnet 2 (200 hosts)**:
+>    - Use a `/24` subnet mask (`255.255.255.0`), which provides 254 usable IP addresses.
+>    - **Subnet Range**: `10.0.2.0` to `10.0.2.255`
+> 
+> 3. **Subnet 3 (50 hosts)**:
+>    - Use a `/26` subnet mask (`255.255.255.192`), which provides 62 usable IP addresses.
+>    - **Subnet Range**: `10.0.3.0` to `10.0.3.63`
 
 VLSM is a powerful tool that allows for more granular control over IP address allocation, helping you design efficient, scalable networks. By understanding how to use VLSM, you can optimize your IP space and create subnets that match your specific needs.
 
@@ -1274,37 +1242,26 @@ Suppose your company currently has the network `192.168.10.0/24` and is anticipa
 2. **Reserving Additional Address Space**:  
    - If additional growth is expected, reserve the block `192.168.12.0/22`, which gives you flexibility to expand into this range without needing to renumber your entire network.
 
-**Practice Problem**
-
-Your organization currently uses the network `172.16.0.0/16` and anticipates adding 500 new devices across multiple subnets in the next year. How would you plan for growth? What subnet mask would you use, and how would you allocate subnets?
-
-```ascii
-[Network Growth Planning Tool]
-Please enter your growth plan, including subnet mask, number of subnets, and address ranges:
-```
-
-**Solution to Practice Problem**
-
-1. **Assess Current Network**:
-   - The network `172.16.0.0/16` provides 65,534 hosts per subnet, which may be too large for your future needs. Dividing this network will help improve manageability and performance.
-
-2. **Choose a Subnet Mask**:
-   - To create smaller subnets while allowing for growth, you could use a `/22` subnet mask (`255.255.252.0`), providing 1,022 hosts per subnet.
-
-3. **Allocate Subnets**:
-   - Break down `172.16.0.0/16` into multiple `/22` subnets:
-     - Subnet 1: `172.16.0.0/22`
-     - Subnet 2: `172.16.4.0/22`
-     - Subnet 3: `172.16.8.0/22`
-     - These subnets will support the addition of new devices while leaving room for future expansion.
-
-
+> **Practice Problem**
+> 
+> Your organization currently uses the network `172.16.0.0/16` and anticipates adding 500 new devices across multiple subnets in the next year. How would you plan for growth? What subnet mask would you use, and how would you allocate subnets?
+> 
+> 1. **Assess Current Network**:
+>    - The network `172.16.0.0/16` provides 65,534 hosts per subnet, which may be too large for your future needs. Dividing this network will help improve manageability and performance.
+> 
+> 2. **Choose a Subnet Mask**:
+>    - To create smaller subnets while allowing for growth, you could use a `/22` subnet mask (`255.255.252.0`), providing 1,022 hosts per subnet.
+> 
+> 3. **Allocate Subnets**:
+>   - Break down `172.16.0.0/16` into multiple `/22` subnets:
+>     - Subnet 1: `172.16.0.0/22`
+>     - Subnet 2: `172.16.4.0/22`
+>     - Subnet 3: `172.16.8.0/22`
+>     - These subnets will support the addition of new devices while leaving room for future expansion.
 
 Planning for network growth is essential to ensure your network can handle future demands without disruption. By designing a scalable IP addressing scheme, maintaining performance, and reserving IP address space, you can ensure your network is ready for expansion.
 
 ## Summative Assessment
-### Instructions
-
 ### Assessment
 It's time to apply everything that you have learned! 
 
