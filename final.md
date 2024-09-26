@@ -302,6 +302,7 @@ In the next section, we will engage in an **Activity** to practice what we've le
 This quiz will help reinforce your understanding of IP address classes (A, B, C, D, and E). You'll need to identify the class of various IP addresses based on their range. Let's test your knowledge!
 
 **Instructions**
+----------------
 For each of the following IP addresses, identify which class (A, B, C, D, or E) they belong to. Select the correct option for each question.
 
 **Quiz**
@@ -677,31 +678,31 @@ A custom subnet mask extends the number of network bits beyond the default mask,
 
 3. **Result**: The result of the AND operation gives you the network address for that particular subnet.
 
-**Example: ANDing with a Custom Subnet Mask**
-
-Let’s take an IP address and a custom subnet mask:
-
-- **IP Address**: `192.168.1.130`
-- **Custom Subnet Mask**: `255.255.255.192` (This is a `/26` subnet mask, which allows for 64 IP addresses per subnet)
-
-1. **Convert to Binary**:
-
-   - **IP Address**: `192.168.1.130`
-     - `11000000.10101000.00000001.10000010`
-   
-   - **Custom Subnet Mask**: `255.255.255.192`
-     - `11111111.11111111.11111111.11000000`
-
-2. **AND the IP Address and Subnet Mask**:
-
-   - IP: `11000000.10101000.00000001.10000010`
-   - Mask: `11111111.11111111.11111111.11000000`
-   - Result: `11000000.10101000.00000001.10000000`
-
-3. **Convert the Result to Decimal**:
-   - **Network Address**: `192.168.1.128`
-
-This shows that the IP address `192.168.1.130` belongs to the subnet `192.168.1.128/26`.
+> **Example: ANDing with a Custom Subnet Mask**
+> 
+> Let’s take an IP address and a custom subnet mask:
+> 
+> - **IP Address**: `192.168.1.130`
+> - **Custom Subnet Mask**: `255.255.255.192` (This is a `/26` subnet mask, which allows for 64 IP addresses per subnet)
+> 
+> 1. **Convert to Binary**:
+> 
+>    - **IP Address**: `192.168.1.130`
+>     - `11000000.10101000.00000001.10000010`
+>   
+>   - **Custom Subnet Mask**: `255.255.255.192`
+>     - `11111111.11111111.11111111.11000000`
+>
+> 2. **AND the IP Address and Subnet Mask**:
+> 
+>    - IP: `11000000.10101000.00000001.10000010`
+>   - Mask: `11111111.11111111.11111111.11000000`
+>   - Result: `11000000.10101000.00000001.10000000`
+> 
+> 3. **Convert the Result to Decimal**:
+>    - **Network Address**: `192.168.1.128`
+> 
+> This shows that the IP address `192.168.1.130` belongs to the subnet `192.168.1.128/26`.
 
 **Practice Problem**
 
@@ -712,27 +713,25 @@ Let’s practice ANDing with a custom subnet mask. Perform the AND operation for
 
 - What is the network address?
 
-```ascii
-[ANDing Practice]
-Please enter the network address for the IP address above:
-```
-
-**Solution to Practice Problem**
-
-1. **Convert to Binary**:
-   - **IP Address**: `10.10.5.200`
-     - `00001010.00001010.00000101.11001000`
-   
-   - **Custom Subnet Mask**: `255.255.255.224`
-     - `11111111.11111111.11111111.11100000`
-
-2. **AND the IP Address and Subnet Mask**:
-   - IP: `00001010.00001010.00000101.11001000`
-   - Mask: `11111111.11111111.11111111.11100000`
-   - Result: `00001010.00001010.00000101.11000000`
-
-3. **Convert the Result to Decimal**:
-   - **Network Address**: `10.10.5.192`
+**Your Turn**: Please enter the network address for the IP address above:
+      [[10.10.5.192]]
+**********************************************************************************************************************************
+> **Solution to Practice Problem**
+>
+> 1. **Convert to Binary**:
+>    - **IP Address**: `10.10.5.200`
+>    - `00001010.00001010.00000101.11001000`
+>   
+>   - **Custom Subnet Mask**: `255.255.255.224`
+>     - `11111111.11111111.11111111.11100000`
+>
+> 2. **AND the IP Address and Subnet Mask**:
+>    - IP: `00001010.00001010.00000101.11001000`
+>    - Mask: `11111111.11111111.11111111.11100000`
+>    - Result: `00001010.00001010.00000101.11000000`
+> 
+> 3. **Convert the Result to Decimal**:
+>    - **Network Address**: `10.10.5.192`
 
 **Why Use Custom Subnet Masks?**
 
