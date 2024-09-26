@@ -75,7 +75,7 @@ In this section, we will explore the fundamental concepts of IP addressing, whic
 
 Let’s begin by diving into IP address classes, starting with Class A addresses.
 
-### IP Address Classes (A, B, C, D, E)
+### IP Address Classes
 
 | Class | Range                          | Default Subnet Mask | Hosts per Network | Use Case |
 |-------|---------------------------------|---------------------|-------------------|----------|
