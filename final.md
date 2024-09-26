@@ -470,7 +470,7 @@ Binary to decimal conversion is crucial for interpreting IP addresses and unders
 Next, let’s move on to **Decimal to Binary Conversion** to learn how to reverse the process and convert decimal IP addresses back to binary.
 
 ### Decimal to Binary Conversion
-**Overview**
+
 
 Just as binary can be converted to decimal, it’s also important to know how to convert decimal numbers back into binary. This is especially useful in networking when determining network and host portions of an IP address. In this section, we will walk through the steps to convert a decimal IP address into binary format.
 
@@ -579,7 +579,7 @@ Converting decimal to binary is an essential skill when working with IP addresse
 
 In the next section, we will explore **ANDing with Subnet Masks** and learn how to identify the network portion of an IP address.
 ### ANDing with Default Subnet Masks
-**Overview**
+
 
 ANDing is a bitwise operation used in networking to identify the network portion of an IP address. This operation involves comparing an IP address with its corresponding subnet mask to determine which part of the address belongs to the network and which part is reserved for hosts. Understanding how to AND with default subnet masks is crucial for tasks like subnetting and routing.
 
@@ -662,7 +662,7 @@ In the next section, we will explore **ANDing with Custom Subnet Masks**, where 
 
 
 ### ANDing with Custom Subnet Masks
-**Overview**
+
 
 While ANDing with default subnet masks helps identify the network portion for standard networks (Class A, B, or C), many networks use custom subnet masks to divide the network into smaller subnets. Custom subnet masks are used when networks require more flexibility in the number of hosts or subnets. This section will guide you through how to perform the AND operation using custom subnet masks.
 
@@ -947,7 +947,6 @@ In the next section, we will dive into **Network and Broadcast Address Identific
 ### Check Your Knowledge
 ## Practical Subnetting
 ### Variable Length Subnet Masks
-**Overview**
 
 Variable Length Subnet Masks (VLSM) is a subnetting technique that allows for more efficient use of IP address space by enabling subnets of different sizes within the same network. With VLSM, you can allocate smaller or larger subnets depending on the specific needs of different segments of your network. This flexibility is crucial for networks that must accommodate a wide variety of devices or services, each with unique IP addressing requirements.
 
@@ -1220,8 +1219,6 @@ As Sarah looked at the updated network diagram in her office, she felt a sense o
 Through careful planning, consideration of current and future needs, and methodical implementation, Sarah had successfully designed an IP addressing scheme that would serve NetworkCo for years to come.
 
 ### Network Growth Planning
-
-**Overview**
 
 As networks grow, careful planning is necessary to ensure scalability, efficient use of IP address space, and ease of network management. Network growth planning involves forecasting future needs, determining the right subnet structure, and designing a network that can accommodate new devices and subnets without major reconfiguration. This section covers the strategies and considerations for planning a scalable network using subnetting and IP address allocation.
 
