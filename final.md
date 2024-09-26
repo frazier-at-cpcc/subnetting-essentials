@@ -76,47 +76,6 @@ In this section, we will explore the fundamental concepts of IP addressing, whic
 Let’s begin by diving into IP address classes, starting with Class A addresses.
 
 ### IP Address Classes (A, B, C, D, E)
-#### **Overview**
-
-IP addresses are categorized into five classes (A, B, C, D, E) based on their range and intended use. Understanding these classes is fundamental for network addressing and design, as each class has its own characteristics regarding the number of networks and hosts.
-
-#### **Class A**
-
-- **Range:** 0.0.0.0 to 127.255.255.255
-- **Default Subnet Mask:** 255.0.0.0
-- **Networks Available:** 128
-- **Hosts per Network:** 16,777,214
-- **Use Case:** Suitable for very large networks such as those used by ISPs or large enterprises.
-  
-#### **Class B**
-
-- **Range:** 128.0.0.0 to 191.255.255.255
-- **Default Subnet Mask:** 255.255.0.0
-- **Networks Available:** 16,384
-- **Hosts per Network:** 65,534
-- **Use Case:** Used for medium to large networks such as universities or large organizations.
-
-#### **Class C**
-
-- **Range:** 192.0.0.0 to 223.255.255.255
-- **Default Subnet Mask:** 255.255.255.0
-- **Networks Available:** 2,097,152
-- **Hosts per Network:** 254
-- **Use Case:** Commonly used for small to medium-sized networks such as small businesses or local networks.
-
-#### **Class D**
-
-- **Range:** 224.0.0.0 to 239.255.255.255
-- **Purpose:** Reserved for multicast communication, where data is sent to multiple recipients at once.
-- **Use Case:** Typically used for services such as streaming video, teleconferencing, and other multicast applications.
-
-#### **Class E**
-
-- **Range:** 240.0.0.0 to 255.255.255.255
-- **Purpose:** Reserved for experimental and future use.
-- **Use Case:** Not typically assigned for public use and is reserved for research and development purposes.
-
-#### **Summary**
 
 | Class | Range                          | Default Subnet Mask | Hosts per Network | Use Case |
 |-------|---------------------------------|---------------------|-------------------|----------|
@@ -126,14 +85,58 @@ IP addresses are categorized into five classes (A, B, C, D, E) based on their ra
 | D     | 224.0.0.0 to 239.255.255.255    | N/A                 | N/A               | Multicasting (e.g., streaming) |
 | E     | 240.0.0.0 to 255.255.255.255    | N/A                 | N/A               | Research, experimental use |
 
+
+IP addresses are categorized into five classes (A, B, C, D, E) based on their range and intended use. Understanding these classes is fundamental for network addressing and design, as each class has its own characteristics regarding the number of networks and hosts.
+
+**Class A**
+===========
+- **Range:** 0.0.0.0 to 127.255.255.255
+- **Default Subnet Mask:** 255.0.0.0
+- **Networks Available:** 128
+- **Hosts per Network:** 16,777,214
+- **Use Case:** Suitable for very large networks such as those used by ISPs or large enterprises.
+  
+**Class B**
+================
+- **Range:** 128.0.0.0 to 191.255.255.255
+- **Default Subnet Mask:** 255.255.0.0
+- **Networks Available:** 16,384
+- **Hosts per Network:** 65,534
+- **Use Case:** Used for medium to large networks such as universities or large organizations.
+
+**Class C**
+===========
+- **Range:** 192.0.0.0 to 223.255.255.255
+- **Default Subnet Mask:** 255.255.255.0
+- **Networks Available:** 2,097,152
+- **Hosts per Network:** 254
+- **Use Case:** Commonly used for small to medium-sized networks such as small businesses or local networks.
+
+**Class D**
+===========
+- **Range:** 224.0.0.0 to 239.255.255.255
+- **Purpose:** Reserved for multicast communication, where data is sent to multiple recipients at once.
+- **Use Case:** Typically used for services such as streaming video, teleconferencing, and other multicast applications.
+
+**Class E**
+===========
+- **Range:** 240.0.0.0 to 255.255.255.255
+- **Purpose:** Reserved for experimental and future use.
+- **Use Case:** Not typically assigned for public use and is reserved for research and development purposes.
+
 Now that you have an understanding of the IP address classes, let’s move on to the concept of **Private Address Spaces**.
 
 ### Private Address Spaces
-#### **Overview**
-
 Private IP address spaces are reserved for use within private networks and are not routable on the global internet. These addresses allow organizations to create internal networks without consuming public IP address space. Devices on these private networks communicate using local addressing but require Network Address Translation (NAT) to communicate with external networks.
 
-#### **Private Address Ranges**
+**Private Address Ranges**
+==========================
+
+| Class | Private Range               | Hosts per Network   | Use Case                 |
+|-------|-----------------------------|---------------------|--------------------------|
+| A     | 10.0.0.0 to 10.255.255.255   | 16,777,216          | Large private networks   |
+| B     | 172.16.0.0 to 172.31.255.255 | 1,048,576           | Medium-sized networks    |
+| C     | 192.168.0.0 to 192.168.255.255 | 65,536            | Small office/home networks|
 
 The private IP address spaces are divided into three major ranges based on IP class:
 
@@ -152,15 +155,15 @@ The private IP address spaces are divided into three major ranges based on IP cl
   - **Hosts per Network:** 65,536
   - **Use Case:** Commonly used for small office or home networks (SOHO).
 
-#### **Purpose of Private IP Addresses**
-
+**Purpose of Private IP Addresses**
+-----------------------------------
 Private address spaces are used to:
 - Conserve globally unique IPv4 addresses by allowing reuse within private networks.
 - Enable internal communication within an organization without exposing internal devices to the public internet.
 - Allow multiple devices in private networks to share a single public IP address through Network Address Translation (NAT).
 
-#### **Private vs Public IP Addressing**
-
+**Private vs Public IP Addressing**
+-----------------------------------
 - **Private IP Addresses:** 
   - Are not routable on the public internet.
   - Must be unique within the local network but can be reused across different private networks.
@@ -169,66 +172,21 @@ Private address spaces are used to:
   - Are globally unique and routable on the public internet.
   - Assigned by an internet service provider (ISP) or a regional internet registry (RIR).
 
-#### **Example Scenarios**
-
+**Example Scenarios**
+---------------------
 1. **Corporate Network:**
    A large enterprise uses the `10.0.0.0/8` private range for its internal departments, with each department allocated a different subnet (e.g., 10.1.0.0/16 for HR, 10.2.0.0/16 for IT).
 
 2. **Home Network:**
    A home network uses the `192.168.0.0/24` range to assign private addresses to devices such as computers, smartphones, and smart home devices.
 
-#### **Summary**
-
 Private IP addresses are essential for managing internal communication in networks and reducing the demand for public IP addresses. These addresses are widely used in corporate networks, homes, and small businesses, providing flexibility and security by keeping internal traffic within the local network.
-
-| Class | Private Range               | Hosts per Network   | Use Case                 |
-|-------|-----------------------------|---------------------|--------------------------|
-| A     | 10.0.0.0 to 10.255.255.255   | 16,777,216          | Large private networks   |
-| B     | 172.16.0.0 to 172.31.255.255 | 1,048,576           | Medium-sized networks    |
-| C     | 192.168.0.0 to 192.168.255.255 | 65,536            | Small office/home networks|
 
 ---
 
 Next, we will explore **Special Address Ranges** that are reserved for specific purposes in networking.
 
 ### Special Address Ranges
-#### **Overview**
-
-In addition to private IP address spaces, there are several special address ranges that serve specific purposes in networking. These ranges are reserved for use in testing, multicasting, and device communication within a local network. Understanding these ranges is crucial for network administrators to ensure proper network configurations and operations.
-
-#### **Loopback Address Range**
-
-- **Range:** `127.0.0.0/8` (typically `127.0.0.1` is used)
-- **Purpose:** The loopback address is used for testing and diagnostics within a local machine. It allows a device to send network traffic to itself, which is useful for testing network software.
-- **Example Use Case:** Testing a web server running on the same machine using `127.0.0.1`.
-
-#### **Link-Local Address Range**
-
-- **Range:** `169.254.0.0/16`
-- **Purpose:** Link-local addresses are automatically assigned when a device cannot obtain an IP address from a DHCP server. These addresses are used for communication within the local network but are not routable on the wider internet.
-- **Example Use Case:** When a device connects to a network without a DHCP server, it assigns itself a link-local address, allowing it to communicate with other devices on the same network.
-
-#### **Multicast Address Range**
-
-- **Range:** `224.0.0.0/4`
-- **Purpose:** Multicast addresses are used for the simultaneous transmission of data to multiple recipients. This is useful for services such as streaming media or video conferencing.
-- **Example Use Case:** Sending a video stream to multiple devices on a network using a multicast address like `224.0.1.1`.
-
-#### **Anycast Address Range**
-
-- **Range:** Reserved IPs within `233.0.0.0/8`
-- **Purpose:** Anycast is used to route data to the nearest or best destination in a group of potential receivers that share the same address. It helps improve performance and reliability by routing traffic to the closest server.
-- **Example Use Case:** Content Delivery Networks (CDNs) use anycast to direct users to the nearest server for faster loading times.
-
-#### **Broadcast Address**
-
-- **Range:** Varies depending on the subnet (e.g., `192.168.1.255` for a `/24` subnet)
-- **Purpose:** Broadcast addresses allow data to be sent to all devices on a specific network. Broadcast traffic is used for network discovery and communication.
-- **Example Use Case:** ARP (Address Resolution Protocol) requests are sent to the broadcast address to find the MAC address associated with an IP address.
-
-#### **Summary**
-
-Special address ranges play a critical role in various networking functions, from device diagnostics and testing to efficient data distribution through multicast and anycast routing. Understanding these addresses ensures that networks are configured properly for both internal and external communication.
 
 | Special Address Range      | Purpose                     | Example Use Case                       |
 |----------------------------|-----------------------------|----------------------------------------|
@@ -238,49 +196,82 @@ Special address ranges play a critical role in various networking functions, fro
 | 233.0.0.0/8 (Anycast)       | Routing to nearest receiver  | CDN directing traffic to nearest server |
 | Network-specific Broadcast  | Sending data to all devices  | ARP requests or network discovery      |
 
+
+In addition to private IP address spaces, there are several special address ranges that serve specific purposes in networking. These ranges are reserved for use in testing, multicasting, and device communication within a local network. Understanding these ranges is crucial for network administrators to ensure proper network configurations and operations.
+
+**Loopback Address Range**
+--------------------------
+- **Range:** `127.0.0.0/8` (typically `127.0.0.1` is used)
+- **Purpose:** The loopback address is used for testing and diagnostics within a local machine. It allows a device to send network traffic to itself, which is useful for testing network software.
+- **Example Use Case:** Testing a web server running on the same machine using `127.0.0.1`.
+
+**Link-Local Address Range**
+----------------------------
+- **Range:** `169.254.0.0/16`
+- **Purpose:** Link-local addresses are automatically assigned when a device cannot obtain an IP address from a DHCP server. These addresses are used for communication within the local network but are not routable on the wider internet.
+- **Example Use Case:** When a device connects to a network without a DHCP server, it assigns itself a link-local address, allowing it to communicate with other devices on the same network.
+
+**Multicast Address Range**
+---------------------------
+- **Range:** `224.0.0.0/4`
+- **Purpose:** Multicast addresses are used for the simultaneous transmission of data to multiple recipients. This is useful for services such as streaming media or video conferencing.
+- **Example Use Case:** Sending a video stream to multiple devices on a network using a multicast address like `224.0.1.1`.
+
+**Anycast Address Range**
+-------------------------
+- **Range:** Reserved IPs within `233.0.0.0/8`
+- **Purpose:** Anycast is used to route data to the nearest or best destination in a group of potential receivers that share the same address. It helps improve performance and reliability by routing traffic to the closest server.
+- **Example Use Case:** Content Delivery Networks (CDNs) use anycast to direct users to the nearest server for faster loading times.
+
+**Broadcast Address**
+---------------------
+- **Range:** Varies depending on the subnet (e.g., `192.168.1.255` for a `/24` subnet)
+- **Purpose:** Broadcast addresses allow data to be sent to all devices on a specific network. Broadcast traffic is used for network discovery and communication.
+- **Example Use Case:** ARP (Address Resolution Protocol) requests are sent to the broadcast address to find the MAC address associated with an IP address.
+
+Special address ranges play a critical role in various networking functions, from device diagnostics and testing to efficient data distribution through multicast and anycast routing. Understanding these addresses ensures that networks are configured properly for both internal and external communication.
+
 ---
 
 Next, we will explore **Default Subnet Masks** and how they are used to segment networks.
 
 ### Default Subnet Masks
-#### **Overview**
-
-A subnet mask is a 32-bit number that segments an IP address into the network and host portions. The subnet mask helps determine which part of the IP address identifies the network and which part identifies the host (a device or interface). Each class of IP address (A, B, C) has a default subnet mask that defines how much of the address is used for the network and how much for the hosts.
-
-#### **Default Subnet Masks by IP Class**
-
 | IP Class | Address Range               | Default Subnet Mask | Network Bits | Host Bits   | Maximum Hosts per Network |
 |----------|-----------------------------|---------------------|--------------|-------------|---------------------------|
 | A        | 0.0.0.0 – 127.255.255.255    | 255.0.0.0           | 8            | 24          | 16,777,214                 |
 | B        | 128.0.0.0 – 191.255.255.255  | 255.255.0.0         | 16           | 16          | 65,534                     |
 | C        | 192.0.0.0 – 223.255.255.255  | 255.255.255.0       | 24           | 8           | 254                        |
 
-#### **Class A Subnet Mask (255.0.0.0)**
+A subnet mask is a 32-bit number that segments an IP address into the network and host portions. The subnet mask helps determine which part of the IP address identifies the network and which part identifies the host (a device or interface). Each class of IP address (A, B, C) has a default subnet mask that defines how much of the address is used for the network and how much for the hosts.
 
+
+
+**Class A Subnet Mask (255.0.0.0)**
+-----------------------------------
 - **Network Portion:** The first 8 bits (1st octet) identify the network.
 - **Host Portion:** The remaining 24 bits (3 octets) identify hosts.
 - **Use Case:** Class A networks are suitable for very large networks with millions of hosts, such as ISPs and large corporations.
 
-#### **Class B Subnet Mask (255.255.0.0)**
-
+**Class B Subnet Mask (255.255.0.0)**
+--------------------------------------
 - **Network Portion:** The first 16 bits (2 octets) identify the network.
 - **Host Portion:** The remaining 16 bits (2 octets) identify hosts.
 - **Use Case:** Class B networks are used for medium-sized networks like large organizations or universities.
 
-#### **Class C Subnet Mask (255.255.255.0)**
-
+**Class C Subnet Mask (255.255.255.0)**
+-----------------------------------
 - **Network Portion:** The first 24 bits (3 octets) identify the network.
 - **Host Portion:** The remaining 8 bits (1 octet) identify hosts.
 - **Use Case:** Class C networks are ideal for small networks, like small businesses or home networks.
 
-#### **Why Are Subnet Masks Important?**
-
+**Why Are Subnet Masks Important?**
+-----------------------------------
 - **Network Segmentation:** Subnet masks are used to divide a network into smaller, more manageable subnetworks.
 - **Routing:** Routers use subnet masks to determine whether traffic is for a local network or if it needs to be routed to another network.
 - **Network Efficiency:** By limiting the number of hosts in a network, subnet masks help minimize network traffic and reduce the chances of network collisions.
 
-#### **CIDR Notation**
-
+**CIDR Notation**
+=================
 Subnet masks can also be expressed using **CIDR (Classless Inter-Domain Routing)** notation. In CIDR, the subnet mask is represented by a slash (/) followed by the number of network bits.
 
 - **Examples:**
@@ -297,8 +288,6 @@ Suppose you have an IP address `192.168.1.10` with a default Class C subnet mask
 
 Thus, the network address for `192.168.1.10` would be `192.168.1.0`, and the broadcast address would be `192.168.1.255`.
 
-#### **Conclusion**
-
 Default subnet masks play a crucial role in determining the size and structure of networks. Understanding how subnet masks divide IP addresses into network and host portions helps in the design and implementation of efficient and scalable networks.
 
 ---
@@ -308,43 +297,24 @@ In the next section, we will engage in an **Activity** to practice what we've le
 ### Activity
 ### Check Your Knowledge
 ## Binary and Decimal Conversions
-
-**Overview**
-
 In networking, understanding how to convert between binary and decimal numbers is essential, as IP addresses and subnet masks are represented in both formats. This module will guide you through the process of converting decimal numbers to binary and vice versa, which is crucial for IP address manipulation, subnetting, and network calculations.
 
 **Learning Objectives**
+=======================
 
 By the end of this module, you will be able to:
+
 - Understand the relationship between binary and decimal numbering systems.
 - Convert decimal IP addresses to binary format.
 - Convert binary IP addresses to decimal format.
 - Perform bitwise operations like ANDing with subnet masks for network identification.
 
-**Why Are Binary and Decimal Conversions Important?**
-
-In network communication, IP addresses are represented in binary by computers, but they are often displayed in decimal format for easier readability by humans. Understanding how to convert between these two systems allows network professionals to perform critical tasks such as:
-- Subnetting: Dividing networks into smaller, more manageable sub-networks.
-- IP Address Calculations: Determining network, broadcast, and host addresses.
-- Network Troubleshooting: Identifying issues related to IP configuration.
-
-**Topics Covered**
-
-1. **Binary to Decimal Conversion**
-   - Learn how to convert an IP address from binary to decimal format.
-2. **Decimal to Binary Conversion**
-   - Understand how to convert an IP address from decimal to binary format.
-3. **ANDing with Subnet Masks**
-   - Learn how to use bitwise AND operations to identify network and host portions of an IP address.
-4. **ANDing with Custom Subnet Masks**
-   - Apply the ANDing process to custom subnet masks for network segmentation.
+IP addresses are represented in binary by computers, but they are often displayed in decimal format for easier readability by humans. Understanding how to convert between these two systems allows network professionals to perform critical tasks such as subnetting, IP address calculation, and overall network troubleshooting. 
 
 ---
-
 Now, let’s begin by diving into the basics of **Binary to Decimal Conversion**, where you'll learn to convert binary IP addresses into their decimal equivalents.
 
 ### Binary to Decimal Conversion
-#### **Overview**
 
 IP addresses are represented as a series of 32 binary digits (1s and 0s), but humans often use decimal notation for readability. Converting binary to decimal is an essential skill for understanding how devices communicate on a network. This section will guide you through the process of converting binary IP addresses into decimal format.
 
