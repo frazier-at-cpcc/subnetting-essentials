@@ -560,12 +560,9 @@ Try ANDing the following IP address with the default Class B subnet mask:
 - **IP Address**: `172.16.45.78`
 - **Subnet Mask**: `255.255.0.0`
 
-- What is the network address?
+What is the network address?
 
-```ascii
-[ANDing Practice]
-Please enter the network address for the IP address above:
-```
+      [[172.16.0.0]]
 
 **Solution to Practice Problem**
 
