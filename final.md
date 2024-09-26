@@ -484,46 +484,46 @@ To convert a decimal number to its binary equivalent, follow these steps:
 
 4. **Reverse the order of the remainders**: The remainders form the binary equivalent, starting from the least significant bit (rightmost) to the most significant bit (leftmost).
 
-**Example: Converting Decimal to Binary**
-
-Let’s convert the decimal IP address `192.168.1.1` to binary.
-
-1. **Decimal IP Address**: `192.168.1.1`
-
-2. **Convert each octet to binary**:
-
-   - **First octet**: `192`
-     - 192 ÷ 2 = 96, remainder = 0
-     - 96 ÷ 2 = 48, remainder = 0
-     - 48 ÷ 2 = 24, remainder = 0
-     - 24 ÷ 2 = 12, remainder = 0
-     - 12 ÷ 2 = 6, remainder = 0
-     - 6 ÷ 2 = 3, remainder = 0
-     - 3 ÷ 2 = 1, remainder = 1
-     - 1 ÷ 2 = 0, remainder = 1
-     - **Binary for 192** = `11000000`
-
-   - **Second octet**: `168`
-     - 168 ÷ 2 = 84, remainder = 0
-     - 84 ÷ 2 = 42, remainder = 0
-     - 42 ÷ 2 = 21, remainder = 0
-     - 21 ÷ 2 = 10, remainder = 1
-     - 10 ÷ 2 = 5, remainder = 0
-     - 5 ÷ 2 = 2, remainder = 1
-     - 2 ÷ 2 = 1, remainder = 0
-     - 1 ÷ 2 = 0, remainder = 1
-     - **Binary for 168** = `10101000`
-
-   - **Third octet**: `1`
-     - 1 ÷ 2 = 0, remainder = 1
-     - **Binary for 1** = `00000001`
-
-   - **Fourth octet**: `1`
-     - 1 ÷ 2 = 0, remainder = 1
-     - **Binary for 1** = `00000001`
-
-3. **Final Binary Address**: Combine the binary values from each octet:
-   - `11000000.10101000.00000001.00000001`
+> **Example: Converting Decimal to Binary**
+> 
+> Let’s convert the decimal IP address `192.168.1.1` to binary.
+> 
+> 1. **Decimal IP Address**: `192.168.1.1`
+> 
+> 2. **Convert each octet to binary**:
+> 
+>    - **First octet**: `192`
+>      - 192 ÷ 2 = 96, remainder = 0
+>      - 96 ÷ 2 = 48, remainder = 0
+>      - 48 ÷ 2 = 24, remainder = 0
+>      - 24 ÷ 2 = 12, remainder = 0
+>      - 12 ÷ 2 = 6, remainder = 0
+>      - 6 ÷ 2 = 3, remainder = 0
+>      - 3 ÷ 2 = 1, remainder = 1
+>      - 1 ÷ 2 = 0, remainder = 1
+>      - **Binary for 192** = `11000000`
+> 
+>    - **Second octet**: `168`
+>      - 168 ÷ 2 = 84, remainder = 0
+>      - 84 ÷ 2 = 42, remainder = 0
+>      - 42 ÷ 2 = 21, remainder = 0
+>      - 21 ÷ 2 = 10, remainder = 1
+>      - 10 ÷ 2 = 5, remainder = 0
+>      - 5 ÷ 2 = 2, remainder = 1
+>      - 2 ÷ 2 = 1, remainder = 0
+>      - 1 ÷ 2 = 0, remainder = 1
+>      - **Binary for 168** = `10101000`
+> 
+>    - **Third octet**: `1`
+>      - 1 ÷ 2 = 0, remainder = 1
+>      - **Binary for 1** = `00000001`
+> 
+>    - **Fourth octet**: `1`
+>      - 1 ÷ 2 = 0, remainder = 1
+>      - **Binary for 1** = `00000001`
+> 
+> 3. **Final Binary Address**: Combine the binary values from each octet:
+>    - `11000000.10101000.00000001.00000001`
 
 **Practice Problem**
 
