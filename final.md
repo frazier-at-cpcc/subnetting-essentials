@@ -993,17 +993,10 @@ VLSM is a powerful tool that allows for more granular control over IP address al
 Next, we will explore the **Seven Second Subnetting** method, a quick technique for calculating subnets in time-sensitive situations.
 
 ### Seven Second Subnetting
-Introduction
-------------
 Welcome to this lesson on the 7-second subnetting shortcut! This method, explained by Professor Messer, is a quick and efficient way to calculate subnet information without using complex binary-to-decimal conversions. It's particularly useful for networking exams and real-world scenarios where rapid subnet calculations are necessary.
 
-Lesson Objectives
------------------
-By the end of this lesson, you will be able to:
-1. Understand the concept of the 7-second subnetting shortcut
-2. Create and use a comprehensive subnetting chart
-3. Apply the four-step process for quick subnet calculations
-4. Practice the method with various IP addresses and subnet masks
+!?[](https://www.youtube.com/watch?v=I3LBYMXBhus)
+
 
 Part 1: Understanding the 7-Second Subnetting Shortcut
 ------------------------------------------------------
