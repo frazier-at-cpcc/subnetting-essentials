@@ -570,6 +570,8 @@ Converting decimal to binary is an essential skill when working with IP addresse
 ---
 
 In the next section, we will explore **ANDing with Subnet Masks** and learn how to identify the network portion of an IP address.
+******************************************************************************************************************
+
 ### ANDing with Default Subnet Masks
 
 
