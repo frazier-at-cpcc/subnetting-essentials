@@ -297,7 +297,81 @@ In the next section, we will engage in an **Activity** to practice what we've le
 
 ### Activity
 <iframe src="https://frazier-at-cpcc.github.io/subnetting-essentials/classid.html" style="border:0px #ffffff none;" name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="600px" width="600px" allowfullscreen></iframe>
+
 ### Check Your Knowledge
+This quiz will help reinforce your understanding of IP address classes (A, B, C, D, and E). You'll need to identify the class of various IP addresses based on their range. Let's test your knowledge!
+
+**Instructions**
+For each of the following IP addresses, identify which class (A, B, C, D, or E) they belong to. Select the correct option for each question.
+
+**Quiz**
+========
+
+Question 1: What class does the IP address `240.1.1.1` belong to?
+-----------------------------------------------------------------
+
+[( )] Class A
+[( )] Class B
+[( )] Class C
+[( )] Class D
+[(X)] Class E
+
+
+Question 2: What class does the IP address `10.1.1.1` belong to?
+----------------------------------------------------------------
+
+[(X)] Class A
+[( )] Class B
+[( )] Class C
+[( )] Class D
+[( )] Class E
+
+
+Question 3: What class does the IP address `224.0.0.1` belong to?
+-----------------------------------------------------------------
+
+[( )] Class A
+[( )] Class B
+[( )] Class C
+[(X)] Class D
+[( )] Class E
+
+
+Question 4: What class does the IP address `192.168.1.100` belong to?
+---------------------------------------------------------------------
+
+[( )] Class A
+[( )] Class B
+[(X)] Class C
+[( )] Class D
+[( )] Class E
+
+
+Question 5: What class does the IP address `172.16.0.5` belong to?
+------------------------------------------------------------------
+
+[( )] Class A
+[(X)] Class B
+[( )] Class C
+[( )] Class D
+[( )] Class E
+*****************************************************************************************************************************************************************
+> **Review Your Answers**
+> 
+> Once you've answered all the questions, review your answers to see which IP address classes you've identified correctly. If you need more practice, review the material on IP address classes (A, B, C, D, E) and take the quiz again.
+> 
+> **Summary of IP Address Classes**
+> 
+> - **Class A**: `0.0.0.0` to `127.255.255.255`
+> - **Class B**: `128.0.0.0` to `191.255.255.255`
+> - **Class C**: `192.0.0.0` to `223.255.255.255`
+> - **Class D**: `224.0.0.0` to `239.255.255.255` (Multicast)
+> - **Class E**: `240.0.0.0` to `255.255.255.255` (Experimental)
+
+---
+
+Congratulations on completing this quiz! Continue practicing and solidifying your understanding of IP address classes.
+*****************************************************************************************************************************************************************
 ## Binary and Decimal Conversions
 In networking, understanding how to convert between binary and decimal numbers is essential, as IP addresses and subnet masks are represented in both formats. This module will guide you through the process of converting decimal numbers to binary and vice versa, which is crucial for IP address manipulation, subnetting, and network calculations.
 
