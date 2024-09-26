@@ -750,7 +750,6 @@ Next, let’s move on to **Subnetting Calculations**, where you'll learn how to 
 
 ### Activity
 ## Subnetting Calculations
-### Subnetting Calculations
 Subnetting involves dividing a larger network into smaller, more manageable subnets. Each subnet operates as an independent network, allowing you to efficiently use IP address space, improve security, and optimize network performance. In this section, we will focus on the calculations needed to determine the appropriate subnet mask, calculate the number of subnets and hosts, and identify key network elements such as network and broadcast addresses.
 
 **Steps for Subnetting Calculations**
