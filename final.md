@@ -1339,6 +1339,6 @@ __What subnet mask should be used for router-to-router connection?__
 - [( )] /29
 - [(x)] /30
 ***************************************************************************************
-This point-to-point link needs only 2 addresses. A /30 subnet would suffice.
-Use 172.16.1.192/30.
+> This point-to-point link needs only 2 addresses. A /30 subnet would suffice.
+> Use 172.16.1.192/30.
 ***************************************************************************************
