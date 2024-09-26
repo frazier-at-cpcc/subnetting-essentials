@@ -713,7 +713,8 @@ Let’s practice ANDing with a custom subnet mask. Perform the AND operation for
 
 - What is the network address?
 
-**Your Turn**: Please enter the network address for the IP address above:
+**Your Turn**: Please enter the network address for the IP address above.
+
       [[10.10.5.192]]
 **********************************************************************************************************************************
 > **Solution to Practice Problem**
