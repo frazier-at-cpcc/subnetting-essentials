@@ -461,7 +461,7 @@ Please enter the decimal equivalent for the binary IP address above:
 
 - **Final Decimal IP Address**: `192.168.2.3`
 
-**Conclusion**
+
 
 Binary to decimal conversion is crucial for interpreting IP addresses and understanding how devices communicate over a network. This skill will help you perform essential tasks such as subnetting and network design.
 
@@ -571,7 +571,7 @@ Please enter the binary equivalent for the decimal IP address above:
 
 - **Final Binary IP Address**: `00001010.00000000.00001111.11111111`
 
-**Conclusion**
+
 
 Converting decimal to binary is an essential skill when working with IP addresses in networking. Understanding how to perform this conversion allows you to manipulate and analyze IP addresses for tasks like subnetting and IP planning.
 
@@ -741,15 +741,13 @@ Custom subnet masks offer more flexibility in network design by allowing you to:
 - Optimize the use of IP address space by reducing wasted addresses.
 - Segment traffic for better security and management.
 
-**Conclusion**
+
 
 ANDing with custom subnet masks is essential for modern network design, where creating subnets of varying sizes is often required. By mastering this skill, you can design efficient networks that make better use of available IP address space.
 
----
-
-Next, let’s move on to **Subnetting Calculations**, where you'll learn how to determine the size and structure of different subnets.
-
 ### Activity
+<iframe src="https://frazier-at-cpcc.github.io/subnetting-essentials/binary-decimal.html" style="border:0px #ffffff none;" name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="600px" width="600px" allowfullscreen></iframe>
+<iframe src="https://frazier-at-cpcc.github.io/subnetting-essentials/decimal-binary.html" style="border:0px #ffffff none;" name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="600px" width="600px" allowfullscreen></iframe>
 ## Subnetting Calculations
 Subnetting involves dividing a larger network into smaller, more manageable subnets. Each subnet operates as an independent network, allowing you to efficiently use IP address space, improve security, and optimize network performance. In this section, we will focus on the calculations needed to determine the appropriate subnet mask, calculate the number of subnets and hosts, and identify key network elements such as network and broadcast addresses.
 
@@ -935,16 +933,11 @@ Custom subnet masks provide flexibility in network design:
 - **Network Segmentation**: Custom subnetting allows for better traffic isolation and security by separating different departments or services.
 - **Scalability**: Custom subnet masks can accommodate network growth without the need to redesign the entire addressing scheme.
 
-**Conclusion**
+
 
 Calculating custom subnet masks allows you to optimize network performance and scalability while effectively managing IP address space. This essential skill is key to designing networks that meet the unique needs of any organization.
 
----
 
-In the next section, we will dive into **Network and Broadcast Address Identification**, where you’ll learn how to pinpoint the network and broadcast addresses for each subnet.
-
-### Network and Broadcast Address Identification
-### Check Your Knowledge
 ## Practical Subnetting
 ### Variable Length Subnet Masks
 
@@ -1033,7 +1026,7 @@ Please enter your subnet allocation plan with the subnet mask and IP range for e
 - **Flexible Network Design**: By assigning different subnet sizes, you can better manage diverse requirements across departments or services.
 - **Improved Routing**: VLSM can reduce the number of routing entries by grouping subnets efficiently, making the network easier to manage.
 
-**Conclusion**
+
 
 VLSM is a powerful tool that allows for more granular control over IP address allocation, helping you design efficient, scalable networks. By understanding how to use VLSM, you can optimize your IP space and create subnets that match your specific needs.
 
@@ -1047,8 +1040,6 @@ Welcome to this lesson on the 7-second subnetting shortcut! This method, explain
 !?[](https://www.youtube.com/watch?v=I3LBYMXBhus)
 
 
-Part 1: Understanding the 7-Second Subnetting Shortcut
-------------------------------------------------------
 The 7-second subnetting shortcut is a method that allows you to quickly calculate subnet information without performing complex binary-to-decimal conversions. Here are the key points:
 
 - It's similar to the magic number method but requires no calculations
@@ -1056,8 +1047,6 @@ The 7-second subnetting shortcut is a method that allows you to quickly calculat
 - The only math involved is adding or subtracting one for first and last IP addresses
 - It works well for both online exams with whiteboards and physical testing centers
 
-Part 2: Creating Your Subnetting Chart
---------------------------------------
 The core of the 7-second subnetting process is creating a comprehensive chart. This chart will be your reference for all subnet calculations.
 
 Your chart should include:
@@ -1068,10 +1057,8 @@ Your chart should include:
 
 Additionally, you may want to create a separate chart for subnet boundaries for quick reference.
 
-Exercise: Create your own subnetting chart. Include columns for CIDR notation (/24, /25, etc.), decimal subnet mask (255.255.255.0, 255.255.255.128, etc.), number of networks, and number of hosts per subnet.
+> **Exercise**: Create your own subnetting chart. Include columns for CIDR notation (/24, /25, etc.), decimal subnet mask (255.255.255.0, 255.255.255.128, etc.), number of networks, and number of hosts per subnet.
 
-Part 3: The Four-Step Subnetting Process
-----------------------------------------
 The 7-second subnetting process consists of four main steps:
 
 1. Convert IP addresses and subnet masks to decimal
@@ -1080,44 +1067,56 @@ The 7-second subnetting process consists of four main steps:
 4. Calculate the first and last usable IP addresses
 
 Let's go through each step in detail:
+-------------------------------------
+1. Use your chart to quickly convert CIDR notation to decimal subnet masks.
+2. Reference your chart to find the network address based on the given IP and subnet mask.
+3. Use your chart to determine the broadcast address for the subnet.
+4. Calculate First and Last Usable IP Addresses
 
-Step 1: Convert to Decimal
---------------------------
-Use your chart to quickly convert CIDR notation to decimal subnet masks.
 
-Step 2: Determine Subnet Address
-------------------------------------
-Reference your chart to find the network address based on the given IP and subnet mask.
 
-Step 3: Find Broadcast Address
-------------------------------
-Use your chart to determine the broadcast address for the subnet.
-
-Step 4: Calculate First and Last Usable IP Addresses
-----------------------------------------------------
-- First usable IP: Add 1 to the network address
-- Last usable IP: Subtract 1 from the broadcast address
-
-Exercise: Practice these steps with the following IP address and subnet mask:
-IP: 192.168.10.50
-Subnet Mask: 255.255.255.192 (/26)
-
-Part 4: Practice and Application
+Practice
 --------------------------------
 
-Now that you understand the process, let's practice with various IP addresses and subnet masks:
+Now that you understand the process, let's practice with various IP addresses and subnet masks.
 
-1. IP: 172.16.45.178, Subnet Mask: 255.255.255.240 (/28)
-2. IP: 10.0.0.55, Subnet Mask: 255.255.254.0 (/23)
-3. IP: 192.168.100.200, Subnet Mask: 255.255.255.248 (/29)
+IP: 172.16.45.178, Subnet Mask: 255.255.255.240 (/28)
+-----------------------------------------------------
 
-For each example, determine:
-a) Network address
-b) Broadcast address
-c) First usable IP address
-d) Last usable IP address
+**Network Address**
 
-Conclusion
+      [[172.16.45.176]]
+************************************************************************************************
+> Convert the subnet mask to binary: 255.255.255.240 = 11111111.11111111.11111111.11110000
+> IP in binary: 172.16.45.178 = 10101100.00010000.00101101.10110010
+> Perform an AND operation between the IP address and the subnet mask:
+> Network address in binary: 10101100.00010000.00101101.10110000
+> Convert back to decimal: 172.16.45.176
+************************************************************************************************
+
+**Broadcast Address** 
+
+      [[172.16.45.191]]
+************************************************************************************************
+> The broadcast address is the last IP in the subnet.
+> Flip the host bits in the network address to all 1s:
+> Broadcast address in binary: 10101100.00010000.00101101.10111111
+> Convert back to decimal: 172.16.45.191
+************************************************************************************************
+
+**First Usable IP Address**
+
+      [[172.16.45.177]]
+************************************************************************************************
+> First usable IP = Network address + 1: 172.16.45.177
+************************************************************************************************
+
+**Last Usable IP Address**
+
+      [[172.16.45.190]]
+************************************************************************************************
+> Last usable IP = Broadcast address - 1: 172.16.45.190
+************************************************************************************************
 
 The 7-second subnetting shortcut is a powerful tool for quickly calculating subnet information. Remember these key points:
 
@@ -1129,13 +1128,15 @@ The 7-second subnetting shortcut is a powerful tool for quickly calculating subn
 With consistent practice, you'll be able to perform subnet calculations rapidly and accurately, a valuable skill for IT professionals and certification exams.
 
 Additional Resources
+--------------------
 
 - Professor Messer's networking courses and videos
 - Online subnet calculators for checking your work
 - Networking certification exam practice tests
 
 Keep practicing, and soon you'll be subnetting like a pro in just 7 seconds!
-Now that you are confident in how to subnet, 
+Now that you are confident in how to subnet, let's look at a scenario where a network was designed for a specific environment.
+
 ### Addressing Scheme Design
 
 The Challenge
@@ -1296,7 +1297,7 @@ Please enter your growth plan, including subnet mask, number of subnets, and add
      - Subnet 3: `172.16.8.0/22`
      - These subnets will support the addition of new devices while leaving room for future expansion.
 
-**Conclusion**
+
 
 Planning for network growth is essential to ensure your network can handle future demands without disruption. By designing a scalable IP addressing scheme, maintaining performance, and reserving IP address space, you can ensure your network is ready for expansion.
 
