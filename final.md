@@ -1259,7 +1259,7 @@ Based on the information in the graphic shown, design a classfull network addres
 
 What is the address class of this network? 
 [( )] A 
-[( )] B
+[(X)] B
 [( )] C
 [( )] D
 *********************************************************
