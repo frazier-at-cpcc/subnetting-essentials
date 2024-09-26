@@ -247,8 +247,6 @@ Next, we will explore **Default Subnet Masks** and how they are used to segment 
 
 A subnet mask is a 32-bit number that segments an IP address into the network and host portions. The subnet mask helps determine which part of the IP address identifies the network and which part identifies the host (a device or interface). Each class of IP address (A, B, C) has a default subnet mask that defines how much of the address is used for the network and how much for the hosts.
 
-
-
 **Class A Subnet Mask (255.0.0.0)**
 -----------------------------------
 - **Network Portion:** The first 8 bits (1st octet) identify the network.
