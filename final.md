@@ -279,7 +279,7 @@ Subnet masks can also be expressed using **CIDR (Classless Inter-Domain Routing)
   - Class B: `/16` (255.255.0.0)
   - Class C: `/24` (255.255.255.0)
 
-#### **Example: Using Subnet Masks in Practice**
+**Example: Using Subnet Masks in Practice**
 
 Suppose you have an IP address `192.168.1.10` with a default Class C subnet mask of `255.255.255.0`. To determine which part of the address represents the network and which part represents the host:
 
@@ -318,7 +318,7 @@ Now, let’s begin by diving into the basics of **Binary to Decimal Conversion**
 
 IP addresses are represented as a series of 32 binary digits (1s and 0s), but humans often use decimal notation for readability. Converting binary to decimal is an essential skill for understanding how devices communicate on a network. This section will guide you through the process of converting binary IP addresses into decimal format.
 
-#### **Steps for Binary to Decimal Conversion**
+**Steps for Binary to Decimal Conversion**
 
 To convert a binary number to its decimal equivalent, you can follow these steps:
 
@@ -330,7 +330,7 @@ To convert a binary number to its decimal equivalent, you can follow these steps
 
 4. **Add the results**: Sum the values from each octet to get the final decimal number for each.
 
-#### **Example: Converting Binary to Decimal**
+**Example: Converting Binary to Decimal**
 
 Let’s convert the binary IP address `11000000.10101000.00000001.00000001` to decimal.
 
@@ -363,7 +363,7 @@ Let’s convert the binary IP address `11000000.10101000.00000001.00000001` to d
 4. **Final Decimal Address**: Combine the decimal values from each octet:
    - `192.168.1.1`
 
-#### **Practice Problem**
+**Practice Problem**
 
 Let'ss try converting the following binary IP address to decimal:
 - **Binary IP Address**: `11000000.10101000.00000010.00000011`
@@ -375,7 +375,7 @@ Let'ss try converting the following binary IP address to decimal:
 Please enter the decimal equivalent for the binary IP address above:
 ```
 
-#### **Solution to Practice Problem**
+**Solution to Practice Problem**
 
 - First octet: `11000000` = **192**
 - Second octet: `10101000` = **168**
@@ -384,7 +384,7 @@ Please enter the decimal equivalent for the binary IP address above:
 
 - **Final Decimal IP Address**: `192.168.2.3`
 
-#### **Conclusion**
+**Conclusion**
 
 Binary to decimal conversion is crucial for interpreting IP addresses and understanding how devices communicate over a network. This skill will help you perform essential tasks such as subnetting and network design.
 
@@ -393,11 +393,11 @@ Binary to decimal conversion is crucial for interpreting IP addresses and unders
 Next, let’s move on to **Decimal to Binary Conversion** to learn how to reverse the process and convert decimal IP addresses back to binary.
 
 ### Decimal to Binary Conversion
-#### **Overview**
+**Overview**
 
 Just as binary can be converted to decimal, it’s also important to know how to convert decimal numbers back into binary. This is especially useful in networking when determining network and host portions of an IP address. In this section, we will walk through the steps to convert a decimal IP address into binary format.
 
-#### **Steps for Decimal to Binary Conversion**
+**Steps for Decimal to Binary Conversion**
 
 To convert a decimal number to its binary equivalent, follow these steps:
 
@@ -409,7 +409,7 @@ To convert a decimal number to its binary equivalent, follow these steps:
 
 4. **Reverse the order of the remainders**: The remainders form the binary equivalent, starting from the least significant bit (rightmost) to the most significant bit (leftmost).
 
-#### **Example: Converting Decimal to Binary**
+**Example: Converting Decimal to Binary**
 
 Let’s convert the decimal IP address `192.168.1.1` to binary.
 
@@ -450,7 +450,7 @@ Let’s convert the decimal IP address `192.168.1.1` to binary.
 3. **Final Binary Address**: Combine the binary values from each octet:
    - `11000000.10101000.00000001.00000001`
 
-#### **Practice Problem**
+**Practice Problem**
 
 Let’s try converting the following decimal IP address to binary:
 - **Decimal IP Address**: `10.0.15.255`
@@ -462,7 +462,7 @@ Let’s try converting the following decimal IP address to binary:
 Please enter the binary equivalent for the decimal IP address above:
 ```
 
-#### **Solution to Practice Problem**
+**Solution to Practice Problem**
 
 - **First octet**: `10`
   - 10 ÷ 2 = 5, remainder = 0
@@ -494,7 +494,7 @@ Please enter the binary equivalent for the decimal IP address above:
 
 - **Final Binary IP Address**: `00001010.00000000.00001111.11111111`
 
-#### **Conclusion**
+**Conclusion**
 
 Converting decimal to binary is an essential skill when working with IP addresses in networking. Understanding how to perform this conversion allows you to manipulate and analyze IP addresses for tasks like subnetting and IP planning.
 
@@ -502,11 +502,11 @@ Converting decimal to binary is an essential skill when working with IP addresse
 
 In the next section, we will explore **ANDing with Subnet Masks** and learn how to identify the network portion of an IP address.
 ### ANDing with Default Subnet Masks
-#### **Overview**
+**Overview**
 
 ANDing is a bitwise operation used in networking to identify the network portion of an IP address. This operation involves comparing an IP address with its corresponding subnet mask to determine which part of the address belongs to the network and which part is reserved for hosts. Understanding how to AND with default subnet masks is crucial for tasks like subnetting and routing.
 
-#### **What is ANDing?**
+**What is ANDing?**
 
 ANDing is a binary operation where two bits are compared:
 - 1 AND 1 = 1
@@ -515,7 +515,7 @@ ANDing is a binary operation where two bits are compared:
 
 When we AND an IP address with a subnet mask, we compare each bit in the IP address with the corresponding bit in the subnet mask. This operation identifies the network portion (the part of the IP address that corresponds to the 1s in the subnet mask).
 
-#### **Steps for ANDing with Default Subnet Masks**
+**Steps for ANDing with Default Subnet Masks**
 
 1. **Convert the IP address and subnet mask to binary**: Write down the binary equivalent of both the IP address and the default subnet mask.
 
@@ -523,7 +523,7 @@ When we AND an IP address with a subnet mask, we compare each bit in the IP addr
 
 3. **Result**: The result of the AND operation gives you the network portion of the IP address.
 
-#### **Example: ANDing with a Default Subnet Mask**
+**Example: ANDing with a Default Subnet Mask**
 
 Let’s say you have the following IP address and a default Class C subnet mask:
 
@@ -549,7 +549,7 @@ Let’s say you have the following IP address and a default Class C subnet mask:
 
 This shows that the network portion of the IP address `192.168.1.10` is `192.168.1.0`.
 
-#### **Practice Problem**
+**Practice Problem**
 
 Try ANDing the following IP address with the default Class B subnet mask:
 
@@ -563,7 +563,7 @@ Try ANDing the following IP address with the default Class B subnet mask:
 Please enter the network address for the IP address above:
 ```
 
-#### **Solution to Practice Problem**
+**Solution to Practice Problem**
 
 1. **Convert to Binary**:
    - **IP Address**: `172.16.45.78`
@@ -579,14 +579,14 @@ Please enter the network address for the IP address above:
 3. **Convert the Result to Decimal**:
    - **Network Address**: `172.16.0.0`
 
-#### **Why ANDing with Subnet Masks is Important**
+**Why ANDing with Subnet Masks is Important**
 
 ANDing is crucial because it allows you to:
 - Identify the network portion of an IP address.
 - Ensure proper routing by determining whether an IP belongs to the same network or a different one.
 - Simplify the process of subnetting by clearly defining network boundaries.
 
-#### **Conclusion**
+**Conclusion**
 
 Understanding ANDing with default subnet masks is fundamental for working with IP networks. It helps network administrators quickly determine the network segment an IP address belongs to, making tasks like subnetting, routing, and IP planning easier.
 
@@ -596,15 +596,15 @@ In the next section, we will explore **ANDing with Custom Subnet Masks**, where 
 
 
 ### ANDing with Custom Subnet Masks
-#### **Overview**
+**Overview**
 
 While ANDing with default subnet masks helps identify the network portion for standard networks (Class A, B, or C), many networks use custom subnet masks to divide the network into smaller subnets. Custom subnet masks are used when networks require more flexibility in the number of hosts or subnets. This section will guide you through how to perform the AND operation using custom subnet masks.
 
-#### **What is a Custom Subnet Mask?**
+**What is a Custom Subnet Mask?**
 
 A custom subnet mask extends the number of network bits beyond the default mask, allowing you to create subnets of different sizes. For example, instead of using the default Class C mask `/24` (255.255.255.0), you could use `/26` (255.255.255.192) to create more subnets with fewer hosts in each.
 
-#### **Steps for ANDing with Custom Subnet Masks**
+**Steps for ANDing with Custom Subnet Masks**
 
 1. **Convert the IP address and custom subnet mask to binary**: Write down the binary equivalents of both the IP address and the custom subnet mask.
 
@@ -612,7 +612,7 @@ A custom subnet mask extends the number of network bits beyond the default mask,
 
 3. **Result**: The result of the AND operation gives you the network address for that particular subnet.
 
-#### **Example: ANDing with a Custom Subnet Mask**
+**Example: ANDing with a Custom Subnet Mask**
 
 Let’s take an IP address and a custom subnet mask:
 
@@ -638,7 +638,7 @@ Let’s take an IP address and a custom subnet mask:
 
 This shows that the IP address `192.168.1.130` belongs to the subnet `192.168.1.128/26`.
 
-#### **Practice Problem**
+**Practice Problem**
 
 Let’s practice ANDing with a custom subnet mask. Perform the AND operation for the following IP address and custom subnet mask:
 
@@ -652,7 +652,7 @@ Let’s practice ANDing with a custom subnet mask. Perform the AND operation for
 Please enter the network address for the IP address above:
 ```
 
-#### **Solution to Practice Problem**
+**Solution to Practice Problem**
 
 1. **Convert to Binary**:
    - **IP Address**: `10.10.5.200`
@@ -669,14 +669,14 @@ Please enter the network address for the IP address above:
 3. **Convert the Result to Decimal**:
    - **Network Address**: `10.10.5.192`
 
-#### **Why Use Custom Subnet Masks?**
+**Why Use Custom Subnet Masks?**
 
 Custom subnet masks offer more flexibility in network design by allowing you to:
 - Create multiple subnets of different sizes from a larger network block.
 - Optimize the use of IP address space by reducing wasted addresses.
 - Segment traffic for better security and management.
 
-#### **Conclusion**
+**Conclusion**
 
 ANDing with custom subnet masks is essential for modern network design, where creating subnets of varying sizes is often required. By mastering this skill, you can design efficient networks that make better use of available IP address space.
 
@@ -688,11 +688,11 @@ Next, let’s move on to **Subnetting Calculations**, where you'll learn how to 
 ## Subnetting Calculations
 ### Subnetting Calculations
 
-#### **Overview**
+**Overview**
 
 Subnetting involves dividing a larger network into smaller, more manageable subnets. Each subnet operates as an independent network, allowing you to efficiently use IP address space, improve security, and optimize network performance. In this section, we will focus on the calculations needed to determine the appropriate subnet mask, calculate the number of subnets and hosts, and identify key network elements such as network and broadcast addresses.
 
-#### **Steps for Subnetting Calculations**
+**Steps for Subnetting Calculations**
 
 To perform subnetting calculations, follow these steps:
 
@@ -716,7 +716,7 @@ To perform subnetting calculations, follow these steps:
 4. **Identify the Network and Broadcast Addresses**:
    - The network address is the first address in each subnet, and the broadcast address is the last. The range between these addresses represents usable host addresses.
 
-#### **Example: Subnetting a Class C Network**
+**Example: Subnetting a Class C Network**
 
 Let’s take the network `192.168.10.0/24` and subnet it into 4 subnets.
 
@@ -752,7 +752,7 @@ Let’s take the network `192.168.10.0/24` and subnet it into 4 subnets.
      - Broadcast Address: `192.168.10.255`
      - Usable IP Range: `192.168.10.193` – `192.168.10.254`
 
-#### **Practice Problem**
+**Practice Problem**
 
 You are given the network `172.16.0.0/16` and need to create 8 subnets. Calculate the subnet mask, the number of hosts per subnet, and the network and broadcast addresses for the first two subnets.
 
@@ -761,7 +761,7 @@ You are given the network `172.16.0.0/16` and need to create 8 subnets. Calculat
 Please enter the subnet mask, the number of hosts per subnet, and the network/broadcast addresses for the first two subnets:
 ```
 
-#### **Solution to Practice Problem**
+**Solution to Practice Problem**
 
 1. **Determine the Subnet Mask**:
    - Borrow 3 bits from the host portion of the Class B address (`2^3 = 8 subnets`).
@@ -784,14 +784,14 @@ Please enter the subnet mask, the number of hosts per subnet, and the network/br
      - Broadcast Address: `172.16.63.255`
      - Usable IP Range: `172.16.32.1` – `172.16.63.254`
 
-#### **Why Subnetting Calculations Matter**
+**Why Subnetting Calculations Matter**
 
 Subnetting calculations allow network administrators to:
 - Efficiently allocate IP addresses.
 - Design networks that can scale easily.
 - Reduce broadcast traffic and improve performance.
 
-#### **Conclusion**
+**Conclusion**
 
 Subnetting calculations are essential for creating subnets that meet the needs of a network, whether it’s for a small office or a large enterprise. By mastering subnetting calculations, you can design networks that optimize IP address usage, improve performance, and scale with future growth.
 
@@ -800,11 +800,10 @@ Subnetting calculations are essential for creating subnets that meet the needs o
 Next, let’s explore **Calculating Custom Subnet Masks**, where you'll learn to create subnet masks tailored to specific network requirements.
 
 ### Calculating Custom Subnet Masks
-#### **Overview**
 
 Custom subnet masks allow you to create subnetworks with specific numbers of hosts and subnets, tailored to your network's needs. Calculating a custom subnet mask involves determining how many bits should be borrowed from the host portion to create the desired number of subnets. This flexibility allows network administrators to efficiently use IP address space and control network segmentation.
 
-#### **Steps for Calculating a Custom Subnet Mask**
+**Steps for Calculating a Custom Subnet Mask**
 
 1. **Determine the Required Subnets or Hosts**:
    - Decide whether the goal is to create a specific number of subnets or to support a particular number of hosts within each subnet.
@@ -826,7 +825,7 @@ Custom subnet masks allow you to create subnetworks with specific numbers of hos
      \]
      where \( h \) is the remaining number of host bits.
 
-#### **Example: Creating a Custom Subnet Mask**
+**Example: Creating a Custom Subnet Mask**
 
 Let’s say you have the network `192.168.1.0/24` and you need to create 8 subnets. Here’s how you can calculate the custom subnet mask:
 
@@ -848,10 +847,10 @@ Let’s say you have the network `192.168.1.0/24` and you need to create 8 subne
      \]
    - This gives you 30 usable hosts per subnet.
 
-#### **Example Result**:
+**Example Result**:
 You’ve created 8 subnets, each with a subnet mask of `255.255.255.224` and 30 usable hosts.
 
-#### **Practice Problem**
+**Practice Problem**
 
 You are given the network `10.0.0.0/8` and need to create 16 subnets. What is the custom subnet mask, and how many hosts can each subnet support?
 
@@ -860,7 +859,7 @@ You are given the network `10.0.0.0/8` and need to create 16 subnets. What is th
 Please enter the custom subnet mask and the number of hosts per subnet for the IP address range:
 ```
 
-#### **Solution to Practice Problem**
+**Solution to Practice Problem**
 
 1. **Determine the Number of Bits to Borrow**:
    - You need at least 16 subnets. Using the formula:
@@ -879,14 +878,14 @@ Please enter the custom subnet mask and the number of hosts per subnet for the I
      2^{20} - 2 = 1,048,574 \text{ hosts per subnet}
      \]
 
-#### **Why Calculate Custom Subnet Masks?**
+**Why Calculate Custom Subnet Masks?**
 
 Custom subnet masks provide flexibility in network design:
 - **Efficient Use of IP Space**: By tailoring the subnet mask to the specific number of subnets and hosts needed, you avoid wasting IP addresses.
 - **Network Segmentation**: Custom subnetting allows for better traffic isolation and security by separating different departments or services.
 - **Scalability**: Custom subnet masks can accommodate network growth without the need to redesign the entire addressing scheme.
 
-#### **Conclusion**
+**Conclusion**
 
 Calculating custom subnet masks allows you to optimize network performance and scalability while effectively managing IP address space. This essential skill is key to designing networks that meet the unique needs of any organization.
 
@@ -898,6 +897,101 @@ In the next section, we will dive into **Network and Broadcast Address Identific
 ### Check Your Knowledge
 ## Practical Subnetting
 ### Variable Length Subnet Masks
+**Overview**
+
+Variable Length Subnet Masks (VLSM) is a subnetting technique that allows for more efficient use of IP address space by enabling subnets of different sizes within the same network. With VLSM, you can allocate smaller or larger subnets depending on the specific needs of different segments of your network. This flexibility is crucial for networks that must accommodate a wide variety of devices or services, each with unique IP addressing requirements.
+
+**Why Use VLSM?**
+
+Using VLSM provides several advantages:
+
+- **Optimized IP Address Space**: Avoid wasting IP addresses by tailoring subnet sizes to the exact number of required hosts.
+- **Efficient Network Design**: Create subnetworks that fit the needs of specific departments or services without over-provisioning.
+- **Scalability**: Easily scale your network by adjusting subnet sizes as the network grows.
+
+**Steps for Implementing VLSM**
+
+1. **Identify Requirements**:
+   - Determine how many hosts are needed for each subnet. Different subnets may require different sizes (e.g., one subnet for 50 devices, another for 200).
+
+2. **Allocate the Largest Subnet First**:
+   - Start by allocating the subnet with the largest number of hosts to ensure you have enough address space for it.
+
+3. **Work Down to Smaller Subnets**:
+   - After allocating the largest subnet, continue by assigning the remaining address space to smaller subnets, adjusting the subnet mask as needed.
+
+4. **Apply VLSM in Hierarchical Design**:
+   - Use hierarchical addressing with VLSM to group related subnets and ensure efficient routing.
+
+**Example: Using VLSM to Design Subnets**
+
+Suppose you are working with the network `192.168.10.0/24` and need to create subnets for three different departments with varying host requirements:
+- Department 1: 100 hosts
+- Department 2: 50 hosts
+- Department 3: 10 hosts
+
+**Step 1: Start with the Largest Subnet**
+
+- **Department 1 (100 hosts)**:
+  - Use a `/25` subnet mask (`255.255.255.128`), which provides 126 usable IP addresses.
+  - **Subnet Range**: `192.168.10.0` to `192.168.10.127`
+
+**Step 2: Allocate the Next Subnet**
+
+- **Department 2 (50 hosts)**:
+  - Use a `/26` subnet mask (`255.255.255.192`), which provides 62 usable IP addresses.
+  - **Subnet Range**: `192.168.10.128` to `192.168.10.191`
+
+**Step 3: Allocate the Smallest Subnet**
+
+- **Department 3 (10 hosts)**:
+  - Use a `/28` subnet mask (`255.255.255.240`), which provides 14 usable IP addresses.
+  - **Subnet Range**: `192.168.10.192` to `192.168.10.207`
+
+After allocating the subnets, the remaining address space (`192.168.10.208` to `192.168.10.255`) can be reserved for future growth or additional subnets.
+
+**Practice Problem**
+
+You are given the network `10.0.0.0/16` and need to create subnets for the following:
+- Subnet 1: 500 hosts
+- Subnet 2: 200 hosts
+- Subnet 3: 50 hosts
+
+How would you allocate the subnets using VLSM?
+
+```ascii
+[VLSM Calculator]
+Please enter your subnet allocation plan with the subnet mask and IP range for each subnet:
+```
+
+**Solution to Practice Problem**
+
+1. **Subnet 1 (500 hosts)**:
+   - Use a `/23` subnet mask (`255.255.254.0`), which provides 510 usable IP addresses.
+   - **Subnet Range**: `10.0.0.0` to `10.0.1.255`
+
+2. **Subnet 2 (200 hosts)**:
+   - Use a `/24` subnet mask (`255.255.255.0`), which provides 254 usable IP addresses.
+   - **Subnet Range**: `10.0.2.0` to `10.0.2.255`
+
+3. **Subnet 3 (50 hosts)**:
+   - Use a `/26` subnet mask (`255.255.255.192`), which provides 62 usable IP addresses.
+   - **Subnet Range**: `10.0.3.0` to `10.0.3.63`
+
+**Advantages of VLSM**
+
+- **IP Address Conservation**: VLSM prevents the waste of IP addresses by allowing you to allocate precisely the number of addresses needed for each subnet.
+- **Flexible Network Design**: By assigning different subnet sizes, you can better manage diverse requirements across departments or services.
+- **Improved Routing**: VLSM can reduce the number of routing entries by grouping subnets efficiently, making the network easier to manage.
+
+**Conclusion**
+
+VLSM is a powerful tool that allows for more granular control over IP address allocation, helping you design efficient, scalable networks. By understanding how to use VLSM, you can optimize your IP space and create subnets that match your specific needs.
+
+---
+
+Next, we will explore the **Seven Second Subnetting** method, a quick technique for calculating subnets in time-sensitive situations.
+
 ### Seven Second Subnetting
 Introduction
 ------------
@@ -1084,11 +1178,11 @@ Through careful planning, consideration of current and future needs, and methodi
 
 ### Network Growth Planning
 
-#### **Overview**
+**Overview**
 
 As networks grow, careful planning is necessary to ensure scalability, efficient use of IP address space, and ease of network management. Network growth planning involves forecasting future needs, determining the right subnet structure, and designing a network that can accommodate new devices and subnets without major reconfiguration. This section covers the strategies and considerations for planning a scalable network using subnetting and IP address allocation.
 
-#### **Key Considerations for Network Growth**
+**Key Considerations for Network Growth**
 
 1. **Predicting Future Network Needs**:
    - Estimate how many additional hosts or subnets your network will require in the coming months or years. Plan for growth, not just immediate needs.
@@ -1108,7 +1202,7 @@ As networks grow, careful planning is necessary to ensure scalability, efficient
 6. **Documentation and IP Address Management**:
    - Keep detailed documentation of your IP address allocation and subnet structure to make future network expansions easier to manage.
 
-#### **Steps for Network Growth Planning**
+**Steps for Network Growth Planning**
 
 1. **Assess Current Network Utilization**:
    - Review your current IP address allocation and subnet utilization. Identify which subnets are nearing capacity and which have room for growth.
@@ -1128,7 +1222,7 @@ As networks grow, careful planning is necessary to ensure scalability, efficient
 6. **Prepare for Future Protocols (IPv6)**:
    - As networks expand, consider adopting IPv6 to future-proof your network, especially if you anticipate a significant increase in connected devices.
 
-#### **Example Scenario: Planning for Growth**
+**Example Scenario: Planning for Growth**
 
 Suppose your company currently has the network `192.168.10.0/24` and is anticipating doubling the number of devices within the next year. You could plan for growth by:
 
@@ -1138,7 +1232,7 @@ Suppose your company currently has the network `192.168.10.0/24` and is anticipa
 2. **Reserving Additional Address Space**:  
    - If additional growth is expected, reserve the block `192.168.12.0/22`, which gives you flexibility to expand into this range without needing to renumber your entire network.
 
-#### **Practice Problem**
+**Practice Problem**
 
 Your organization currently uses the network `172.16.0.0/16` and anticipates adding 500 new devices across multiple subnets in the next year. How would you plan for growth? What subnet mask would you use, and how would you allocate subnets?
 
@@ -1147,7 +1241,7 @@ Your organization currently uses the network `172.16.0.0/16` and anticipates add
 Please enter your growth plan, including subnet mask, number of subnets, and address ranges:
 ```
 
-#### **Solution to Practice Problem**
+**Solution to Practice Problem**
 
 1. **Assess Current Network**:
    - The network `172.16.0.0/16` provides 65,534 hosts per subnet, which may be too large for your future needs. Dividing this network will help improve manageability and performance.
@@ -1162,7 +1256,7 @@ Please enter your growth plan, including subnet mask, number of subnets, and add
      - Subnet 3: `172.16.8.0/22`
      - These subnets will support the addition of new devices while leaving room for future expansion.
 
-#### **Conclusion**
+**Conclusion**
 
 Planning for network growth is essential to ensure your network can handle future demands without disruption. By designing a scalable IP addressing scheme, maintaining performance, and reserving IP address space, you can ensure your network is ready for expansion.
 
