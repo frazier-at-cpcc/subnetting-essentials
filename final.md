@@ -1258,10 +1258,10 @@ Based on the information in the graphic shown, design a classfull network addres
 
 
 What is the address class of this network? 
-[( )] A 
-[(X)] B
-[( )] C
-[( )] D
+- [( )] A 
+- [(X)] B
+- [( )] C
+- [( )] D
 *********************************************************
 > The IP address 172.16.0.0 belongs to a Class B network.
 *********************************************************
