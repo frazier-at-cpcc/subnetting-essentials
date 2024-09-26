@@ -929,7 +929,189 @@ In the next section, we will dive into **Network and Broadcast Address Identific
 ## Practical Subnetting
 ### Variable Length Subnet Masks
 ### Seven Second Subnetting
+Introduction
+------------
+Welcome to this lesson on the 7-second subnetting shortcut! This method, explained by Professor Messer, is a quick and efficient way to calculate subnet information without using complex binary-to-decimal conversions. It's particularly useful for networking exams and real-world scenarios where rapid subnet calculations are necessary.
+
+Lesson Objectives
+-----------------
+By the end of this lesson, you will be able to:
+1. Understand the concept of the 7-second subnetting shortcut
+2. Create and use a comprehensive subnetting chart
+3. Apply the four-step process for quick subnet calculations
+4. Practice the method with various IP addresses and subnet masks
+
+Part 1: Understanding the 7-Second Subnetting Shortcut
+------------------------------------------------------
+The 7-second subnetting shortcut is a method that allows you to quickly calculate subnet information without performing complex binary-to-decimal conversions. Here are the key points:
+
+- It's similar to the magic number method but requires no calculations
+- All necessary information is contained in a predefined chart
+- The only math involved is adding or subtracting one for first and last IP addresses
+- It works well for both online exams with whiteboards and physical testing centers
+
+Part 2: Creating Your Subnetting Chart
+--------------------------------------
+The core of the 7-second subnetting process is creating a comprehensive chart. This chart will be your reference for all subnet calculations.
+
+Your chart should include:
+1. Subnet masks
+2. Networks
+3. Addresses
+4. Decimal subnet mask columns
+
+Additionally, you may want to create a separate chart for subnet boundaries for quick reference.
+
+Exercise: Create your own subnetting chart. Include columns for CIDR notation (/24, /25, etc.), decimal subnet mask (255.255.255.0, 255.255.255.128, etc.), number of networks, and number of hosts per subnet.
+
+Part 3: The Four-Step Subnetting Process
+----------------------------------------
+The 7-second subnetting process consists of four main steps:
+
+1. Convert IP addresses and subnet masks to decimal
+2. Determine the subnet address
+3. Find the broadcast address for the subnet
+4. Calculate the first and last usable IP addresses
+
+Let's go through each step in detail:
+
+Step 1: Convert to Decimal
+--------------------------
+Use your chart to quickly convert CIDR notation to decimal subnet masks.
+
+Step 2: Determine Subnet Address
+------------------------------------
+Reference your chart to find the network address based on the given IP and subnet mask.
+
+Step 3: Find Broadcast Address
+------------------------------
+Use your chart to determine the broadcast address for the subnet.
+
+Step 4: Calculate First and Last Usable IP Addresses
+----------------------------------------------------
+- First usable IP: Add 1 to the network address
+- Last usable IP: Subtract 1 from the broadcast address
+
+Exercise: Practice these steps with the following IP address and subnet mask:
+IP: 192.168.10.50
+Subnet Mask: 255.255.255.192 (/26)
+
+Part 4: Practice and Application
+--------------------------------
+
+Now that you understand the process, let's practice with various IP addresses and subnet masks:
+
+1. IP: 172.16.45.178, Subnet Mask: 255.255.255.240 (/28)
+2. IP: 10.0.0.55, Subnet Mask: 255.255.254.0 (/23)
+3. IP: 192.168.100.200, Subnet Mask: 255.255.255.248 (/29)
+
+For each example, determine:
+a) Network address
+b) Broadcast address
+c) First usable IP address
+d) Last usable IP address
+
+Conclusion
+
+The 7-second subnetting shortcut is a powerful tool for quickly calculating subnet information. Remember these key points:
+
+- Practice regularly to improve your speed and accuracy
+- Create a clear, readable chart for exam success
+- Adapt the method to work well in both online and physical exam environments
+- Understanding subnet boundaries is crucial for accurate calculations
+
+With consistent practice, you'll be able to perform subnet calculations rapidly and accurately, a valuable skill for IT professionals and certification exams.
+
+Additional Resources
+
+- Professor Messer's networking courses and videos
+- Online subnet calculators for checking your work
+- Networking certification exam practice tests
+
+Keep practicing, and soon you'll be subnetting like a pro in just 7 seconds!
+Now that you are confident in how to subnet, 
 ### Addressing Scheme Design
+
+The Challenge
+-------------
+Sarah, the lead network engineer at NetworkCo, a growing tech company, faced a daunting task. The company was expanding rapidly, opening new offices across the country, and their current IP addressing scheme was becoming a tangled mess. With each new office, the ad-hoc approach to assigning IP addresses was causing conflicts, making network management a nightmare, and hindering further growth.
+
+As Sarah stared at the network diagram plastered across her office wall, she knew it was time for a change. "We need a comprehensive IP addressing scheme that can accommodate our current needs and future growth," she muttered to herself. "But where do I start?"
+
+The Journey Begins
+------------------
+Sarah decided to approach this challenge methodically. She gathered her team and began to outline the key considerations they needed to address:
+
+1. **Current Network Size**: They had to account for all existing devices across their five offices.
+2. **Future Growth**: The company planned to open 10 new offices in the next two years.
+3. **Departmental Structure**: Each office had distinct departments: Sales, Engineering, HR, and IT.
+4. **Special Requirements**: The Engineering department needed larger subnets for their development environments.
+
+Choosing the Address Range
+--------------------------
+After assessing their needs, Sarah decided to use private IP addresses from the Class A range: 10.0.0.0/8. "This will give us plenty of room to grow," she explained to her team.
+
+Designing the Structure
+-----------------------
+Sarah sketched out a hierarchical structure on the whiteboard:
+
+- The first octet (10) would remain constant.
+- The second octet would represent the office location (0-254).
+- The third octet would represent the department:
+  - 1: Sales
+  - 2: Engineering
+  - 3: HR
+  - 4: IT
+- The fourth octet would be for individual hosts.
+
+"This way," Sarah explained, "we can have up to 255 offices, each with up to 255 subnets, and each subnet can have up to 254 devices."
+
+Implementing VLSM
+-----------------
+To address the Engineering department's need for larger subnets, Sarah implemented Variable Length Subnet Masking (VLSM):
+
+- Sales, HR, IT: 10.office.dept.0/24 (254 hosts each)
+- Engineering: 10.office.2.0/23 (510 hosts)
+
+"By using VLSM," Sarah said, "we can allocate more IP addresses to Engineering without wasting addresses in smaller departments."
+
+Naming Convention
+-----------------
+To improve clarity, Sarah established a naming convention: 
+Location-Department-DeviceType-Number
+
+For example: NYC-ENG-PRINTER-01 would be a printer in the New York City office's Engineering department.
+
+Documentation and Growth Planning
+---------------------------------
+Sarah meticulously documented the new scheme, creating a spreadsheet that outlined:
+
+- IP ranges for each office and department
+- Subnet masks
+- Reserved IP addresses for network devices
+- Procedures for adding new subnets
+
+"We'll reserve the IP ranges 10.250-254.0.0/16 for future expansion," Sarah told her team. "This gives us room to grow beyond our current plans if needed."
+
+Implementation and Results
+--------------------------
+Over the next few months, Sarah and her team gradually implemented the new IP addressing scheme. They set up DHCP servers to automatically assign addresses within the defined ranges and updated firewall rules to reflect the new structure.
+
+The results were transformative:
+
+1. Network troubleshooting became much easier, as the IP address immediately indicated the device's location and department.
+2. Adding new offices to the network became a straightforward process.
+3. The clear structure eliminated IP conflicts, improving network stability.
+4. The company was well-prepared for future growth, with a scheme that could easily accommodate new offices and departments.
+
+Conclusion
+-----------
+As Sarah looked at the updated network diagram in her office, she felt a sense of accomplishment. The new IP addressing scheme had brought order to chaos, making NetworkCo's network more manageable, scalable, and robust.
+
+"Remember," Sarah told her team during their final review meeting, "this isn't set in stone. As our company grows and technology evolves, we'll need to review and possibly revise our scheme. But for now, we have a solid foundation to build upon."
+
+Through careful planning, consideration of current and future needs, and methodical implementation, Sarah had successfully designed an IP addressing scheme that would serve NetworkCo for years to come.
+
 ### Network Growth Planning
 ## Summative Assessment
 ### Instructions
