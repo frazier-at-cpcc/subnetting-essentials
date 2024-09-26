@@ -564,6 +564,7 @@ What is the network address?
 
       [[172.16.0.0]]
 
+***********************************************************************
 **Solution to Practice Problem**
 
 1. **Convert to Binary**:
@@ -579,6 +580,8 @@ What is the network address?
 
 3. **Convert the Result to Decimal**:
    - **Network Address**: `172.16.0.0`
+***********************************************************************
+
 
 **Why ANDing with Subnet Masks is Important**
 
