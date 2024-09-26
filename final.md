@@ -751,9 +751,6 @@ Next, let’s move on to **Subnetting Calculations**, where you'll learn how to 
 ### Activity
 ## Subnetting Calculations
 ### Subnetting Calculations
-
-**Overview**
-
 Subnetting involves dividing a larger network into smaller, more manageable subnets. Each subnet operates as an independent network, allowing you to efficiently use IP address space, improve security, and optimize network performance. In this section, we will focus on the calculations needed to determine the appropriate subnet mask, calculate the number of subnets and hosts, and identify key network elements such as network and broadcast addresses.
 
 **Steps for Subnetting Calculations**
@@ -820,24 +817,19 @@ Let’s take the network `192.168.10.0/24` and subnet it into 4 subnets.
 
 You are given the network `172.16.0.0/16` and need to create 8 subnets. Calculate the subnet mask, the number of hosts per subnet, and the network and broadcast addresses for the first two subnets.
 
-```ascii
-[Subnetting Calculator]
-Please enter the subnet mask, the number of hosts per subnet, and the network/broadcast addresses for the first two subnets:
-```
+What is the subnet mask?
+      [[255.255.224.0]]
+**************************************************************************************************************************************
+>   - Borrow 3 bits from the host portion of the Class B address (`2^3 = 8 subnets`).
+>   - The new subnet mask is `255.255.224.0` (`/19`).
+**************************************************************************************************************************************
 
-**Solution to Practice Problem**
+How many hosts per subnet? 
+      [[8190]]
+**************************************************************************************************************************************
+> With 13 host bits remaining, the number of hosts per subnet is: 8190
 
-1. **Determine the Subnet Mask**:
-   - Borrow 3 bits from the host portion of the Class B address (`2^3 = 8 subnets`).
-   - The new subnet mask is `255.255.224.0` (`/19`).
-
-2. **Calculate the Number of Hosts per Subnet**:
-   - With 13 host bits remaining, the number of hosts per subnet is:
-     \[
-     2^{13} - 2 = 8,190 \text{ hosts per subnet}
-     \]
-
-3. **Identify the Network and Broadcast Addresses for the First Two Subnets**:
+**Once you have identified the subnet mask and the number of hosts, you'll identify the network and broadcast addresses for the first two subnets.**:
    - **Subnet 1**:  
      - Network Address: `172.16.0.0`
      - Broadcast Address: `172.16.31.255`
@@ -848,20 +840,14 @@ Please enter the subnet mask, the number of hosts per subnet, and the network/br
      - Broadcast Address: `172.16.63.255`
      - Usable IP Range: `172.16.32.1` – `172.16.63.254`
 
-**Why Subnetting Calculations Matter**
-
-Subnetting calculations allow network administrators to:
-- Efficiently allocate IP addresses.
-- Design networks that can scale easily.
-- Reduce broadcast traffic and improve performance.
-
-**Conclusion**
 
 Subnetting calculations are essential for creating subnets that meet the needs of a network, whether it’s for a small office or a large enterprise. By mastering subnetting calculations, you can design networks that optimize IP address usage, improve performance, and scale with future growth.
 
 ---
 
 Next, let’s explore **Calculating Custom Subnet Masks**, where you'll learn to create subnet masks tailored to specific network requirements.
+
+**************************************************************************************************************************************
 
 ### Calculating Custom Subnet Masks
 
