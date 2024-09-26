@@ -1263,13 +1263,18 @@ What is the address class of this network?
 [( )] C
 [( )] D
 *********************************************************
-The IP address 172.16.0.0 belongs to a Class B network.
+> The IP address 172.16.0.0 belongs to a Class B network.
 *********************************************************
 
 Custom Subnet Mask:
 You need to calculate the appropriate subnet mask to accommodate the largest number of hosts, allowing for 25% growth.
-The largest group is Sales, which requires 185 hosts. With 25% growth, this increases to approximately 231 hosts. This requires a minimum of 256 addresses, meaning you would need a subnet mask of /24 (255.255.255.0).
-Minimum Number of Subnets Needed:
+
+How many hosts do you need to plan for? Round up to the closest whole number of hosts.
+      [[232]]
+**************************************************************
+> The largest group is Sales, which requires 185 hosts. With 25% growth, this increases to approximately 232 hosts. This requires a minimum of 256 addresses, meaning you would need a subnet mask of /24 (255.255.255.0).
+**************************************************************
+Minimum Number of Subnets Needed
 You have 4 subnets to plan: Sales, Marketing, Administrative, and the serial link between Router A and Router B.
 The serial link typically only needs 2 IP addresses (point-to-point link), which is the smallest subnet size, requiring a subnet mask of /30.
 Extra Subnets for 25% Growth:
