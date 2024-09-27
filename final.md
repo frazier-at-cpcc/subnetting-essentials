@@ -1,6 +1,10 @@
 # Subnetting Essentials
 Welcome to the Subnetting Essentials course! This course is designed to give you a strong foundational understanding of subnetting, a critical skill for network professionals. Whether you are new to the concept or looking to strengthen your subnetting skills, this course will guide you through the essentials and beyond.
 
+The foundations of this course has been based on a wonderful study guide by Robb Jones called IPv4 Addressing and Subnetting Workbook[^1].
+
+[^1]: https://sceweb.sce.uhcl.edu/abeysekera/ITEC3365/Workbooks/IPv4%20Addressing%20and%20Subnetting%20Workbook%20-%20Student%20Version%20-%20v2.1.pdf
+
 **Learning Objectives**
 =======================
 - Understand the basic principles of IP addressing and subnetting
@@ -47,29 +51,6 @@ Throughout this lesson, you'll engage in hands-on activities, interactive quizze
 
 ## Introduction to IP Addressing
 In this section, we will explore the fundamental concepts of IP addressing, which is the backbone of modern network communication. Understanding how IP addresses are structured, classified, and used is essential for effective network design and management. By the end of this section, you'll be familiar with various IP address classes, private and special-use addresses, and default subnet masks.
-
-**Learning Objectives**
-=======================
-- Understand the structure of IP addresses
-- Learn about different IP address classes (A, B, C, D, E)
-- Distinguish between private and public IP addresses
-- Identify special address ranges and their uses
-- Recognize default subnet masks and their significance in networking
-
-**Topics Covered**
-===================
-1. **IP Address Classes**
-   - Characteristics and ranges of each class
-   - Typical use cases for each class
-2. **Private Address Spaces**
-   - 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16
-   - Their significance and applications
-3. **Special Address Ranges**
-   - Loopback, link-local, and multicast addresses
-   - Their specific use cases and purposes in networking
-4. **Default Subnet Masks**
-   - Definition and importance of default subnet masks
-   - How default subnet masks apply to different IP address classes
 
 ---
 
@@ -175,19 +156,17 @@ Private address spaces are used to:
   - Are globally unique and routable on the public internet.
   - Assigned by an internet service provider (ISP) or a regional internet registry (RIR).
 
->**Example Scenarios**
->---------------------
->1. **Corporate Network:**
->   A large enterprise uses the `10.0.0.0/8` private range for its internal departments, with each department allocated a different subnet (e.g., 10.1.0.0/16 for HR, 10.2.0.0/16 for IT).
+> **Examples**
 >
->2. **Home Network:**
->    A home network uses the `192.168.0.0/24` range to assign private addresses to devices such as computers, smartphones, and smart home devices.
-> 
-> Private IP addresses are essential for managing internal communication in networks and reducing the demand for public IP addresses. These addresses are widely used in corporate networks, homes, and small businesses, providing flexibility and security by keeping internal traffic within the local network.
+> **Corporate Network:** A large enterprise uses the `10.0.0.0/8` private range for its internal departments, with each department allocated a different subnet (e.g., 10.1.0.0/16 for HR, 10.2.0.0/16 for IT).
 >
-> ---
-> 
-> Next, we will explore **Special Address Ranges** that are reserved for specific purposes in networking.
+> **Home Network:** A home network uses the `192.168.0.0/24` range to assign private addresses to devices such as computers, smartphones, and smart home devices.
+ 
+Private IP addresses are essential for managing internal communication in networks and reducing the demand for public IP addresses. These addresses are widely used in corporate networks, homes, and small businesses, providing flexibility and security by keeping internal traffic within the local network.
+
+---
+
+Next, we will explore **Special Address Ranges** that are reserved for specific purposes in networking.
 
 ### Special Address Ranges
 
@@ -275,10 +254,12 @@ A subnet mask is a 32-bit number that segments an IP address into the network an
 =================
 Subnet masks can also be expressed using **CIDR (Classless Inter-Domain Routing)** notation. In CIDR, the subnet mask is represented by a slash (/) followed by the number of network bits.
 
-- **Examples:**
-  - Class A: `/8` (255.0.0.0)
-  - Class B: `/16` (255.255.0.0)
-  - Class C: `/24` (255.255.255.0)
+| Class   | CIDR Notation | Subnet Mask       |
+|---------|---------------|-------------------|
+| Class A | /8            | 255.0.0.0         |
+| Class B | /16           | 255.255.0.0       |
+| Class C | /24           | 255.255.255.0     |
+
 
 > **Example: Using Subnet Masks in Practice**
 >
@@ -296,98 +277,77 @@ Subnet masks can also be expressed using **CIDR (Classless Inter-Domain Routing)
 In the next section, we will engage in an **Activity** to practice what we've learned about subnet masks and IP address classes.
 
 ### Activity
+Instructions
+============
+1. Review the table below which contains a list of IP addresses in the left-hand column.
+2. For each IP address, identify its class based on the first octet (the first number in the IP address).
+3. Enter the class of each IP address in the corresponding box under the "Class" column.
+Once you have identified the class for all IP addresses, click the "Check Answers" button to verify your answers.
+
+If you'd like to try another set of IP addresses, click the "New Exercise" button to generate a new set.
+
+__Good luck!__
 <iframe src="https://frazier-at-cpcc.github.io/subnetting-essentials/classid.html" style="border:0px #ffffff none;" name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="600px" width="600px" allowfullscreen></iframe>
 
 ### Check Your Knowledge
-This quiz will help reinforce your understanding of IP address classes (A, B, C, D, and E). You'll need to identify the class of various IP addresses based on their range. Let's test your knowledge!
 
 **Instructions**
 ----------------
-For each of the following IP addresses, identify which class (A, B, C, D, or E) they belong to. Select the correct option for each question.
+For each of the questions below, select the best answer and then click **Check** to check your answer.
 
 **Quiz**
 ========
 
-Question 1: What class does the IP address `240.1.1.1` belong to?
------------------------------------------------------------------
+**Question 1: What is the purpose of the loopback address range 127.0.0.0/8?**
 
-[( )] Class A
-[( )] Class B
-[( )] Class C
-[( )] Class D
-[(X)] Class E
-
-
-Question 2: What class does the IP address `10.1.1.1` belong to?
-----------------------------------------------------------------
-
-[(X)] Class A
-[( )] Class B
-[( )] Class C
-[( )] Class D
-[( )] Class E
-
-
-Question 3: What class does the IP address `224.0.0.1` belong to?
------------------------------------------------------------------
-
-[( )] Class A
-[( )] Class B
-[( )] Class C
-[(X)] Class D
-[( )] Class E
-
-
-Question 4: What class does the IP address `192.168.1.100` belong to?
----------------------------------------------------------------------
-
-[( )] Class A
-[( )] Class B
-[(X)] Class C
-[( )] Class D
-[( )] Class E
-
-
-Question 5: What class does the IP address `172.16.0.5` belong to?
-------------------------------------------------------------------
-
-[( )] Class A
-[(X)] Class B
-[( )] Class C
-[( )] Class D
-[( )] Class E
-*****************************************************************************************************************************************************************
-> **Review Your Answers**
-> 
-> Once you've answered all the questions, review your answers to see which IP address classes you've identified correctly. If you need more practice, review the material on IP address classes (A, B, C, D, E) and take the quiz again.
-> 
-> **Summary of IP Address Classes**
-> 
-> - **Class A**: `0.0.0.0` to `127.255.255.255`
-> - **Class B**: `128.0.0.0` to `191.255.255.255`
-> - **Class C**: `192.0.0.0` to `223.255.255.255`
-> - **Class D**: `224.0.0.0` to `239.255.255.255` (Multicast)
-> - **Class E**: `240.0.0.0` to `255.255.255.255` (Experimental)
+[(X)] Internal testing and diagnostics  
+[( )] Communication without DHCP  
+[( )] Sending data to multiple devices  
+[( )] Routing to the nearest receiver  
+[( )] Sending data to all devices
 
 ---
 
-Congratulations on completing this quiz! Continue practicing and solidifying your understanding of IP address classes.
-*****************************************************************************************************************************************************************
+**Question 2: When is the link-local address range 169.254.0.0/16 used?**
+
+[( )] For testing software on a local machine  
+[(X)] When a device cannot obtain an IP address from a DHCP server  
+[( )] For streaming data to multiple devices  
+[( )] For directing users to the nearest server  
+[( )] For sending data to all devices on a network
+
+---
+
+**Question 3: Which special address range is used for multicasting data to multiple devices?**
+
+[( )] 127.0.0.0/8  
+[( )] 169.254.0.0/16  
+[(X)] 224.0.0.0/4  
+[( )] 233.0.0.0/8  
+[( )] 192.168.1.255
+
+---
+
+**Question 4: What is an example use case for the anycast address range 233.0.0.0/8?**
+
+[( )] Testing a web server locally  
+[( )] Communicating with devices on the same network without DHCP  
+[( )] Streaming a video to multiple devices  
+[(X)] Directing users to the nearest content delivery server  
+[( )] Sending ARP requests
+
+---
+
+**Question 5: What is the purpose of a broadcast address like 192.168.1.255?**
+
+[( )] Testing software on a local machine  
+[( )] Communicating without DHCP  
+[( )] Sending data to multiple devices  
+[( )] Routing to the nearest receiver  
+[(X)] Sending data to all devices on a specific network
 
 ## Binary and Decimal Conversions
 In networking, understanding how to convert between binary and decimal numbers is essential, as IP addresses and subnet masks are represented in both formats. This module will guide you through the process of converting decimal numbers to binary and vice versa, which is crucial for IP address manipulation, subnetting, and network calculations.
-
-**Learning Objectives**
-=======================
-
-By the end of this module, you will be able to:
-
-- Understand the relationship between binary and decimal numbering systems.
-- Convert decimal IP addresses to binary format.
-- Convert binary IP addresses to decimal format.
-- Perform bitwise operations like ANDing with subnet masks for network identification.
-
-IP addresses are represented in binary by computers, but they are often displayed in decimal format for easier readability by humans. Understanding how to convert between these two systems allows network professionals to perform critical tasks such as subnetting, IP address calculation, and overall network troubleshooting. 
 
 ---
 Now, let’s begin by diving into the basics of **Binary to Decimal Conversion**, where you'll learn to convert binary IP addresses into their decimal equivalents.
@@ -411,15 +371,15 @@ To convert a binary number to its decimal equivalent, you can follow these steps
 > **Example: Converting Binary to Decimal**
 > Let’s convert the binary IP address `11000000.10101000.00000001.00000001` to decimal.
 > 
->1. **Binary IP Address**: `11000000.10101000.00000001.00000001`
->   
->2. **Break it down into octets**:
+> 1. **Binary IP Address**: `11000000.10101000.00000001.00000001`
+>  2. **Break it down into octets**:
+> 
 >   - First octet: `11000000`
 >   - Second octet: `10101000`
 >   - Third octet: `00000001`
 >   - Fourth octet: `00000001`
 >
->3. **Convert each octet from binary to decimal**:
+> 3. **Convert each octet from binary to decimal**:
 >
 >   - **First octet**: `11000000`
 >     - (1 × 2^7) + (1 × 2^6) + (0 × 2^5) + (0 × 2^4) + (0 × 2^3) + (0 × 2^2) + (0 × 2^1) + (0 × 2^0)
@@ -438,6 +398,7 @@ To convert a binary number to its decimal equivalent, you can follow these steps
 >     - = 1
 >
 > 4. **Final Decimal Address**: Combine the decimal values from each octet:
+>
 >    - `192.168.1.1`
 
 **Practice Problem**
@@ -475,13 +436,13 @@ Just as binary can be converted to decimal, it’s also important to know how to
 
 To convert a decimal number to its binary equivalent, follow these steps:
 
-1. **Write down the decimal number**: Start with the decimal IP address, which consists of four octets (numbers between 0 and 255).
+1. Start with the decimal IP address, which consists of four octets (numbers between 0 and 255).
 
-2. **Divide the decimal number by 2**: For each octet, continuously divide the number by 2, noting the remainder each time.
+2. For each octet, continuously divide the number by 2, noting the remainder each time.
 
-3. **Record the remainders**: The remainder from each division step forms a binary digit (1 or 0).
+3. The remainder from each division step forms a binary digit (1 or 0).
 
-4. **Reverse the order of the remainders**: The remainders form the binary equivalent, starting from the least significant bit (rightmost) to the most significant bit (leftmost).
+4. The remainders form the binary equivalent, starting from the least significant bit (rightmost) to the most significant bit (leftmost).
 
 > **Example: Converting Decimal to Binary**
 > 
@@ -492,6 +453,7 @@ To convert a decimal number to its binary equivalent, follow these steps:
 > 2. **Convert each octet to binary**:
 > 
 >    - **First octet**: `192`
+> 
 >      - 192 ÷ 2 = 96, remainder = 0
 >      - 96 ÷ 2 = 48, remainder = 0
 >      - 48 ÷ 2 = 24, remainder = 0
@@ -503,6 +465,7 @@ To convert a decimal number to its binary equivalent, follow these steps:
 >      - **Binary for 192** = `11000000`
 > 
 >    - **Second octet**: `168`
+>
 >      - 168 ÷ 2 = 84, remainder = 0
 >      - 84 ÷ 2 = 42, remainder = 0
 >      - 42 ÷ 2 = 21, remainder = 0
@@ -514,10 +477,12 @@ To convert a decimal number to its binary equivalent, follow these steps:
 >      - **Binary for 168** = `10101000`
 > 
 >    - **Third octet**: `1`
+>
 >      - 1 ÷ 2 = 0, remainder = 1
 >      - **Binary for 1** = `00000001`
 > 
 >    - **Fourth octet**: `1`
+>
 >      - 1 ÷ 2 = 0, remainder = 1
 >      - **Binary for 1** = `00000001`
 > 
@@ -710,7 +675,7 @@ Let’s practice ANDing with a custom subnet mask. Perform the AND operation for
 **Your Turn**: Please enter the network address for the IP address above.
 
       [[10.10.5.192]]
-**********************************************************************************************************************************
+****************************************************
 > **Solution to Practice Problem**
 >
 > 1. **Convert to Binary**:
@@ -727,20 +692,54 @@ Let’s practice ANDing with a custom subnet mask. Perform the AND operation for
 > 
 > 3. **Convert the Result to Decimal**:
 >    - **Network Address**: `10.10.5.192`
-
-**Why Use Custom Subnet Masks?**
-
-Custom subnet masks offer more flexibility in network design by allowing you to:
-- Create multiple subnets of different sizes from a larger network block.
-- Optimize the use of IP address space by reducing wasted addresses.
-- Segment traffic for better security and management.
-
+*****************************************************
 
 
 ANDing with custom subnet masks is essential for modern network design, where creating subnets of varying sizes is often required. By mastering this skill, you can design efficient networks that make better use of available IP address space.
 
-### Activity
+### Activity 1 
+ 
+
+Instructions for Binary to Decimal Conversion Exercise:
+==========================
+1. **Observe each row of binary numbers** in the table. Each binary number corresponds to a power of 2, indicated by the column headers (128, 64, 32, 16, 8, 4, 2, 1).
+2. **Convert the binary number in each row to its decimal equivalent**:
+
+   - Start from the leftmost column (128) and work your way to the right (1).
+   - Add the values for each column where there is a "1" in the binary number.
+   - Ignore columns where there is a "0".
+   - For example, in the first row:
+
+     `1` × 128 + `1` × 64 + `1` × 32 + `0` × 16 + `1` × 8 + `0` × 4 + `0` × 2 + `0` × 1 = 232.
+3. **Enter the decimal value** for each row in the "Answer" column on the right.
+4. Once you have completed all rows, click the **"Check Answers"** button to see if your conversions are correct.
+5. If you want more practice, click the **"New Exercise"** button to generate a new set of binary numbers.
+
 <iframe src="https://frazier-at-cpcc.github.io/subnetting-essentials/binary-decimal.html" style="border:0px #ffffff none;" name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="600px" width="600px" allowfullscreen></iframe>
+
+### Activity 2
+Instructions
+============
+1. **Review the decimal number** provided at the top of the exercise (e.g., "Decimal number: 46").
+2. **Convert the decimal number to its binary equivalent** by following these steps:
+
+   - Starting with the largest value (128), check if you can subtract that value from the decimal number.
+   - If you can, place a checkmark in the corresponding box under that value and subtract that value from the decimal number.
+   - If you cannot subtract that value, leave the box unchecked and move to the next lower value.
+   - Continue until you have either reached 0 or finished with the smallest value (1).
+   - The result will be a series of 1s and 0s that form the binary representation of the decimal number.
+3. **For example**, converting the decimal number 46:
+
+   - 46 - 32 = 14 → Place a check under 32.
+   - 14 - 16 = cannot subtract → Leave 16 unchecked.
+   - 14 - 8 = 6 → Place a check under 8.
+   - 6 - 4 = 2 → Place a check under 4.
+   - 2 - 2 = 0 → Place a check under 2.
+   - The binary number is 00101110 (for 46).
+4. Once you have completed the conversion, click the **"Check Answer"** button to verify if your binary conversion is correct.
+5. If you would like to practice with another decimal number, click the **"New Exercise"** button to generate a new decimal number.
+
+
 <iframe src="https://frazier-at-cpcc.github.io/subnetting-essentials/decimal-binary.html" style="border:0px #ffffff none;" name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="600px" width="600px" allowfullscreen></iframe>
 
 ## Subnetting Calculations
@@ -755,19 +754,17 @@ To perform subnetting calculations, follow these steps:
 
 2. **Calculate the Number of Subnets**:
    - Use the formula:  
-     \[
-     \text{Number of Subnets} = 2^n
-     \]
-     where \( n \) is the number of bits borrowed from the host portion of the address.
+     Number of Subnets = 2^n^
+     where ^n^ is the number of bits borrowed from the host portion of the address.
 
 3. **Calculate the Number of Hosts per Subnet**:
+
    - Use the formula:  
-     \[
-     \text{Number of Hosts} = 2^h - 2
-     \]
-     where \( h \) is the number of host bits, and the subtraction of 2 accounts for the network and broadcast addresses.
+     __Number of Hosts__ = 2^h^ - 2
+     where ^h^ is the number of host bits, and the subtraction of 2 accounts for the network and broadcast addresses.
 
 4. **Identify the Network and Broadcast Addresses**:
+
    - The network address is the first address in each subnet, and the broadcast address is the last. The range between these addresses represents usable host addresses.
 
 > **Example: Subnetting a Class C Network**
@@ -775,38 +772,50 @@ To perform subnetting calculations, follow these steps:
 > Let’s take the network `192.168.10.0/24` and subnet it into 4 subnets.
 > 
 > 1. **Determine the Subnet Mask**:
+>
 >    - To create 4 subnets, we need to borrow 2 bits from the host portion (because \( 2^2 = 4 \)).
 >    - The default Class C subnet mask is `255.255.255.0` (`/24`). Borrowing 2 bits gives us a new subnet mask of `255.255.255.192` (`/26`).
 > 
 > 2. **Calculate the Number of Hosts per Subnet**:
+>
 >    - With 6 bits remaining for hosts (8 bits in the original Class C - 2 bits borrowed for subnetting), we can calculate the number of hosts per subnet:
->     \[
->     2^6 - 2 = 62 \text{ hosts per subnet}
->     \]
+>     2^6^ - 2 = 62 hosts per subnet
 > 
-> 3. **Identify the Network and Broadcast Addresses**:
-> 
->    - **Subnet 1**:  
->      - Network Address: `192.168.10.0`
->      - Broadcast Address: `192.168.10.63`
->      - Usable IP Range: `192.168.10.1` – `192.168.10.62`
->      
->    - **Subnet 2**:  
->      - Network Address: `192.168.10.64`
->      - Broadcast Address: `192.168.10.127`
->      - Usable IP Range: `192.168.10.65` – `192.168.10.126`
->      
->    - **Subnet 3**:  
->      - Network Address: `192.168.10.128`
->      - Broadcast Address: `192.168.10.191`
->      - Usable IP Range: `192.168.10.129` – `192.168.10.190`
->      
->    - **Subnet 4**:  
->      - Network Address: `192.168.10.192`
->      - Broadcast Address: `192.168.10.255`
->      - Usable IP Range: `192.168.10.193` – `192.168.10.254`
+3. **Identify the Network and Broadcast Addresses**
 
-**Practice Problem**
+Subnet 1
+---------
+| **Property**         | **Value**                  |
+|----------------------|----------------------------|
+| Network Address       | `192.168.10.0`             |
+| Broadcast Address     | `192.168.10.63`            |
+| Usable IP Range       | `192.168.10.1 – 192.168.10.62` |
+
+Subnet 2
+--------
+| **Property**         | **Value**                  |
+|----------------------|----------------------------|
+| Network Address       | `192.168.10.64`            |
+| Broadcast Address     | `192.168.10.127`           |
+| Usable IP Range       | `192.168.10.65 – 192.168.10.126` |
+
+Subnet 3
+--------
+| **Property**         | **Value**                  |
+|----------------------|----------------------------|
+| Network Address       | `192.168.10.128`           |
+| Broadcast Address     | `192.168.10.191`           |
+| Usable IP Range       | `192.168.10.129 – 192.168.10.190` |
+
+Subnet 4
+--------
+| **Property**         | **Value**                  |
+|----------------------|----------------------------|
+| Network Address       | `192.168.10.192`           |
+| Broadcast Address     | `192.168.10.255`           |
+| Usable IP Range       | `192.168.10.193 – 192.168.10.254` |
+
+**Try It Out**
 
 You are given the network `172.16.0.0/16` and need to create 8 subnets. Calculate the subnet mask, the number of hosts per subnet, and the network and broadcast addresses for the first two subnets.
 
@@ -823,15 +832,22 @@ How many hosts per subnet?
 > With 13 host bits remaining, the number of hosts per subnet is: 8190
 
 **Once you have identified the subnet mask and the number of hosts, you'll identify the network and broadcast addresses for the first two subnets.**:
-   - **Subnet 1**:  
-     - Network Address: `172.16.0.0`
-     - Broadcast Address: `172.16.31.255`
-     - Usable IP Range: `172.16.0.1` – `172.16.31.254`
-   
-   - **Subnet 2**:  
-     - Network Address: `172.16.32.0`
-     - Broadcast Address: `172.16.63.255`
-     - Usable IP Range: `172.16.32.1` – `172.16.63.254`
+
+Subnet 1
+--------
+| **Property**         | **Value**                  |
+|----------------------|----------------------------|
+| Network Address       | `172.16.0.0`              |
+| Broadcast Address     | `172.16.31.255`           |
+| Usable IP Range       | `172.16.0.1 – 172.16.31.254` |
+
+Subnet 2
+--------
+| **Property**         | **Value**                  |
+|----------------------|----------------------------|
+| Network Address       | `172.16.32.0`             |
+| Broadcast Address     | `172.16.63.255`           |
+| Usable IP Range       | `172.16.32.1 – 172.16.63.254` |
 
 
 Subnetting calculations are essential for creating subnets that meet the needs of a network, whether it’s for a small office or a large enterprise. By mastering subnetting calculations, you can design networks that optimize IP address usage, improve performance, and scale with future growth.
@@ -849,65 +865,40 @@ Custom subnet masks allow you to create subnetworks with specific numbers of hos
 **Steps for Calculating a Custom Subnet Mask**
 
 1. **Determine the Required Subnets or Hosts**:
+   
    - Decide whether the goal is to create a specific number of subnets or to support a particular number of hosts within each subnet.
 
 2. **Calculate the Number of Bits to Borrow**:
-   - Use the formula:
-     \[
-     2^n \geq \text{Required Subnets}
-     \]
-     where \( n \) is the number of bits borrowed from the host portion.
+   
+   - Use the formula 2^n where ^n^ is the number of bits borrowed from the host portion.
 
 3. **Calculate the New Subnet Mask**:
+   
    - Add the borrowed bits to the default subnet mask for your IP class to determine the custom subnet mask.
 
 4. **Verify the Number of Hosts per Subnet**:
-   - Use the formula:
-     \[
-     2^h - 2 \geq \text{Required Hosts}
-     \]
-     where \( h \) is the remaining number of host bits.
+   
+   - Use the formula __2^h^ - 2__ where ^h^ is the remaining number of host bits.
 
-> **Example: Creating a Custom Subnet Mask**
-> 
-> Let’s say you have the network `192.168.1.0/24` and you need to create 8 subnets. Here’s how you can calculate the custom subnet mask:
-> 
-> 1. **Determine the Number of Bits to Borrow**:
->    - You need at least 8 subnets. To calculate the number of bits required, use the formula:
->      \[
->      2^n \geq 8 \quad \text{so} \quad n = 3
->      \]
->      - Borrow 3 bits from the host portion.
-> 
-> 2. **Calculate the New Subnet Mask**:
->    - The default subnet mask for a Class C network is `255.255.255.0` (`/24`).
->    - Adding 3 borrowed bits changes the subnet mask to `255.255.255.224` (`/27`).
-> 
-> 3. **Verify the Number of Hosts per Subnet**:
->    - With 5 remaining host bits (`32 total bits - 27 network bits = 5 host bits`):
->      \[
->      2^5 - 2 = 30 \text{ hosts per subnet}
->      \]
->    - This gives you 30 usable hosts per subnet.
-> 
-> **Example Result**:
-> You’ve created 8 subnets, each with a subnet mask of `255.255.255.224` and 30 usable hosts.
 
 > **Practice Problem**
 > 
 > You are given the network `10.0.0.0/8` and need to create 16 subnets. What is the custom subnet mask, and how many hosts can each subnet support?
 > 
 > 1. **Determine the Number of Bits to Borrow**:
+>
 >    - You need at least 16 subnets. 
 >     - Borrow 4 bits from the host portion.
 > 
 > 2. **Calculate the New Subnet Mask**:
+>
 >    - The default subnet mask for a Class A network is `255.0.0.0` (`/8`).
 >    - Adding 4 borrowed bits changes the subnet mask to `255.240.0.0` (`/12`).
 > 
 > 3. **Verify the Number of Hosts per Subnet**:
+>
 >    - With 20 remaining host bits (`32 total bits - 12 network bits = 20 host bits`):
->      2^{20} - 2 = 1,048,574 hosts per subnet
+>      2^20^ - 2 = 1,048,574 hosts per subnet
 
 Calculating custom subnet masks allows you to optimize network performance and scalability while effectively managing IP address space. This essential skill is key to designing networks that meet the unique needs of any organization.
 
@@ -917,31 +908,22 @@ Calculating custom subnet masks allows you to optimize network performance and s
 
 Variable Length Subnet Masks (VLSM) is a subnetting technique that allows for more efficient use of IP address space by enabling subnets of different sizes within the same network. With VLSM, you can allocate smaller or larger subnets depending on the specific needs of different segments of your network. This flexibility is crucial for networks that must accommodate a wide variety of devices or services, each with unique IP addressing requirements.
 
-**Why Use VLSM?**
-
-Using VLSM provides several advantages:
-
-- **Optimized IP Address Space**: Avoid wasting IP addresses by tailoring subnet sizes to the exact number of required hosts.
-- **Efficient Network Design**: Create subnetworks that fit the needs of specific departments or services without over-provisioning.
-- **Scalability**: Easily scale your network by adjusting subnet sizes as the network grows.
+Using VLSM avoids wasting IP addresses by tailoring subnet sizes to the exact number of required hosts. VLSM also allows you to create subnetworks that fit the needs of specific departments or services without over-provisioning. By utilizing this subnetting method, you can easily scale your network by adjusting subnet sizes as the network grows.
 
 **Steps for Implementing VLSM**
 
-1. **Identify Requirements**:
-   - Determine how many hosts are needed for each subnet. Different subnets may require different sizes (e.g., one subnet for 50 devices, another for 200).
+1. Determine how many hosts are needed for each subnet. Different subnets may require different sizes (e.g., one subnet for 50 devices, another for 200).
 
-2. **Allocate the Largest Subnet First**:
-   - Start by allocating the subnet with the largest number of hosts to ensure you have enough address space for it.
+2. Start by allocating the subnet with the largest number of hosts to ensure you have enough address space for it.
 
-3. **Work Down to Smaller Subnets**:
-   - After allocating the largest subnet, continue by assigning the remaining address space to smaller subnets, adjusting the subnet mask as needed.
+3. After allocating the largest subnet, continue by assigning the remaining address space to smaller subnets, adjusting the subnet mask as needed.
 
-4. **Apply VLSM in Hierarchical Design**:
-   - Use hierarchical addressing with VLSM to group related subnets and ensure efficient routing.
+4. Use hierarchical addressing with VLSM to group related subnets and ensure efficient routing.
 
 **Example: Using VLSM to Design Subnets**
 
 Suppose you are working with the network `192.168.10.0/24` and need to create subnets for three different departments with varying host requirements:
+
 - Department 1: 100 hosts
 - Department 2: 50 hosts
 - Department 3: 10 hosts
@@ -949,18 +931,21 @@ Suppose you are working with the network `192.168.10.0/24` and need to create su
 **Step 1: Start with the Largest Subnet**
 
 - **Department 1 (100 hosts)**:
+
   - Use a `/25` subnet mask (`255.255.255.128`), which provides 126 usable IP addresses.
   - **Subnet Range**: `192.168.10.0` to `192.168.10.127`
 
 **Step 2: Allocate the Next Subnet**
 
 - **Department 2 (50 hosts)**:
+
   - Use a `/26` subnet mask (`255.255.255.192`), which provides 62 usable IP addresses.
   - **Subnet Range**: `192.168.10.128` to `192.168.10.191`
 
 **Step 3: Allocate the Smallest Subnet**
 
 - **Department 3 (10 hosts)**:
+
   - Use a `/28` subnet mask (`255.255.255.240`), which provides 14 usable IP addresses.
   - **Subnet Range**: `192.168.10.192` to `192.168.10.207`
 
@@ -969,6 +954,7 @@ After allocating the subnets, the remaining address space (`192.168.10.208` to `
 > **Practice Problem**
 > 
 > You are given the network `10.0.0.0/16` and need to create subnets for the following:
+>
 > - Subnet 1: 500 hosts
 > - Subnet 2: 200 hosts
 > - Subnet 3: 50 hosts
@@ -979,14 +965,17 @@ After allocating the subnets, the remaining address space (`192.168.10.208` to `
 > **Solution to Practice Problem**
 > 
 > 1. **Subnet 1 (500 hosts)**:
+>
 >    - Use a `/23` subnet mask (`255.255.254.0`), which provides 510 usable IP addresses.
 >    - **Subnet Range**: `10.0.0.0` to `10.0.1.255`
 > 
 > 2. **Subnet 2 (200 hosts)**:
+>
 >    - Use a `/24` subnet mask (`255.255.255.0`), which provides 254 usable IP addresses.
 >    - **Subnet Range**: `10.0.2.0` to `10.0.2.255`
 > 
 > 3. **Subnet 3 (50 hosts)**:
+>
 >    - Use a `/26` subnet mask (`255.255.255.192`), which provides 62 usable IP addresses.
 >    - **Subnet Range**: `10.0.3.0` to `10.0.3.63`
 
@@ -997,7 +986,9 @@ VLSM is a powerful tool that allows for more granular control over IP address al
 Next, we will explore the **Seven Second Subnetting** method, a quick technique for calculating subnets in time-sensitive situations.
 
 ### Seven Second Subnetting
-Welcome to this lesson on the 7-second subnetting shortcut! This method, explained by Professor Messer, is a quick and efficient way to calculate subnet information without using complex binary-to-decimal conversions. It's particularly useful for networking exams and real-world scenarios where rapid subnet calculations are necessary.
+Now that we have reviewed the formal subnetting process, let's take a look at a shortcut! This method, explained by Professor Messer[^1], is a quick and efficient way to calculate subnet information without using complex binary-to-decimal conversions. It's particularly useful for networking exams and real-world scenarios where rapid subnet calculations are necessary.
+
+[^1]: -- [Professor Messer's YouTube Channel](https://www.youtube.com/watch?v=I3LBYMXBhus)
 
 !?[](https://www.youtube.com/watch?v=I3LBYMXBhus)
 
@@ -1012,6 +1003,7 @@ The 7-second subnetting shortcut is a method that allows you to quickly calculat
 The core of the 7-second subnetting process is creating a comprehensive chart. This chart will be your reference for all subnet calculations.
 
 Your chart should include:
+
 1. Subnet masks
 2. Networks
 3. Addresses
@@ -1049,21 +1041,21 @@ IP: 172.16.45.178, Subnet Mask: 255.255.255.240 (/28)
 
       [[172.16.45.176]]
 ************************************************************************************************
-> Convert the subnet mask to binary: 255.255.255.240 = 11111111.11111111.11111111.11110000
-> IP in binary: 172.16.45.178 = 10101100.00010000.00101101.10110010
-> Perform an AND operation between the IP address and the subnet mask:
-> Network address in binary: 10101100.00010000.00101101.10110000
-> Convert back to decimal: 172.16.45.176
+> - Convert the subnet mask to binary: 255.255.255.240 = 11111111.11111111.11111111.11110000
+> - IP in binary: 172.16.45.178 = 10101100.00010000.00101101.10110010
+> - Perform an AND operation between the IP address and the subnet mask:
+> - Network address in binary: 10101100.00010000.00101101.10110000
+> - Convert back to decimal: 172.16.45.176
 ************************************************************************************************
 
 **Broadcast Address** 
 
       [[172.16.45.191]]
 ************************************************************************************************
-> The broadcast address is the last IP in the subnet.
-> Flip the host bits in the network address to all 1s:
-> Broadcast address in binary: 10101100.00010000.00101101.10111111
-> Convert back to decimal: 172.16.45.191
+> - The broadcast address is the last IP in the subnet.
+> - Flip the host bits in the network address to all 1s:
+> - Broadcast address in binary: 10101100.00010000.00101101.10111111
+> - Convert back to decimal: 172.16.45.191
 ************************************************************************************************
 
 **First Usable IP Address**
@@ -1080,21 +1072,9 @@ IP: 172.16.45.178, Subnet Mask: 255.255.255.240 (/28)
 > Last usable IP = Broadcast address - 1: 172.16.45.190
 ************************************************************************************************
 
-The 7-second subnetting shortcut is a powerful tool for quickly calculating subnet information. Remember these key points:
-
-- Practice regularly to improve your speed and accuracy
-- Create a clear, readable chart for exam success
-- Adapt the method to work well in both online and physical exam environments
-- Understanding subnet boundaries is crucial for accurate calculations
+The 7-second subnetting shortcut is a powerful tool for quickly calculating subnet information.
 
 With consistent practice, you'll be able to perform subnet calculations rapidly and accurately, a valuable skill for IT professionals and certification exams.
-
-Additional Resources
---------------------
-
-- Professor Messer's networking courses and videos
-- Online subnet calculators for checking your work
-- Networking certification exam practice tests
 
 Keep practicing, and soon you'll be subnetting like a pro in just 7 seconds!
 Now that you are confident in how to subnet, let's look at a scenario where a network was designed for a specific environment.
