@@ -7,7 +7,7 @@ The foundations of this course has been based on a wonderful study guide by Robb
 
 **Learning Objectives**
 =======================
-- Understand the basic principles of IP addressing and subnetting
+- Identify the basic principles of IP addressing and subnetting
 - Perform binary and decimal conversions as they apply to subnetting
 - Learn to identify network and broadcast addresses
 - Calculate subnet sizes and custom subnet masks
